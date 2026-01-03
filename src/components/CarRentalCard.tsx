@@ -1,0 +1,107 @@
+"use client";
+import React from "react";
+import { FaUsers, FaCog, FaGasPump, FaPhoneAlt } from "react-icons/fa";
+import { IoLogoWhatsapp } from "react-icons/io";
+import Image from "next/image";
+import styles from "../styles/frontend/carRentalCard.module.css";
+import ImageHoverCarousel from "./ImageHoverCarousel";
+import { CarType } from "../types/CarType";
+
+interface CarRentalCardProps {
+  car: CarType;
+}
+
+const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
+  const handleWhatsApp = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const message = `Hi, I am interested in renting the ${car.name}`;
+    const phoneNumber = "971500000000";
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(url, "_blank");
+  };
+
+  const handleCall = () => {
+    window.location.href = "tel:+971500000000";
+  };
+
+  const displayName = car.name
+    .replace(new RegExp(`${car.brand}`, "i"), " ")
+    .replace(new RegExp(`-`, "i"), "")
+    .trim();
+
+  return (
+    <div className={styles.card}>
+      <div className={styles.imageContainer}>
+        <ImageHoverCarousel images={car.images} alt={car.name} />
+      </div>
+
+      <div className={styles.details}>
+        <div className={styles.header}>
+          <div className={styles.textGroup}>
+            <p className={styles.carName}>{displayName || car.name}</p>
+            <p className={styles.category}>
+              {car.type} • {car.brand}
+            </p>
+          </div>
+          <div className={styles.logoBox}>
+            <Image
+              src={`/images/carLogos/${car.brand}.webp`}
+              className={styles.logoImage}
+              height={40}
+              width={40}
+              alt={car.brand}
+            />
+          </div>
+        </div>
+
+        <div className={styles.featuresGrid}>
+          <div className={styles.featureItem}>
+            <FaUsers className={styles.featureIcon} />
+            <span className={styles.featureText}>{car.seats} Seats</span>
+          </div>
+          <div className={styles.featureItem}>
+            <FaCog className={styles.featureIcon} />
+            <span className={styles.featureText}>
+              {car.transmission?.split(" ")[0] || "Auto"}
+            </span>
+          </div>
+          <div className={styles.featureItem}>
+            <FaGasPump className={styles.featureIcon} />
+            <span className={styles.featureText}>
+              {car.fuel?.split(" ")[0] || "Petrol"}
+            </span>
+          </div>
+        </div>
+
+        <div className={styles.priceActionsContainer}>
+          <div className={styles.priceWrapper}>
+            <span className={styles.priceText}>
+              {car.pricing.currency} {car.pricing.daily.toLocaleString()}
+            </span>
+            <span className={styles.priceSub}>/day</span>
+          </div>
+
+          <div className={styles.actions}>
+            <button onClick={handleCall} className={styles.callButton}>
+              <FaPhoneAlt className="w-3 h-3 mr-2" />
+              <span className={styles.buttonTextHidden}>Call</span>
+            </button>
+
+            <a
+              onClick={handleWhatsApp}
+              className={styles.whatsappButton}
+              style={{ textDecoration: "none" }}
+            >
+              <IoLogoWhatsapp className="w-4 h-4 mr-2" />
+              <span className={styles.buttonTextHidden}>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CarRentalCard;

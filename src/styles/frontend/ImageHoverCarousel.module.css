@@ -1,0 +1,73 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%; /* 👈 Changed: Fill the parent container height */
+  overflow: hidden;
+}
+
+/* Image Wrapper */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%; /* 👈 Changed: Ensure it takes full height */
+}
+
+.image {
+  object-fit: cover; /* 👈 Ensures image covers area without stretching */
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+/* Zoom effect on hover */
+.wrapper:hover .image {
+  transform: scale(1.05);
+}
+
+/* Dots container */
+.dots {
+  position: absolute;
+  bottom: 10px; /* 👈 Fixed position from bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 10; /* 👈 Ensure dots are above image */
+}
+
+/* Show dots on hover */
+@media (hover: hover) {
+  .wrapper:hover .dots {
+    opacity: 1;
+  }
+}
+
+/* On touch devices (mobile), always show dots if multiple images exist */
+@media (hover: none) {
+  .dots {
+    opacity: 1;
+  }
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dot:hover {
+  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.active {
+  background: white;
+  transform: scale(1.2);
+}

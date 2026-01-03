@@ -1,0 +1,193 @@
+"use client";
+import React from "react";
+import { Phone, MessageCircle, Mail, MapPin, Clock } from "lucide-react";
+import styles from "../../../styles/frontend/contactus.module.css";
+
+// Data for the contact list (Left Column)
+const contactDetails = [
+  {
+    icon: Phone,
+    title: "Phone",
+    content: "+971 52 304 8253",
+    href: "tel:+9711523048253",
+    colorClass: styles.iconPrimary,
+  },
+  {
+    icon: MessageCircle,
+    title: "WhatsApp",
+    content: "+971 52 304 8253",
+    href: "https://wa.me/9711523048253",
+    colorClass: styles.iconGreen, // Special color for WhatsApp
+  },
+  {
+    icon: Mail,
+    title: "Email",
+    content: "info@hirecarnowdubai.com",
+    href: "mailto:info@hirecarnowdubai.com",
+    colorClass: styles.iconPrimary,
+  },
+  {
+    icon: MapPin,
+    title: "Location",
+    content: "AutoMarket Ras Al Khor Ind. Third-Dubai - United Arab Emirates",
+    href: "https://maps.google.com/?q=AutoMarket+Ras+Al+Khor+Ind.+Third+Dubai+UAE", // Fixed link structure
+    colorClass: styles.iconPrimary,
+  },
+  {
+    icon: Clock,
+    title: "Working Hours",
+    content: "24/7 Available",
+    href: null, // No link for hours
+    colorClass: styles.iconPrimary,
+  },
+];
+
+export default function ContactPage() {
+  return (
+    <main className={styles.mainContainer}>
+      <div className={styles.wrapper}>
+        {/* Page Title */}
+        <div className={styles.header}>
+          <h1 className={styles.pageTitle}>Contact Us</h1>
+        </div>
+
+        {/* Main Content Grid */}
+        <div className={styles.contentGrid}>
+          {/* Left Column: Contact Info List */}
+          <div className={styles.infoColumn}>
+            <p className={styles.introText}>
+              Get in touch with us for the best luxury car rental experience in
+              Dubai. Our team is available 24/7 to assist you with your
+              requirements.
+            </p>
+
+            <div className={styles.contactList}>
+              {contactDetails.map((item, index) => (
+                <div key={index} className={styles.contactItem}>
+                  <item.icon
+                    className={`${styles.iconBase} ${item.colorClass}`}
+                  />
+                  <div>
+                    <h3 className={styles.itemTitle}>{item.title}</h3>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className={styles.itemLink}
+                        target={
+                          item.title === "Location" || item.title === "WhatsApp"
+                            ? "_blank"
+                            : undefined
+                        }
+                        rel="noopener noreferrer"
+                      >
+                        {item.content}
+                      </a>
+                    ) : (
+                      <p className={styles.itemText}>{item.content}</p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column: Action Cards */}
+          <div className={styles.actionColumn}>
+            {/* Quick Contact Card */}
+            <div className={styles.card}>
+              <div className={styles.cardHeader}>
+                <h3 className={styles.cardTitle}>Quick Contact</h3>
+              </div>
+              <div className={styles.cardBody}>
+                <p className={styles.cardText}>
+                  For immediate assistance, reach out to us via WhatsApp or
+                  phone. Were here to help you find the perfect luxury vehicle.
+                </p>
+                <div className={styles.buttonGroup}>
+                  <a
+                    href="https://wa.me/+971523048253?text=Hello, I need help with car rental"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${styles.btn} ${styles.btnWhatsapp}`}
+                  >
+                    <MessageCircle className="mr-2 h-4 w-4" />
+                    WhatsApp Us Now
+                  </a>
+                  <a
+                    href="tel:+9711523048253"
+                    className={`${styles.btn} ${styles.btnOutline}`}
+                  >
+                    <Phone className="mr-2 h-4 w-4" />
+                    Call Us Directly
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Why Choose Us Card */}
+            <div className={styles.card}>
+              <div className={styles.cardHeader}>
+                <h3 className={styles.cardTitle}>Why Choose Direct Contact?</h3>
+              </div>
+              <div className={styles.cardBody}>
+                <ul className={styles.benefitList}>
+                  <li className={styles.benefitItem}>
+                    <span className={styles.checkMark}>✓</span>
+                    <span>Instant response and personalized service</span>
+                  </li>
+                  <li className={styles.benefitItem}>
+                    <span className={styles.checkMark}>✓</span>
+                    <span>Best rates with no hidden fees</span>
+                  </li>
+                  <li className={styles.benefitItem}>
+                    <span className={styles.checkMark}>✓</span>
+                    <span>Flexible booking and cancellation</span>
+                  </li>
+                  <li className={styles.benefitItem}>
+                    <span className={styles.checkMark}>✓</span>
+                    <span>24/7 customer support</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Map Section */}
+        <div className={styles.mapSection}>
+          <h2 className={styles.mapTitle}>Find Us on the Map</h2>
+          <div className={styles.mapWrapper}>
+            <a
+              href="https://maps.google.com/?q=AutoMarket+Ras+Al+Khor+Ind.+Third+Dubai+UAE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.mapOverlayLink}
+              aria-label="Open in Google Maps"
+            >
+              <div className={styles.mapOverlayContent}>
+                <div className={styles.mapBtn}>
+                  <MapPin className="h-4 w-4" />
+                  Open in Google Maps
+                </div>
+              </div>
+            </a>
+
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.178523351984!2d55.2721877!3d25.1871969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f682829c85c07%3A0xa3cfc9c1c02862a8!2sBusiness%20Bay%20-%20Dubai!5e0!3m2!1sen!2sae!4v1700000000000!5m2!1sen!2sae"
+              width="100%"
+              height="100%"
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className={styles.iframe}
+              title="Luxury in Motion Dubai Location"
+            ></iframe>
+          </div>
+          <p className={styles.mapCaption}>
+            Click on the map to open in Google Maps for directions
+          </p>
+        </div>
+      </div>
+    </main>
+  );
+}

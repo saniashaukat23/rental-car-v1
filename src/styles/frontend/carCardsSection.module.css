@@ -1,0 +1,44 @@
+/* CarCardsSection.module.css */
+
+.sectionContainer {
+  padding: 1.5rem 0.5rem;
+}
+
+/* Responsive Padding for larger screens */
+@media (min-width: 768px) {
+  .sectionContainer {
+    padding-left: 3rem; /* md:px-12 */
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectionContainer {
+    padding-left: 8rem; /* lg:px-32 */
+    padding-right: 8rem;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem; /* pb-6 */
+}
+
+.title {
+  font-weight: 600; /* font-semibold */
+  font-size: 1.25rem; /* text-xl */
+  letter-spacing: -0.025em; /* tracking-tight */
+}
+
+.viewAllLink {
+  color: #f97316; /* text-[#f97316] */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600; /* font-semibold */
+  letter-spacing: -0.025em; /* tracking-tight */
+}
+
+.viewAllLink:hover {
+  text-decoration: underline;
+}

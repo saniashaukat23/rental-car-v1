@@ -1,0 +1,177 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background-color: #f9fafb;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  padding: 40px;
+  max-width: 900px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 40px -5px rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+}
+.glowOrb {
+  display: none;
+  position: absolute;
+  width: 25rem;
+  height: 25rem;
+  background: radial-gradient(
+    circle,
+    rgba(242, 141, 53, 0.1) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.mainIconContainer {
+  background-color: #fff2e8;
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ffd8bf;
+}
+
+.shieldIcon {
+  color: #f28d35;
+}
+
+.mainTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.mainSubtitle {
+  color: #71717a;
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.infoItem {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.itemIcon {
+  color: #f28d35;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.itemIconGreen {
+  color: #22c55e; /* Green for Flexible Scheduling icon */
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.itemTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #18181b;
+  margin: 0 0 6px 0;
+}
+
+.itemText {
+  font-size: 13.5px;
+  color: #52525b;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Support Box Styling */
+.supportBox {
+  background-color: #fff7ed;
+  border: 1px solid #ffedd5;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 10px;
+}
+
+.supportTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f28d35;
+  margin-bottom: 8px;
+}
+
+.supportLabel {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.supportInstruction {
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-block;
+  padding: 2px 6px;
+  margin-bottom: 8px;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f28d35;
+}
+
+.cardcorneraccent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 7rem;
+  height: 7rem;
+  background: linear-gradient(
+    to bottom right,
+    var(--primary-soft),
+    transparent
+  );
+  border-bottom-left-radius: 100%;
+}
+
+.phoneNumber {
+  font-weight: 700;
+  font-size: 15px;
+  padding: 2px 6px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .glowOrb {
+    display: flex;
+  }
+}

@@ -1,0 +1,120 @@
+/* styles/brandPopup.module.css */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999; /* Ensure it is above everything else */
+
+  cursor: pointer; /* Shows user the area is clickable to exit */
+}
+
+.popupCard {
+  background: white;
+  border-radius: 1rem;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  cursor: default; /* Prevents the pointer cursor from the overlay */
+  top: 9.5%;
+  left: 25%;
+  padding: 1.5rem;
+  position: absolute;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.closeBtn:hover {
+  color: #000;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.brandItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+  padding: 0.75rem;
+  opacity: 0.8;
+}
+
+.brandItem:hover {
+  border-radius: 0.5rem;
+  background-color: #66666632;
+  opacity: 1;
+}
+
+.logoWrapper {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.brandName {
+  font-size: 0.7rem;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .popupCard {
+    padding: 1.5rem;
+  }
+}
+/* styles/brandPopup.module.css */
+
+/* Base grid styles */
+
+/* Brands layout (4 columns) */
+.grid4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Category layout (3 columns) */
+.grid3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Maintain responsiveness */
+@media (max-width: 640px) {
+  .grid4,
+  .grid3 {
+    grid-template-columns: repeat(2, 1fr); /* Both drop to 2 on small mobile */
+    gap: 1.25rem;
+  }
+}

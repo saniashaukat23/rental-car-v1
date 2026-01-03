@@ -1,0 +1,171 @@
+/* totalCars.module.css */
+.container {
+  padding: 3rem 2rem;
+  min-height: 100vh;
+  background-color: #fafafa;
+  color: #2d3436;
+}
+
+.header {
+  max-width: 72rem; /* Aligned with AddCar formCard width */
+  margin: 0 auto 3rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.75rem; /* Matched to AddCar title size */
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #2d3436;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.statsBadge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #2d3436;
+  background: #ffffff;
+  padding: 0.6rem 1.25rem;
+  border-radius: 2rem;
+  border: 1px solid #5250503b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tableWrapper {
+  max-width: 72rem;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 1.5rem; /* Matched AddCar card radius */
+  border: 1px solid #525050;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  padding: 1.25rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2d3436; /* Orange headers like sectionTitles in AddCar */
+  border-bottom: 2px solid #5250503b;
+}
+
+.table tr {
+  transition: all 0.2s ease;
+}
+
+.table tr:hover {
+  background-color: #fdfdfd;
+}
+
+.table td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+.carCell {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.miniImage {
+  position: relative;
+  width: 70px;
+  height: 45px;
+  border-radius: 0.75rem; /* Matched AddCar preview images */
+  overflow: hidden;
+  background: #f3f4f6;
+  border: 1px solid #efefef;
+}
+
+.carBrand {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #2d3436;
+}
+
+.carName {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.typeTag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2d3436;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.yearText {
+  font-weight: 700;
+  color: #4b5563;
+  font-variant-numeric: tabular-nums;
+}
+
+.specs {
+  color: #6b7280;
+  font-size: 0.8rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.priceText {
+  font-weight: 800;
+  color: #2d3436;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.editBtn {
+  background-color: #2d3436; /* Black background to match new SaveBtn theme */
+  color: white;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-decoration: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.editBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.loader {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: #2d3436;
+  text-transform: uppercase;
+}
