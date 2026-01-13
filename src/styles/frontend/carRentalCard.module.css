@@ -11,6 +11,7 @@
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   height: 100%;
   position: relative;
+  z-index: 1;
 }
 
 .card:hover {
@@ -30,7 +31,7 @@
 
 @media (min-width: 768px) {
   .imageContainer {
-    height: 16rem;
+    height: 14rem;
   }
   .carName {
     font-size: 1.15rem;
@@ -39,11 +40,11 @@
     font-size: 0.85rem;
   }
 }
-@media (min-width: 320px) {
+/* @media (min-width: 320px) {
   .imageContainer {
     height: 12rem;
   }
-}
+} */
 /* Details Section */
 .details {
   padding: 1.25rem;

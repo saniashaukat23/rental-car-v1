@@ -33,7 +33,7 @@ export default function CarCardsSection({
 
   return (
     <section className={`${styles.sectionContainer} ${bgColor}`}>
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 ">
         <div className={styles.header}>
           <h2 className={styles.title}>{title}</h2>
           <Link
@@ -71,7 +71,7 @@ export default function CarCardsSection({
                 swiper.navigation.update();
               });
             }}
-            className="pb-8"
+            className="pb-8 relative z-0"
           >
             {cars.map((car) => (
               <SwiperSlide key={car._id}>

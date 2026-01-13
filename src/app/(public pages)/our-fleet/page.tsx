@@ -3,14 +3,13 @@
 import React, { useState, useEffect, Suspense } from "react";
 import styles from "../../../styles/frontend/fleet.module.css";
 import CarRentalCard from "@/src/components/CarRentalCard";
-
 import { CarType } from "@/src/types/CarType";
 import {
   FaFilter,
   FaTimes,
   FaChevronLeft,
   FaChevronRight,
-} from "react-icons/fa"; // Added Chevrons
+} from "react-icons/fa";
 import { useSearchParams } from "next/navigation";
 import { Funnel } from "lucide-react";
 import Image from "next/image";
@@ -57,7 +56,7 @@ function FleetContent() {
     }
   }, [SearchParams]);
 
-  // 2. Filtering Logic (Runs whenever a filter changes)
+  // 2. Filtering Logic
   useEffect(() => {
     let result = allCars;
 
@@ -75,16 +74,15 @@ function FleetContent() {
     }
 
     setFilteredCars(result);
-    // IMPORTANT: Reset to page 1 whenever filters change
     setCurrentPage(1);
   }, [selectedBrand, selectedType, selectedSeats, selectedYear, allCars]);
 
-  // 3. Helper to count items for badges
+  // 3. Helper to count items
   const getCount = (key: keyof CarType, value: any) => {
     return allCars.filter((car) => car[key] == value).length;
   };
 
-  // 4. Extract Unique Lists dynamically
+  // 4. Extract Unique Lists
   const uniqueBrands = Array.from(new Set(allCars.map((c) => c.brand)));
   const uniqueTypes = Array.from(new Set(allCars.map((c) => c.type)));
   const uniqueSeats = Array.from(
@@ -102,7 +100,6 @@ function FleetContent() {
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
-    // Optional: Scroll to top of grid when changing pages
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -113,11 +110,24 @@ function FleetContent() {
     setSelectedSeats(null);
     setSelectedYear(null);
     setCurrentPage(1);
+    // Optional: Close mobile menu on reset
+    setShowMobileFilters(false);
+  };
+
+  // Helper to toggle selection and optionally close mobile menu
+  // You can decide if you want the menu to close immediately on selection or stay open
+  const handleFilterClick = (
+    setter: Function,
+    currentValue: any,
+    newValue: any
+  ) => {
+    setter(currentValue === newValue ? null : newValue);
   };
 
   return (
     <section className={styles.fleet}>
       <div className={styles.pageContainer}>
+        {/* --- Mobile Controls --- */}
         <button
           className={styles.mobileFilterToggle}
           onClick={() => setShowMobileFilters(!showMobileFilters)}
@@ -125,17 +135,36 @@ function FleetContent() {
           {showMobileFilters ? <FaTimes /> : <FaFilter />}
           {showMobileFilters ? "Close Filters" : "Show Filters"}
         </button>
-        <div className="flex gap-8">
-          {/* ---------------- SIDEBARS START ---------------- */}
-          <div className={styles.layoutGrid}>
-            <aside
-              className={`${styles.sidebar} ${
-                showMobileFilters ? styles.show : ""
-              }`}
-            >
+
+        {/* --- Mobile Backdrop (Click to close) --- */}
+        <div
+          className={`${styles.backdrop} ${
+            showMobileFilters ? styles.show : ""
+          }`}
+          onClick={() => setShowMobileFilters(false)}
+        />
+
+        <div className="flex gap-8 relative">
+          {/* ---------------- FILTER SIDEBAR CONTAINER ---------------- */}
+          {/* We wrap all asides in this container for the Mobile Drawer logic */}
+          <div
+            className={`${styles.filtersContainer} ${
+              showMobileFilters ? styles.show : ""
+            }`}
+          >
+            {/* Mobile Only: Header inside drawer */}
+            <div className="flex justify-between items-center lg:hidden mb-4 pb-2 border-b border-gray-100">
+              <span className="font-bold text-lg">Filters</span>
+              <button onClick={() => setShowMobileFilters(false)}>
+                <FaTimes size={20} className="text-gray-500" />
+              </button>
+            </div>
+
+            {/* Brand Filter */}
+            <aside className={styles.sidebar}>
               <div className={styles.filterGroup}>
                 <div className={styles.filterTitle}>
-                  <Funnel />
+                  <Funnel size={18} />
                   Browse by Brand
                 </div>
 
@@ -157,19 +186,23 @@ function FleetContent() {
                         selectedBrand === brand ? styles.active : ""
                       }`}
                       onClick={() =>
-                        setSelectedBrand(selectedBrand === brand ? null : brand)
+                        handleFilterClick(
+                          setSelectedBrand,
+                          selectedBrand,
+                          brand
+                        )
                       }
                     >
                       <div className="flex gap-1 items-center justify-center">
                         <Image
                           src={`/images/carLogos/${brand}.webp`}
                           alt={brand}
-                          height={30}
-                          width={30}
+                          height={20}
+                          width={20}
+                          className="object-contain"
                         />
                         <span className="capitalize">{brand}</span>
                       </div>
-
                       <span className={styles.countBadge}>
                         {getCount("brand", brand)}
                       </span>
@@ -178,18 +211,10 @@ function FleetContent() {
                 </div>
               </div>
             </aside>
-            <aside
-              className={`${styles.sidebar} ${
-                showMobileFilters ? styles.show : ""
-              }`}
-            >
-              <div
-                className={
-                  uniqueTypes.length > 6
-                    ? styles.filterGroup
-                    : styles.filterGroup2
-                }
-              >
+
+            {/* Category Filter */}
+            <aside className={styles.sidebar}>
+              <div className={styles.filterGroup}>
                 <div className={styles.filterTitle}>Categories</div>
                 <div className={styles.filterList}>
                   {uniqueTypes.map((type) => (
@@ -199,7 +224,7 @@ function FleetContent() {
                         selectedType === type ? styles.active : ""
                       }`}
                       onClick={() =>
-                        setSelectedType(selectedType === type ? null : type)
+                        handleFilterClick(setSelectedType, selectedType, type)
                       }
                     >
                       <span className="capitalize">{type}</span>
@@ -211,18 +236,10 @@ function FleetContent() {
                 </div>
               </div>
             </aside>
-            <aside
-              className={`${styles.sidebar} ${
-                showMobileFilters ? styles.show : ""
-              }`}
-            >
-              <div
-                className={
-                  uniqueSeats.length > 6
-                    ? styles.filterGroup
-                    : styles.filterGroup2
-                }
-              >
+
+            {/* Seats Filter */}
+            <aside className={styles.sidebar}>
+              <div className={styles.filterGroup}>
                 <div className={styles.filterTitle}>Seats</div>
                 <div className={styles.filterList}>
                   {uniqueSeats.map((seats) => (
@@ -232,7 +249,11 @@ function FleetContent() {
                         selectedSeats === seats ? styles.active : ""
                       }`}
                       onClick={() =>
-                        setSelectedSeats(selectedSeats === seats ? null : seats)
+                        handleFilterClick(
+                          setSelectedSeats,
+                          selectedSeats,
+                          seats
+                        )
                       }
                     >
                       <span>{seats} Seats</span>
@@ -244,18 +265,10 @@ function FleetContent() {
                 </div>
               </div>
             </aside>
-            <aside
-              className={`${styles.sidebar} ${
-                showMobileFilters ? styles.show : ""
-              }`}
-            >
-              <div
-                className={
-                  uniqueYears.length > 6
-                    ? styles.filterGroup
-                    : styles.filterGroup2
-                }
-              >
+
+            {/* Year Filter */}
+            <aside className={styles.sidebar}>
+              <div className={styles.filterGroup}>
                 <div className={styles.filterTitle}>Year</div>
                 <div className={styles.filterList}>
                   {uniqueYears.map((year) => (
@@ -265,7 +278,7 @@ function FleetContent() {
                         selectedYear === year ? styles.active : ""
                       }`}
                       onClick={() =>
-                        setSelectedYear(selectedYear === year ? null : year)
+                        handleFilterClick(setSelectedYear, selectedYear, year)
                       }
                     >
                       <span>{year}</span>
@@ -277,13 +290,22 @@ function FleetContent() {
                 </div>
               </div>
             </aside>
+
+            {/* Mobile Only: Show Results Button inside drawer */}
+            <div className="lg:hidden pt-4 mt-auto">
+              <button
+                onClick={() => setShowMobileFilters(false)}
+                className="w-full bg-orange-500 text-white py-3 rounded-lg font-bold"
+              >
+                Show {filteredCars.length} Results
+              </button>
+            </div>
           </div>
-          {/* ---------------- SIDEBARS END ---------------- */}
+          {/* ---------------- END FILTERS ---------------- */}
 
           <main className={styles.mainContent}>
             <div className={styles.headerArea}>
               <h1 className={styles.pageTitle}>All Vehicles</h1>
-              {/* Updated Result Count Logic */}
               <span className={styles.resultCount}>
                 {filteredCars.length > 0
                   ? `Showing ${indexOfFirstItem + 1}-${Math.min(
@@ -312,7 +334,6 @@ function FleetContent() {
             ) : (
               <>
                 <div className={styles.carsGrid}>
-                  {/* Map over currentCars instead of filteredCars */}
                   {currentCars.map((car) => (
                     <CarRentalCard key={car._id} car={car} />
                   ))}
@@ -340,7 +361,7 @@ function FleetContent() {
                           onClick={() => paginate(number)}
                           className={`w-8 h-8 rounded-md flex items-center justify-center text-sm font-medium transition-colors ${
                             currentPage === number
-                              ? "bg-orange-500 text-white" // Adjust color to match your theme
+                              ? "bg-orange-500 text-white"
                               : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300"
                           }`}
                         >

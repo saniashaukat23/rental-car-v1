@@ -55,7 +55,7 @@ export default function AboutSection() {
           <div className={styles.imageWrapper}>
             <div className={styles.imageContainer}>
               <Image
-                src="/images/about.webp"
+                src="/images/about.png"
                 alt="Luxury In Motion Dubai - Premium Car Rental Experience"
                 fill
                 className={styles.image}

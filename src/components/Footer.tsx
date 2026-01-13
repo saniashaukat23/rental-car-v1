@@ -276,9 +276,9 @@ const FooterLinks = ({
 
 const quickLinks = [
   { name: "Home", href: "/" },
-  { name: "Our Fleet", href: "/cars" },
+  { name: "Our Fleet", href: "/our-fleet" },
   { name: "About Us", href: "/about" },
-  { name: "Brands", href: "/brands" },
+  { name: "Brands", href: "/cars" },
   { name: "Categories", href: "/categories" },
   { name: "Contact", href: "/contact" },
 ];

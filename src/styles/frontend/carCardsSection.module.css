@@ -23,7 +23,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1.5rem; /* pb-6 */
+  padding-bottom: 2rem; /* pb-6 */
 }
 
 .title {

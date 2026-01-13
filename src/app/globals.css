@@ -10,7 +10,10 @@
   --text-primary: #09090b;
   --text-hover: #f59e0b;
   --primary-orange: #f97316;
+  --primary-orange-light: #f9741625;
+
   --menu-color: #374151;
+  --text-gray: #4b5563;
 }
 
 .navbar-theme {

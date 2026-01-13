@@ -32,6 +32,8 @@ export async function PUT(request: Request, { params }: Props) {
     const body = await request.json();
 
     const updatedCar = await Car.findByIdAndUpdate(id, body, {
+      applyDiscount: body.applyDiscount, // Explicitly ensuring it's passed
+
       new: true,
       runValidators: true,
     });

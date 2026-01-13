@@ -7,8 +7,9 @@ interface IPricing {
   daily: number;
   weekly: number;
   monthly: number;
-  weeklyDiscount?: string;
-  monthlyDiscount?: string;
+  weeklyDiscount?: number;
+  monthlyDiscount?: number;
+  dailyDiscount?: number;
 }
 
 interface IMileage {
@@ -45,6 +46,7 @@ export interface ICar extends Document {
   keyFeatures: string[];
   about: string;
   rentalInfo: IRentalInfo;
+  applyDiscount?: boolean;
 }
 
 // --- CAR SCHEMA ---
@@ -68,14 +70,16 @@ const CarSchema: Schema<ICar> = new Schema(
       daily: { type: Number, required: true },
       weekly: { type: Number },
       monthly: { type: Number },
-      weeklyDiscount: { type: String },
-      monthlyDiscount: { type: String },
+      weeklyDiscount: { type: Number },
+      monthlyDiscount: { type: Number },
+      dailyDiscount: { type: Number },
     },
     securityDeposit: { type: Number },
     mileage: {
       dailyIncluded: { type: Number },
       extraMileagePrice: { type: Number },
     },
+    applyDiscount: { type: Boolean },
     chauffeurService: { type: String },
     features: [{ type: String }],
     keyFeatures: [{ type: String }],
