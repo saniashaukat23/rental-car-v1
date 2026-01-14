@@ -1,41 +1,37 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import CarDetailsView from "@/src/components/CarDetailsView";
-import { CarType } from "@/src/types/CarType";
+import dbConnect from "@/src/lib/db";
+import Car from "@/src/models/Car";
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-// src/app/cars/[id]/page.tsx
-
-async function getCarById(id: string): Promise<CarType | null> {
-  // 1. Determine the environment
-  // If we are in production, use the environment variable.
-  // If undefined (local dev), fallback to localhost.
-
+async function getCarById(id: string) {
   try {
-    // 2. Use the dynamic baseUrl
-    const res = await fetch(`/api/cars/${id}`, {
-      cache: "no-store",
-    });
+    // 1. Connect to DB directly (No fetch URL needed!)
+    await dbConnect();
 
-    if (!res.ok) return null;
+    // 2. Find the car
+    const car = await Car.findById(id).lean();
 
-    return res.json();
+    if (!car) return null;
+
+    // 3. Convert to JSON to avoid Next.js serialization warnings
+    return JSON.parse(JSON.stringify(car));
   } catch (error) {
-    console.error("Failed to fetch car:", error);
+    console.error("Error fetching car:", error);
     return null;
   }
 }
-
-// ... rest of your component
 
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
   const car = await getCarById(id);
 
   if (!car) {
-    return notFound();
+    return notFound(); // This triggers the 404 if DB fails
   }
 
   return <CarDetailsView car={car} />;
