@@ -17,7 +17,7 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
   const router = useRouter();
 
   const handleCardClick = () => {
-    router.push(`/car/${car._id || car.id}`);
+    router.push(`/car/${car._id}`);
   };
 
   const handleWhatsApp = (e: React.MouseEvent) => {
