@@ -12,11 +12,10 @@ async function getCarById(id: string): Promise<CarType | null> {
   // 1. Determine the environment
   // If we are in production, use the environment variable.
   // If undefined (local dev), fallback to localhost.
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
   try {
     // 2. Use the dynamic baseUrl
-    const res = await fetch(`${baseUrl}/api/cars/${id}`, {
+    const res = await fetch(`/api/cars/${id}`, {
       cache: "no-store",
     });
 
