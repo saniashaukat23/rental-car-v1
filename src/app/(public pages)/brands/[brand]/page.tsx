@@ -3,22 +3,29 @@
 import { useEffect, useState, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaCar, FaArrowRight } from "react-icons/fa";
+import { Car, MessageCircle, Phone, Truck } from "lucide-react";
+import { FaCar, FaArrowRight } from "react-icons/fa"; // Importing Fa icons for empty state
 import CarRentalCard from "@/src/components/CarRentalCard";
 import styles from "../../../../styles/frontend/brandpage.module.css";
 import { BrandDescription } from "@/src/components/BrandDescription";
 import { CarType } from "@/src/types/CarType";
+
 type PageProps = {
   params: Promise<{ brand: string }>;
 };
+
 export default function BrandCarsPage({ params }: PageProps) {
   const { brand } = use(params);
   const brandSlug = brand.toLowerCase();
-  const brandDisplayName =
-    brandSlug.charAt(0).toUpperCase() + brandSlug.slice(1).replace(/-/g, " ");
+  const brandDisplayName = brandSlug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+
   const [cars, setCars] = useState<CarType[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeIndex] = useState(0);
+
+  // Fetch Cars
   useEffect(() => {
     const fetchCars = async () => {
       setLoading(true);
@@ -36,130 +43,314 @@ export default function BrandCarsPage({ params }: PageProps) {
         setLoading(false);
       }
     };
-
     fetchCars();
   }, [brand]);
 
   const safeCars = Array.isArray(cars) ? cars : [];
-  const DISPLAY_COUNT = 3;
-  const featuredCars = safeCars.slice(0, DISPLAY_COUNT);
 
-  const normalizedCars =
-    featuredCars.length > 0
-      ? Array.from(
-          { length: DISPLAY_COUNT },
-          (_, i) => featuredCars[i % featuredCars.length]
-        )
-      : [];
+  // --- HERO IMAGE LOGIC (UPDATED) ---
+  const DISPLAY_COUNT = 3;
+
+  // 1. Get all available first images from the cars found
+  const availableImages = safeCars.map((c) => c.images[0]).filter(Boolean);
+
+  let heroImages: string[] = [];
+
+  if (availableImages.length === 0) {
+    // If absolutely no cars, use placeholders
+    heroImages = Array(DISPLAY_COUNT).fill("/images/placeholder.webp");
+  } else {
+    // If we have 1 or 2 cars, repeat them to fill 3 slots
+    // i % availableImages.length ensures we cycle 0, 1, 0... etc.
+    heroImages = Array.from({ length: DISPLAY_COUNT }, (_, i) => {
+      return availableImages[i % availableImages.length];
+    });
+  }
+
+  // --- LOADING STATE ---
+  if (loading) {
+    return (
+      <div className="h-screen flex flex-col items-center justify-center bg-white">
+        <div className="w-12 h-12 border-4 border-gray-100 border-t-black rounded-full animate-spin mb-6"></div>
+        <p className="text-gray-400 text-sm tracking-widest uppercase animate-pulse">
+          Locating {brandDisplayName} Fleet...
+        </p>
+      </div>
+    );
+  }
+
+  // --- EMPTY STATE (Show ONLY the card) ---
+  if (!loading && safeCars.length === 0) {
+    return (
+      <div className={styles.emptyPageWrapper}>
+        <div className={styles.emptyCard}>
+          <div className={styles.emptyIconWrapper}>
+            <FaCar className={styles.emptyIcon} />
+          </div>
+          <h1 className={styles.emptyTitle}>No {brandDisplayName} Available</h1>
+          <p className={styles.emptyText}>
+            We are currently out of stock for this brand. Please check back
+            later or explore our other luxury options.
+          </p>
+
+          <Link href="/cars" className={styles.searchButton}>
+            Search Other Cars
+            <FaArrowRight />
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {loading && (
-        <div className="h-[80vh] flex flex-col items-center justify-center bg-white">
-          <div className="w-12 h-12 border-4 border-gray-100 border-t-black rounded-full animate-spin mb-6"></div>
-          <p className="text-gray-400 text-sm tracking-widest uppercase animate-pulse">
-            Locating {brandDisplayName} Fleet...
-          </p>
+    <main className={styles.pageWrapper}>
+      {/* --- HERO SECTION --- */}
+      <section className={styles.heroSection}>
+        {/* Overlay: Logo */}
+        <div className={`${styles.badgeGlass} ${styles.logoBadge}`}>
+          <Image
+            src={`/images/carLogos/${brandSlug}.webp`}
+            width={60}
+            height={60}
+            alt={`${brandDisplayName} Logo`}
+            className="w-10 h-10 lg:w-[60px] lg:h-[60px] object-contain"
+            onError={(e) => (e.currentTarget.style.display = "none")}
+          />
         </div>
-      )}
-      {!loading && (
-        <>
-          {normalizedCars.length > 0 ? (
-            <section className={styles.landingGridContainer}>
-              <div className="absolute top-[15%] left-[8%] z-10 p-6 rounded-2xl bg-white/5 border border-white/20 backdrop-blur-md shadow-2xl">
-                <div className={styles.logoBox}>
-                  <Image
-                    src={`/images/carLogos/${brandSlug}.webp`}
-                    className={styles.logoImage}
-                    height={60}
-                    width={60}
-                    alt={brandSlug}
-                    quality={100}
-                    onError={(e) => (e.currentTarget.style.display = "none")}
-                  />
-                </div>
-              </div>
-              <div className="absolute bottom-[24%] right-[3%] z-10 p-5 rounded-2xl bg-white/5 border border-white/20 backdrop-blur-md shadow-2xl">
-                <div className="flex flex-col text-center">
-                  <p className="text-3xl text-white font-black capitalize">
-                    {safeCars.length}
-                  </p>
-                  <p className="text-[10px] tracking-widest text-white/70 font-bold uppercase mt-1">
-                    Available Models
-                  </p>
-                </div>
-              </div>
-              {normalizedCars.map((car, index) => (
-                <div
-                  key={`${car._id}-${index}`}
-                  className={styles.imageWrapper}
-                >
-                  <Image
-                    src={
-                      car.images?.[activeIndex] || "/images/placeholder.webp"
-                    }
-                    alt={car.name}
-                    fill
-                    className={styles.imageObjectCover}
-                    priority={index === 0}
-                  />
-                  <div className={styles.imageOverlay} />
-                </div>
-              ))}
-            </section>
-          ) : (
-            <div className="h-20  w-full"></div>
-          )}
-          <section
-            className={`${styles.carListSection} ${styles.sectionmargin} min-h-[50vh]`}
-          >
-            <div className="mb-12">
-              <h1 className={styles.carListTitle}>{brandDisplayName} </h1>
-              <div className="h-1 w-32 bg-orange-500  rounded-full"></div>
-            </div>
 
-            {safeCars.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-6 px-4">
-                <div className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100 max-w-lg w-full text-center">
-                  <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <FaCar className="text-3xl text-gray-300" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    {brandDisplayName} Currently Unavailable
-                  </h3>
-                  <p className="text-gray-500 mb-8 leading-relaxed">
-                    We are currently restocking our {brandDisplayName} fleet.
-                    However, we have many other luxury options available for you
-                    today.
-                  </p>
-                  <div className="flex flex-col gap-3">
-                    <Link
-                      href="/our-fleet"
-                      className="w-full bg-black hover:bg-gray-800 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 group"
-                    >
-                      View All Vehicles
-                      <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                    <Link
-                      href="/contact"
-                      className="w-full bg-white border-2 border-gray-100 hover:border-gray-300 text-gray-700 font-bold py-4 rounded-xl transition-all"
-                    >
-                      Contact Support
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className={styles.carGrid}>
-                {safeCars.map((car) => (
-                  <CarRentalCard key={car._id} car={car} />
+        {/* Overlay: Count */}
+        <div className={`${styles.badgeGlass} ${styles.countBadge}`}>
+          <div className={styles.countNumber}>{safeCars.length}</div>
+          <div className={styles.countLabel}>Vehicles Available</div>
+        </div>
+
+        {/* Scroll Indicator (Desktop) */}
+        <div className={styles.scrollIndicator}>
+          <span className="text-xs uppercase tracking-widest">Scroll</span>
+          <div className={styles.scrollMouse}>
+            <div className={styles.scrollDot}></div>
+          </div>
+        </div>
+
+        {/* Scrollable/Grid Images */}
+        <div className={styles.heroContent}>
+          {heroImages.map((imgSrc, index) => (
+            <div key={index} className={styles.heroImageWrapper}>
+              <Image
+                src={imgSrc}
+                alt={`${brandDisplayName} Hero ${index + 1}`}
+                fill
+                className={styles.heroImage}
+                priority={index === 0}
+                draggable={false}
+              />
+              <div className={styles.heroOverlay} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div className={styles.container}>
+        {/* --- CAR LISTING SECTION --- */}
+        <section className={styles.listingHeader}>
+          <h1 className={styles.listingTitle}>
+            Rent {brandDisplayName} in Dubai
+          </h1>
+          <div className={styles.listingUnderline}></div>
+        </section>
+
+        <div className={styles.carGrid}>
+          {safeCars.map((car) => (
+            <CarRentalCard key={car._id} car={car} />
+          ))}
+        </div>
+
+        {/* --- SEO TEXT SECTION --- */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <div className={styles.textBlock}>
+              <p className="mb-4">
+                Rent a{" "}
+                <span className={styles.highlight}>{brandDisplayName}</span> in
+                Dubai to experience the effortless fusion of groundbreaking
+                technology and sophistication on the city&apos;s grandest stage.
+              </p>
+              <p>
+                Top-tier selections instantly elevate your Dubai travel. At
+                Luxury In Motion, we guarantee seamless booking and stress-free
+                logistics. Get your
+                <span className={styles.highlight}>
+                  {" "}
+                  {brandDisplayName} rentals
+                </span>{" "}
+                delivered to your doorstep.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* --- BENEFITS GRID --- */}
+        <section className="mb-16">
+          <h2 className={styles.sectionTitle}>
+            Why Rent a {brandDisplayName}?
+          </h2>
+          <div className={styles.featuresGrid}>
+            <div className={styles.featureCard}>
+              <h3 className="text-xl font-bold mb-4">Unmatched Versatility</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                From executive sedans to SUVs and sports cars,{" "}
+                {brandDisplayName} offers a vehicle for every requirement.
+              </p>
+            </div>
+            <div className={styles.featureCard}>
+              <h3 className="text-xl font-bold mb-4">Exceptional Value</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                A compelling balance of high-end luxury and advanced technology.
+                {brandDisplayName} guarantees exceptional value.
+              </p>
+            </div>
+            <div className={styles.featureCard}>
+              <h3 className="text-xl font-bold mb-4">Executive Elegance</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Clean, timeless sophistication. A powerful statement of success
+                for Dubai's roads.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* --- PRICING TABLE --- */}
+        <section className="mb-16">
+          <h2 className={styles.sectionTitle}>
+            {brandDisplayName} Rental Prices
+          </h2>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead className={styles.tableHead}>
+                <tr>
+                  <th>Model</th>
+                  <th>Daily</th>
+                  <th>Weekly</th>
+                  <th>Monthly</th>
+                </tr>
+              </thead>
+              <tbody>
+                {safeCars.slice(0, 5).map((car) => (
+                  <tr key={car._id}>
+                    <td>{car.name}</td>
+                    <td>
+                      {car.pricing.currency}{" "}
+                      {car.pricing.daily.toLocaleString()}
+                    </td>
+                    <td>
+                      {car.pricing.currency}{" "}
+                      {car.pricing.weekly?.toLocaleString() || "-"}
+                    </td>
+                    <td>
+                      {car.pricing.currency}{" "}
+                      {car.pricing.monthly?.toLocaleString() || "-"}
+                    </td>
+                  </tr>
                 ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-lg">
+            <p className="text-sm text-gray-700">
+              <span className="font-bold">Note:</span> Prices subject to change
+              based on season and availability.
+            </p>
+          </div>
+        </section>
+
+        {/* --- HOW TO RENT --- */}
+        <section className="mb-16 text-center">
+          <h2 className={styles.sectionTitle}>Rent in 3 Easy Steps</h2>
+          <div className={styles.stepsContainer}>
+            <div className={styles.stepItem}>
+              <Car className={styles.stepIcon} />
+              <div className="text-left">
+                <p className="font-bold">1. Select Your Masterpiece</p>
+                <p className="text-sm text-gray-500">
+                  Browse our fleet to find the {brandDisplayName}.
+                </p>
               </div>
-            )}
-          </section>
-          <BrandDescription brandName={brandDisplayName} />
-        </>
-      )}
-    </div>
+            </div>
+            <div className={styles.stepItem}>
+              <MessageCircle className={styles.stepIcon} />
+              <div className="text-left">
+                <p className="font-bold">2. Contact Us</p>
+                <p className="text-sm text-gray-500">
+                  WhatsApp or Call with your dates.
+                </p>
+              </div>
+            </div>
+            <div className={styles.stepItem}>
+              <Truck className={styles.stepIcon} />
+              <div className="text-left">
+                <p className="font-bold">3. Receive & Drive</p>
+                <p className="text-sm text-gray-500">
+                  We deliver to your hotel or airport.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* --- CTA SECTION --- */}
+        <section className="bg-white rounded-2xl p-8 md:p-12 text-center shadow-lg border border-gray-100 mb-16">
+          <h2 className="text-3xl font-bold mb-4 text-gray-900">
+            Ready To Command Dubai?
+          </h2>
+          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+            Your executive {brandDisplayName} awaits. Contact us now.
+          </p>
+          <div className={styles.ctaGroup}>
+            <a
+              href={`https://wa.me/971582947143?text=Hi, I want to rent a ${brandDisplayName}`}
+              target="_blank"
+              className={`${styles.btn} ${styles.btnPrimary}`}
+            >
+              <MessageCircle size={20} /> WhatsApp Us
+            </a>
+            <a
+              href="tel:+971582947143"
+              className={`${styles.btn} ${styles.btnSecondary}`}
+            >
+              <Phone size={20} /> Call Us Now
+            </a>
+          </div>
+        </section>
+
+        {/* --- FAQ SECTION --- */}
+        <section className="max-w-4xl mx-auto">
+          <h2 className={styles.sectionTitle}>FAQs</h2>
+          <div className="space-y-4">
+            <div className={styles.faqItem}>
+              <h3 className="font-bold mb-2">
+                Requirements to rent a {brandDisplayName}?
+              </h3>
+              <p className="text-sm text-gray-600">
+                Valid Passport, Visa Copy, Home Country License, and IDP (if
+                applicable). Residents need Emirates ID and UAE License.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className="font-bold mb-2">Is insurance included?</h3>
+              <p className="text-sm text-gray-600">
+                Yes, basic comprehensive insurance is included.
+              </p>
+            </div>
+            <div className={styles.faqItem}>
+              <h3 className="font-bold mb-2">Mileage limits?</h3>
+              <p className="text-sm text-gray-600">
+                Standard limit is 250km/day. Excess mileage is charged per km.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <BrandDescription brandName={brandDisplayName} />
+    </main>
   );
 }

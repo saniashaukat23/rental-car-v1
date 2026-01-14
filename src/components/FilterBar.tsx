@@ -25,6 +25,7 @@ const brandOptions: FilterOption[] = [
   { value: "bentley", label: "Bentley" },
   { value: "ferrari", label: "Ferrari" },
   { value: "lamborghini", label: "Lamborghini" },
+  { value: "mercedes", label: "Mercedes" },
   { value: "rollsroyce", label: "Rolls Royce" },
 ];
 

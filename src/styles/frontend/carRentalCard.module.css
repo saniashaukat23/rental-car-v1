@@ -214,3 +214,51 @@
 .buttonTextHidden {
   display: inline;
 }
+/* src/styles/frontend/carRentalCard.module.css */
+
+/* ... existing styles ... */
+
+/* Add these new styles */
+
+.imageContainer {
+  position: relative; /* Ensure badge sits inside image area */
+  /* ... existing styles ... */
+}
+
+/* Discount Badge */
+.discountBadge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: var(--primary-orange); /* Red color */
+  color: white;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Pricing updates */
+.priceWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+  color: #9ca3af; /* Gray text */
+  font-size: 0.8rem;
+  margin-bottom: -2px;
+}
+
+.newPriceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}

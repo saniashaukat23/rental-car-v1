@@ -2,7 +2,9 @@
 import React from "react";
 import { FaUsers, FaCog, FaGasPump, FaPhoneAlt } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io";
+import { TrendingDown } from "lucide-react"; // Import Lucide icon for badge
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import styles from "../styles/frontend/carRentalCard.module.css";
 import ImageHoverCarousel from "./ImageHoverCarousel";
 import { CarType } from "../types/CarType";
@@ -12,7 +14,14 @@ interface CarRentalCardProps {
 }
 
 const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(`/car/${car._id || car.id}`);
+  };
+
   const handleWhatsApp = (e: React.MouseEvent) => {
+    e.stopPropagation();
     e.preventDefault();
     const message = `Hi, I am interested in renting the ${car.name}`;
     const phoneNumber = "971500000000";
@@ -22,7 +31,8 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
     window.open(url, "_blank");
   };
 
-  const handleCall = () => {
+  const handleCall = (e: React.MouseEvent) => {
+    e.stopPropagation();
     window.location.href = "tel:+971500000000";
   };
 
@@ -31,9 +41,26 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
     .replace(new RegExp(`-`, "i"), "")
     .trim();
 
+  // --- Discount Logic ---
+  // If applyDiscount is true, calculate a fake "old" price (e.g., +15%)
+  const isDiscounted = car.applyDiscount || false;
+  const oldPrice = isDiscounted ? Math.round(car.pricing.daily * 1.15) : null;
+
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      onClick={handleCardClick}
+      style={{ cursor: "pointer" }}
+    >
       <div className={styles.imageContainer}>
+        {/* Discount Badge */}
+        {isDiscounted && (
+          <div className={styles.discountBadge}>
+            <TrendingDown size={14} />
+            <span>Special Offer</span>
+          </div>
+        )}
+
         <ImageHoverCarousel images={car.images} alt={car.name} />
       </div>
 
@@ -77,10 +104,19 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
 
         <div className={styles.priceActionsContainer}>
           <div className={styles.priceWrapper}>
-            <span className={styles.priceText}>
-              {car.pricing.currency} {car.pricing.daily.toLocaleString()}
-            </span>
-            <span className={styles.priceSub}>/day</span>
+            {/* Show Old Price if discounted */}
+            {isDiscounted && oldPrice && (
+              <span className={styles.oldPrice}>
+                {car.pricing.currency} {oldPrice.toLocaleString()}
+              </span>
+            )}
+
+            <div className={styles.newPriceRow}>
+              <span className={styles.priceText}>
+                {car.pricing.currency} {car.pricing.daily.toLocaleString()}
+              </span>
+              <span className={styles.priceSub}>/day</span>
+            </div>
           </div>
 
           <div className={styles.actions}>

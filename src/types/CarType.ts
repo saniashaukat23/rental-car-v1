@@ -21,6 +21,7 @@ export interface CarType {
     weeklyDiscount?: string;
     monthlyDiscount?: string;
   };
+  applyDiscount?: boolean;
 
   securityDeposit?: number;
 
