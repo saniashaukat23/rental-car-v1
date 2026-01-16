@@ -231,6 +231,11 @@ export default function Navbar() {
                             <Link
                               key={subIdx}
                               href={linkHref}
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setMobileBrandsOpen(false);
+                                setMobileCategoryOpen(false);
+                              }}
                               className="flex flex-col items-center justify-center p-3 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
                             >
                               <div className="relative w-12 h-12 mb-2">

@@ -268,38 +268,57 @@
   margin-bottom: 1.5rem;
 }
 
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 .btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
+  padding: 0.875rem 1.25rem;
   font-size: 0.9rem;
-  transition: all 0.2s;
+  font-weight: 600;
+  border-radius: 0.625rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
   cursor: pointer;
 }
 
-.btnCall {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  color: #333;
-}
-
-.btnCall:hover {
-  background: #f3f4f6;
-}
-
 .btnWhatsapp {
-  background: #1ebe57;
-  color: #fff;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
   border: none;
-  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
 }
 
 .btnWhatsapp:hover {
-  background: #16a34a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+}
+
+.btnWhatsapp::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+.btnCall {
+  background-color: #fff;
+  color: #f97316;
+  border: 2px solid #f97316;
+}
+
+.btnCall:hover {
+  background-color: rgba(249, 116, 22, 0.05);
+  transform: translateY(-2px);
 }
 
 .secureNote {

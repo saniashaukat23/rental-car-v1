@@ -2,6 +2,7 @@
 
 .sectionContainer {
   padding: 1.5rem 0.5rem;
+  position: relative;
 }
 
 /* Responsive Padding for larger screens */
@@ -41,4 +42,48 @@
 
 .viewAllLink:hover {
   text-decoration: underline;
+}
+
+/* Mobile Pagination Dots */
+.pagination {
+  display: none;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+/* Show pagination only on mobile */
+@media (max-width: 768px) {
+  .pagination {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+/* Hide pagination on larger screens */
+@media (min-width: 769px) {
+  .pagination {
+    display: none !important;
+  }
+}
+
+/* Custom pagination bullet styles */
+.pagination :global(.swiper-pagination-bullet) {
+  width: 8px;
+  height: 8px;
+  background: #d1d5db;
+  opacity: 1;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+
+.pagination :global(.swiper-pagination-bullet-active) {
+  background: #f97316;
+  width: 24px;
+  border-radius: 12px;
 }

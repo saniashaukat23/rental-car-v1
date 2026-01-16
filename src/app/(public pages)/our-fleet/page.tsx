@@ -304,8 +304,8 @@ function FleetContent() {
               </div>
             </aside>
 
-            {/* Mobile Only: Show Results Button inside drawer */}
-            <div className="lg:hidden pt-4 mt-auto">
+            {/* Mobile Only: Show Results Button inside drawer - sticky at bottom */}
+            <div className="lg:hidden sticky bottom-0 left-0 right-0 pt-4 pb-6 bg-white border-t border-gray-100 mt-auto">
               <button
                 onClick={() => setShowMobileFilters(false)}
                 className="w-full bg-orange-500 text-white py-3 rounded-lg font-bold"

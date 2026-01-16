@@ -47,11 +47,10 @@ export default function BrandSwiper() {
           modules={[Navigation, Pagination]}
           loop
           spaceBetween={20}
-          slidesPerGroup={2}
+          slidesPerGroup={3}
           pagination={{
             clickable: true,
             el: ".brand-pagination",
-            dynamicBullets: true,
           }}
           navigation={{
             nextEl: ".brand-next",

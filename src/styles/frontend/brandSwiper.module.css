@@ -135,14 +135,20 @@
 .pagination {
   display: none;
   justify-content: center;
-  margin-top: 1rem;
-  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-bottom: 0.5rem;
+  gap: 6px;
 }
 
 /* Show pagination only on mobile */
 @media (max-width: 640px) {
   .pagination {
-    display: flex;
+    display: flex !important;
+  }
+  
+  .container {
+    padding-bottom: 1rem;
   }
 }
 
@@ -150,13 +156,15 @@
 .pagination :global(.swiper-pagination-bullet) {
   width: 8px;
   height: 8px;
-  background: #d1d5db;
+  background: #9ca3af; /* gray-400 for inactive */
   opacity: 1;
+  border-radius: 50%;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .pagination :global(.swiper-pagination-bullet-active) {
-  background: #f97316;
-  width: 24px;
-  border-radius: 4px;
+  background: #f97316; /* primary orange for active */
+  width: 20px;
+  border-radius: 10px;
 }

@@ -63,7 +63,7 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
           </div>
         )}
 
-        <ImageHoverCarousel images={car.images} alt={car.name} />
+        <ImageHoverCarousel images={car.images} alt={car.name} disableOnMobile />
       </div>
 
       <div className={styles.details}>

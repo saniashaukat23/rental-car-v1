@@ -7,6 +7,12 @@
   padding-bottom: 4rem;
 }
 
+@media (min-width: 1024px) {
+  .main {
+    padding-top: 6rem;
+  }
+}
+
 .container {
   max-width: 80rem; /* max-w-7xl */
   margin: 0 auto;
@@ -347,24 +353,42 @@
 }
 
 .ctaBtnPrimary {
-  background-color: #22c55e;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
   color: white;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaBtnPrimary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 .ctaBtnPrimary:hover {
-  background-color: #16a34a;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.45);
 }
 
 .ctaBtnSecondary {
   background-color: white;
   color: #f97316;
   border: 2px solid #f97316;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
 .ctaBtnSecondary:hover {
-  background-color: #fff7ed;
+  background-color: rgba(249, 115, 22, 0.05);
+  transform: translateY(-3px);
 }
 
 /* Empty State */

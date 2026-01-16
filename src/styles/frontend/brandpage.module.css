@@ -247,10 +247,10 @@
 
 .listingUnderline {
   height: 4px;
-  width: 60px;
+  width: 80px;
   background: linear-gradient(90deg, #f97316, #fb923c);
   border-radius: 2px;
-  margin: 0 auto;
+  margin: 1.5rem auto 0;
 }
 
 .carGrid {
@@ -363,7 +363,8 @@
    PRICING TABLE - Clean & Modern
    ============================================ */
 .tableContainer {
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   background: white;
   border-radius: 1rem;
   border: 1px solid #e5e7eb;
@@ -374,20 +375,22 @@
 
 .table {
   width: 100%;
+  min-width: 500px; /* Ensures table doesn't collapse on mobile */
   border-collapse: collapse;
 }
 
 .tableHead {
-  background: linear-gradient(90deg, #111827 0%, #1f2937 100%);
+  background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
   color: white;
 }
 
 .table th {
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem 1rem;
   text-align: center;
   font-weight: 600;
   font-size: 0.875rem;
   letter-spacing: 0.025em;
+  white-space: nowrap;
 }
 
 .table th:first-child {
@@ -395,12 +398,13 @@
 }
 
 .table td {
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem 1rem;
   text-align: center;
   border-bottom: 1px solid #f3f4f6;
   color: #374151;
   font-size: 0.9375rem;
   transition: background 0.2s;
+  white-space: nowrap;
 }
 
 .table tbody tr:last-child td {
@@ -408,7 +412,7 @@
 }
 
 .table tbody tr:hover td {
-  background: #fafafa;
+  background: #fff7ed;
 }
 
 .table td:first-child {
@@ -428,6 +432,24 @@
   font-size: 0.875rem;
   color: #92400e;
   line-height: 1.5;
+}
+
+/* Mobile scroll hint */
+@media (max-width: 640px) {
+  .tableContainer {
+    position: relative;
+  }
+
+  
+  .table th {
+    padding: 1rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .table td {
+    padding: 1rem 0.75rem;
+    font-size: 0.875rem;
+  }
 }
 
 /* ============================================
