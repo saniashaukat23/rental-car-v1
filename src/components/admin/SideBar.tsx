@@ -48,6 +48,7 @@ const Sidebar = ({ activeTab, setActiveTab }: SidebarProps) => {
   const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard" },
     { icon: LayoutDashboard, label: "Total Cars" },
+    { icon: LayoutDashboard, label: "Discounted Cars" },
     { icon: LayoutDashboard, label: "Available Brands" },
   ];
 

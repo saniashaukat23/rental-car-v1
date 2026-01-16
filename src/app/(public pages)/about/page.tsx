@@ -1,8 +1,10 @@
 "use client";
 import Image from "next/image";
 import styles from "../../../styles/frontend/about.module.css";
-import { Car, Users, Shield, Award, MessageCircle, Phone } from "lucide-react";
+import { Car, Users, Shield, Award } from "lucide-react";
 import FeatureCard from "@/src/components/Cards";
+import CTAButtons from "../../../components/CTAButtons";
+
 const featureData = [
   {
     Icon: Car,
@@ -160,22 +162,11 @@ export default function AboutSection() {
               Contact us today to find the perfect vehicle for your needs. Our
               team is ready to assist you with your luxury car rental.
             </p>
-            <div className={styles.ctaButtons}>
-              <a
-                href="https://wa.me/+971501234567"
-                className={`${styles.btn} ${styles.btnWhatsapp}`}
-              >
-                <MessageCircle className="mr-2 h-5 w-5" />
-                WhatsApp Us
-              </a>
-              <a
-                href="tel:+97141234567"
-                className={`${styles.btn} ${styles.btnCall}`}
-              >
-                <Phone className="mr-2 h-5 w-5" />
-                Call Us Now
-              </a>
-            </div>
+            <CTAButtons 
+              whatsappMessage="Hi, I'm interested in renting a luxury car"
+              whatsappLabel="WhatsApp Us"
+              callLabel="Call Us Now"
+            />
           </div>
         </div>
       </div>

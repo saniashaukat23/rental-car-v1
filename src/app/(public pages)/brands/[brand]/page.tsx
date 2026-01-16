@@ -3,12 +3,13 @@
 import { useEffect, useState, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Car, MessageCircle, Phone, Truck } from "lucide-react";
-import { FaCar, FaArrowRight } from "react-icons/fa"; // Importing Fa icons for empty state
+import { Car, MessageCircle, Truck, Sparkles, Shield, Zap } from "lucide-react";
+import { FaCar, FaArrowRight } from "react-icons/fa";
 import CarRentalCard from "@/src/components/CarRentalCard";
 import styles from "../../../../styles/frontend/brandpage.module.css";
 import { BrandDescription } from "@/src/components/BrandDescription";
 import { CarType } from "@/src/types/CarType";
+import CTAButtons from "@/src/components/CTAButtons";
 
 type PageProps = {
   params: Promise<{ brand: string }>;
@@ -71,7 +72,7 @@ export default function BrandCarsPage({ params }: PageProps) {
   if (loading) {
     return (
       <div className="h-screen flex flex-col items-center justify-center bg-white">
-        <div className="w-12 h-12 border-4 border-gray-100 border-t-black rounded-full animate-spin mb-6"></div>
+        <div className="w-12 h-12 border-4 border-gray-100 border-t-orange-500 rounded-full animate-spin mb-6"></div>
         <p className="text-gray-400 text-sm tracking-widest uppercase animate-pulse">
           Locating {brandDisplayName} Fleet...
         </p>
@@ -196,24 +197,33 @@ export default function BrandCarsPage({ params }: PageProps) {
           </h2>
           <div className={styles.featuresGrid}>
             <div className={styles.featureCard}>
-              <h3 className="text-xl font-bold mb-4">Unmatched Versatility</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <div className={styles.featureCardIcon}>
+                <Sparkles size={24} />
+              </div>
+              <h3 className={styles.featureCardTitle}>Unmatched Versatility</h3>
+              <p className={styles.featureCardText}>
                 From executive sedans to SUVs and sports cars,{" "}
                 {brandDisplayName} offers a vehicle for every requirement.
               </p>
             </div>
             <div className={styles.featureCard}>
-              <h3 className="text-xl font-bold mb-4">Exceptional Value</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <div className={styles.featureCardIcon}>
+                <Shield size={24} />
+              </div>
+              <h3 className={styles.featureCardTitle}>Exceptional Value</h3>
+              <p className={styles.featureCardText}>
                 A compelling balance of high-end luxury and advanced technology.
                 {brandDisplayName} guarantees exceptional value.
               </p>
             </div>
             <div className={styles.featureCard}>
-              <h3 className="text-xl font-bold mb-4">Executive Elegance</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <div className={styles.featureCardIcon}>
+                <Zap size={24} />
+              </div>
+              <h3 className={styles.featureCardTitle}>Executive Elegance</h3>
+              <p className={styles.featureCardText}>
                 Clean, timeless sophistication. A powerful statement of success
-                for Dubai's roads.
+                for Dubai&apos;s roads.
               </p>
             </div>
           </div>
@@ -255,8 +265,8 @@ export default function BrandCarsPage({ params }: PageProps) {
               </tbody>
             </table>
           </div>
-          <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-lg">
-            <p className="text-sm text-gray-700">
+          <div className={styles.noteBox}>
+            <p className={styles.noteText}>
               <span className="font-bold">Note:</span> Prices subject to change
               based on season and availability.
             </p>
@@ -268,29 +278,38 @@ export default function BrandCarsPage({ params }: PageProps) {
           <h2 className={styles.sectionTitle}>Rent in 3 Easy Steps</h2>
           <div className={styles.stepsContainer}>
             <div className={styles.stepItem}>
-              <Car className={styles.stepIcon} />
+              <div className={styles.stepIconBox}>
+                <Car className={styles.stepIcon} />
+              </div>
               <div className="text-left">
-                <p className="font-bold">1. Select Your Masterpiece</p>
-                <p className="text-sm text-gray-500">
-                  Browse our fleet to find the {brandDisplayName}.
+                <p className={styles.stepNumber}>Step 1</p>
+                <p className={styles.stepTitle}>Select Your Masterpiece</p>
+                <p className={styles.stepText}>
+                  Browse our fleet to find your perfect {brandDisplayName}.
                 </p>
               </div>
             </div>
             <div className={styles.stepItem}>
-              <MessageCircle className={styles.stepIcon} />
+              <div className={styles.stepIconBox}>
+                <MessageCircle className={styles.stepIcon} />
+              </div>
               <div className="text-left">
-                <p className="font-bold">2. Contact Us</p>
-                <p className="text-sm text-gray-500">
-                  WhatsApp or Call with your dates.
+                <p className={styles.stepNumber}>Step 2</p>
+                <p className={styles.stepTitle}>Contact Us</p>
+                <p className={styles.stepText}>
+                  WhatsApp or call with your preferred dates.
                 </p>
               </div>
             </div>
             <div className={styles.stepItem}>
-              <Truck className={styles.stepIcon} />
+              <div className={styles.stepIconBox}>
+                <Truck className={styles.stepIcon} />
+              </div>
               <div className="text-left">
-                <p className="font-bold">3. Receive & Drive</p>
-                <p className="text-sm text-gray-500">
-                  We deliver to your hotel or airport.
+                <p className={styles.stepNumber}>Step 3</p>
+                <p className={styles.stepTitle}>Receive & Drive</p>
+                <p className={styles.stepText}>
+                  We deliver to your hotel or airport terminal.
                 </p>
               </div>
             </div>
@@ -298,28 +317,16 @@ export default function BrandCarsPage({ params }: PageProps) {
         </section>
 
         {/* --- CTA SECTION --- */}
-        <section className="bg-white rounded-2xl p-8 md:p-12 text-center shadow-lg border border-gray-100 mb-16">
-          <h2 className="text-3xl font-bold mb-4 text-gray-900">
-            Ready To Command Dubai?
-          </h2>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Your executive {brandDisplayName} awaits. Contact us now.
+        <section className={styles.ctaSection}>
+          <h2 className={styles.ctaTitle}>Ready To Command Dubai?</h2>
+          <p className={styles.ctaText}>
+            Your executive {brandDisplayName} awaits. Contact us now for instant booking.
           </p>
-          <div className={styles.ctaGroup}>
-            <a
-              href={`https://wa.me/971582947143?text=Hi, I want to rent a ${brandDisplayName}`}
-              target="_blank"
-              className={`${styles.btn} ${styles.btnPrimary}`}
-            >
-              <MessageCircle size={20} /> WhatsApp Us
-            </a>
-            <a
-              href="tel:+971582947143"
-              className={`${styles.btn} ${styles.btnSecondary}`}
-            >
-              <Phone size={20} /> Call Us Now
-            </a>
-          </div>
+          <CTAButtons 
+            whatsappMessage={`Hi, I want to rent a ${brandDisplayName} in Dubai`}
+            whatsappLabel="WhatsApp Us"
+            callLabel="Call Us Now"
+          />
         </section>
 
         {/* --- FAQ SECTION --- */}

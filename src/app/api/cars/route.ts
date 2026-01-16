@@ -1,47 +1,141 @@
 import { NextResponse, NextRequest } from "next/server";
+import { auth } from "@clerk/nextjs/server";
 import dbConnect from "@/src/lib/db";
 import Car from "@/src/models/Car";
+import { CarSchema, CarQuerySchema } from "@/src/lib/validations";
+import { z } from "zod";
+import type { CarListResponse } from "@/src/types/api";
 
 export async function GET(request: NextRequest) {
   try {
     await dbConnect();
     const { searchParams } = new URL(request.url);
-    const brand = searchParams.get("brand");
+    
+    // Validate query parameters
+    const queryResult = CarQuerySchema.safeParse({
+      brand: searchParams.get("brand"),
+      type: searchParams.get("type"),
+      minPrice: searchParams.get("minPrice"),
+      maxPrice: searchParams.get("maxPrice"),
+    });
 
-    const query: any = {};
+    if (!queryResult.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Invalid query parameters",
+          details: queryResult.error.issues,
+        },
+        { status: 400 }
+      );
+    }
+
+    const { brand, type, minPrice, maxPrice } = queryResult.data;
+
+    // Build query with proper typing
+    interface MongoQuery {
+      brand?: { $regex: RegExp };
+      type?: { $regex: RegExp };
+      "pricing.daily"?: { $gte?: number; $lte?: number };
+    }
+
+    const query: MongoQuery = {};
 
     if (brand) {
       query.brand = { $regex: new RegExp(brand, "i") };
     }
+
+    if (type) {
+      query.type = { $regex: new RegExp(type, "i") };
+    }
+
+    if (minPrice || maxPrice) {
+      query["pricing.daily"] = {};
+      if (minPrice) query["pricing.daily"].$gte = minPrice;
+      if (maxPrice) query["pricing.daily"].$lte = maxPrice;
+    }
+
     const cars = await Car.find(query).sort({ createdAt: -1 });
-    return NextResponse.json({
+    
+    const response: CarListResponse = {
       success: true,
       count: cars.length,
       cars: cars,
-    });
+    };
+
+    return NextResponse.json(response);
   } catch (error: unknown) {
-    const errorMessage = error instanceof Error;
-    console.error("API Error:", errorMessage);
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";
+    console.error("API Error:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        error: errorMessage,
+      },
+      { status: 500 }
+    );
   }
 }
 
 export async function POST(request: Request) {
   try {
+    // Check authentication
+    const { userId } = await auth();
+
+    if (!userId) {
+      return NextResponse.json(
+        { success: false, error: "Unauthorized. Please sign in to add cars." },
+        { status: 401 }
+      );
+    }
+
     await dbConnect();
     const body = await request.json();
-    console.log("Receiving Data:", body);
 
-    const newCar = await Car.create(body);
+    // Validate input data
+    const validationResult = CarSchema.safeParse(body);
+
+    if (!validationResult.success) {
+      console.error("Validation Error:", validationResult.error.issues);
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Invalid car data",
+          details: validationResult.error.issues,
+        },
+        { status: 400 }
+      );
+    }
+
+    const validatedData = validationResult.data;
+    console.log("Creating car with validated data:", validatedData);
+
+    const newCar = await Car.create(validatedData);
 
     return NextResponse.json(
-      { message: "Car Added Successfully", car: newCar },
+      {
+        success: true,
+        message: "Car added successfully",
+        car: newCar,
+      },
       { status: 201 }
     );
   } catch (error: unknown) {
     console.error("Save Error:", error);
+    
+    // Handle duplicate key error
+    if (error instanceof Error && 'code' in error && (error as any).code === 11000) {
+      return NextResponse.json(
+        { success: false, error: "A car with this ID already exists" },
+        { status: 409 }
+      );
+    }
+
     const errorMessage =
       error instanceof Error ? error.message : "Failed to add car";
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: errorMessage },
+      { status: 500 }
+    );
   }
 }

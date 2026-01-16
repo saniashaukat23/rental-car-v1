@@ -20,21 +20,22 @@ interface FilterOption {
 // Data Options
 const brandOptions: FilterOption[] = [
   { value: "all", label: "All Brands" },
-  { value: "audi", label: "Audi" },
-  { value: "bmw", label: "BMW" },
-  { value: "bentley", label: "Bentley" },
-  { value: "ferrari", label: "Ferrari" },
-  { value: "lamborghini", label: "Lamborghini" },
-  { value: "mercedes", label: "Mercedes" },
-  { value: "rollsroyce", label: "Rolls Royce" },
+  { value: "Audi", label: "Audi" },
+  { value: "BMW", label: "BMW" },
+  { value: "Bentley", label: "Bentley" },
+  { value: "Ferrari", label: "Ferrari" },
+  { value: "Lamborghini", label: "Lamborghini" },
+  { value: "Mercedes", label: "Mercedes" },
+  { value: "Rolls Royce", label: "Rolls Royce" },
+  { value: "Toyota", label: "Toyota" },
 ];
 
 const categoryOptions: FilterOption[] = [
-  { value: "suv", label: "SUV" },
-  { value: "sport", label: "Sport" },
-  { value: "sedan", label: "Sedan" },
-  { value: "luxury", label: "Luxury" },
-  { value: "convertible", label: "Convertible" },
+  { value: "SUV", label: "SUV" },
+  { value: "Sport", label: "Sport" },
+  { value: "Sedan", label: "Sedan" },
+  { value: "Luxury", label: "Luxury" },
+  { value: "Convertible", label: "Convertible" },
 ];
 
 const typeOptions: FilterOption[] = [

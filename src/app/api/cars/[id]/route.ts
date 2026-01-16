@@ -30,13 +30,16 @@ export async function PUT(request: Request, { params }: Props) {
 
     await dbConnect();
     const body = await request.json();
+    const { _id, ...updateData } = body;
 
-    const updatedCar = await Car.findByIdAndUpdate(id, body, {
-      applyDiscount: body.applyDiscount, // Explicitly ensuring it's passed
-
-      new: true,
-      runValidators: true,
-    });
+    const updatedCar = await Car.findByIdAndUpdate(
+      id,
+      { $set: updateData },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
 
     if (!updatedCar) {
       return NextResponse.json({ error: "Car not found" }, { status: 404 });

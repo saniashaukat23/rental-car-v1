@@ -20,6 +20,9 @@ export interface CarType {
     monthly?: number;
     weeklyDiscount?: string;
     monthlyDiscount?: string;
+    originalDaily?: number;
+    originalWeekly?: number;
+    originalMonthly?: number;
   };
   applyDiscount?: boolean;
 

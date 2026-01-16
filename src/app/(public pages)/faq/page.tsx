@@ -1,15 +1,14 @@
 "use client";
 import React from "react";
-import Link from "next/link";
 import {
   FileText,
   CreditCard,
   Car,
   Shield,
-  MessageCircle,
-  Phone,
 } from "lucide-react";
 import styles from "../../../styles/frontend/faq.module.css";
+import CTAButtons from "../../../components/CTAButtons";
+
 const faqData = [
   {
     category: "Documents & Requirements",
@@ -107,12 +106,12 @@ const faqData = [
           <>
             For deposit complaints or follow-up, contact us at{" "}
             <a
-              href="https://wa.me/971582947143?text=Hi, I have a question about my deposit"
+              href="https://wa.me/971523048253?text=Hi, I have a question about my deposit"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.linkHighlight}
             >
-              +971 58 294 7143
+              +971 52 304 8253
             </a>
             . If anything happens that might affect your scheduled request, we
             manage it and inform you of any rescheduling if needed.
@@ -126,12 +125,17 @@ const faqData = [
 export default function FAQPage() {
   return (
     <main className={styles.mainContainer}>
+      {/* Decorative Orbs */}
+      <div className={styles.decorOrbLeft} />
+      <div className={styles.decorOrbRight} />
+      
       <div className={styles.wrapper}>
         {/* Header */}
         <div className={styles.header}>
           <h1 className={styles.mainTitle}>Frequently Asked Questions</h1>
           <p className={styles.mainSubtitle}>
-            Everything you need to know about renting with us
+            Everything you need to know about renting a luxury car with us. 
+            Can&apos;t find your answer? We&apos;re just a WhatsApp message away.
           </p>
         </div>
 
@@ -162,24 +166,12 @@ export default function FAQPage() {
 
         {/* Footer CTA */}
         <div className={styles.footerCta}>
-          <p className={styles.ctaText}>Cant find what youre looking for?</p>
-          <div className={styles.buttonGroup}>
-            <a
-              href="https://wa.me/971582947143?text=Hi, I have a question about car rental"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.btn} ${styles.btnWhatsapp}`}
-            >
-              <MessageCircle className="mr-2 h-5 w-5" />
-              Ask on WhatsApp
-            </a>
-            <Link
-              href="/contact"
-              className={`${styles.btn} ${styles.btnContact}`}
-            >
-              Contact Our Team
-            </Link>
-          </div>
+          <p className={styles.ctaText}>Still have questions? We&apos;re here to help!</p>
+          <CTAButtons 
+            whatsappMessage="Hi, I have a question about car rental"
+            whatsappLabel="Ask on WhatsApp"
+            callLabel="Call Our Team"
+          />
         </div>
       </div>
     </main>

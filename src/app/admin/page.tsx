@@ -1,5 +1,6 @@
 import React from "react";
 import dbConnect from "@/src/lib/db";
+export const dynamic = "force-dynamic";
 import Dashboard from "@/src/components/admin/Dashboard";
 import Car from "@/src/models/Car";
 import { currentUser } from "@clerk/nextjs/server";

@@ -2,24 +2,27 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Edit, Trash2, Fuel, Settings, Calendar } from "lucide-react";
+import { Edit, Trash2, Fuel, Settings, Calendar, Tag } from "lucide-react";
 // Type import (Apne path ke hisaab se adjust kar lena)
 import { CarType } from "@/src/types/CarType";
 interface TotalCarsProps {
   cars: CarType[];
+  title?: string;
+  subtitle?: string;
 }
 
-const TotalCars = ({ cars }: TotalCarsProps) => {
+const TotalCars = ({ 
+  cars, 
+  title = "Fleet Inventory", 
+  subtitle = "Manage your vehicle database, update pricing, and track availability." 
+}: TotalCarsProps) => {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
       {/* --- Header Section --- */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-slate-800">Fleet Inventory</h2>
-          <p className="text-slate-500 text-sm mt-1">
-            Manage your vehicle database, update pricing, and track
-            availability.
-          </p>
+          <h2 className="text-2xl font-bold text-slate-800">{title}</h2>
+          <p className="text-slate-500 text-sm mt-1">{subtitle}</p>
         </div>
         <div className="bg-slate-900 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg shadow-slate-200">
           {cars?.length || 0} Vehicles Total
@@ -119,9 +122,25 @@ const TotalCars = ({ cars }: TotalCarsProps) => {
 
                     {/* Column 4: Price */}
                     <td className="p-4">
-                      <div className="font-bold text-slate-800">
-                        {car.pricing?.currency || "AED"} {car.pricing?.daily}
-                      </div>
+                      {car.applyDiscount && car.pricing?.originalDaily ? (
+                        <div className="flex flex-col">
+                          <span className="text-[10px] bg-orange-100 text-orange-600 px-1.5 py-0.5 rounded font-bold uppercase w-fit mb-1">
+                            Discount
+                          </span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-slate-400 line-through text-xs">
+                              {car.pricing?.currency || "AED"} {car.pricing?.originalDaily}
+                            </span>
+                            <div className="font-bold text-orange-600">
+                              {car.pricing?.currency || "AED"} {car.pricing?.daily}
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="font-bold text-slate-800">
+                          {car.pricing?.currency || "AED"} {car.pricing?.daily}
+                        </div>
+                      )}
                       <div className="text-xs text-slate-400">/ day</div>
                     </td>
 
@@ -135,6 +154,47 @@ const TotalCars = ({ cars }: TotalCarsProps) => {
                         >
                           <Edit size={16} />
                         </Link>
+
+                        {car.applyDiscount && (
+                          <button
+                            onClick={async () => {
+                              if (!confirm("Remove discount and restore original prices?")) return;
+                              try {
+                                const res = await fetch(`/api/cars/${car._id}`, {
+                                  method: "PUT",
+                                  headers: { "Content-Type": "application/json" },
+                                  body: JSON.stringify({
+                                    ...car,
+                                    applyDiscount: false,
+                                    pricing: {
+                                      ...car.pricing,
+                                      daily: car.pricing.originalDaily || car.pricing.daily,
+                                      weekly: car.pricing.originalWeekly || car.pricing.weekly || 0,
+                                      monthly: car.pricing.originalMonthly || car.pricing.monthly || 0,
+                                    },
+                                  }),
+                                });
+                                if (res.ok) {
+                                  alert("Success: Discount removed and prices restored.");
+                                  window.location.reload();
+                                } else {
+                                  const errorData = await res.json();
+                                  alert(`Error: ${errorData.error || "Failed to update"}`);
+                                }
+                              } catch (err) {
+                                console.error("Update error:", err);
+                                alert("Failed to connect to the server.");
+                              } finally {
+                                // No loading state needed for now as reload follows
+                              }
+                            }}
+                            className="p-2 text-orange-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                            title="Remove Discount"
+                          >
+                            <Tag size={16} />
+                          </button>
+                        )}
+
                         <button
                           className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                           title="Delete"

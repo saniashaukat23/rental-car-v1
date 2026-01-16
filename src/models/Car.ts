@@ -10,6 +10,9 @@ interface IPricing {
   weeklyDiscount?: number;
   monthlyDiscount?: number;
   dailyDiscount?: number;
+  originalDaily?: number;
+  originalWeekly?: number;
+  originalMonthly?: number;
 }
 
 interface IMileage {
@@ -53,33 +56,69 @@ export interface ICar extends Document {
 
 const CarSchema: Schema<ICar> = new Schema(
   {
-    carId: { type: String, required: true },
-    brand: { type: String, required: true, index: true },
-    name: { type: String, required: true },
+    carId: { 
+      type: String, 
+      required: true, 
+      unique: true,
+      trim: true,
+      lowercase: true,
+    },
+    brand: { 
+      type: String, 
+      required: true, 
+      index: true,
+      trim: true,
+    },
+    name: { 
+      type: String, 
+      required: true,
+      trim: true,
+    },
     type: { type: String, required: true }, // e.g., Sports, SUV
     color: { type: String, required: true },
     images: [{ type: String }],
-    seats: { type: Number, required: true },
-    transmission: { type: String, default: "Automatic" },
-    fuel: { type: String, default: "Gasoline" },
-    doors: { type: Number, required: true },
+    seats: { 
+      type: Number, 
+      required: true,
+      min: 1,
+      max: 12,
+    },
+    transmission: { 
+      type: String, 
+      enum: ['Automatic', 'Manual', 'Semi-Automatic'],
+      default: 'Automatic',
+    },
+    fuel: { 
+      type: String, 
+      enum: ['Gasoline', 'Diesel', 'Electric', 'Hybrid'],
+      default: 'Gasoline',
+    },
+    doors: { 
+      type: Number, 
+      required: true,
+      min: 2,
+      max: 6,
+    },
     engine: { type: String },
-    horsepower: { type: Number },
+    horsepower: { type: Number, min: 0 },
     pricing: {
       currency: { type: String, default: "AED" },
-      daily: { type: Number, required: true },
-      weekly: { type: Number },
-      monthly: { type: Number },
-      weeklyDiscount: { type: Number },
-      monthlyDiscount: { type: Number },
-      dailyDiscount: { type: Number },
+      daily: { type: Number, required: true, min: 0 },
+      weekly: { type: Number, min: 0 },
+      monthly: { type: Number, min: 0 },
+      weeklyDiscount: { type: Number, min: 0, max: 100 },
+      monthlyDiscount: { type: Number, min: 0, max: 100 },
+      dailyDiscount: { type: Number, min: 0, max: 100 },
+      originalDaily: { type: Number, min: 0 },
+      originalWeekly: { type: Number, min: 0 },
+      originalMonthly: { type: Number, min: 0 },
     },
-    securityDeposit: { type: Number },
+    securityDeposit: { type: Number, min: 0 },
     mileage: {
-      dailyIncluded: { type: Number },
-      extraMileagePrice: { type: Number },
+      dailyIncluded: { type: Number, min: 0 },
+      extraMileagePrice: { type: Number, min: 0 },
     },
-    applyDiscount: { type: Boolean },
+    applyDiscount: { type: Boolean, default: false },
     chauffeurService: { type: String },
     features: [{ type: String }],
     keyFeatures: [{ type: String }],
@@ -90,9 +129,29 @@ const CarSchema: Schema<ICar> = new Schema(
       freePickupAndDrop: { type: String },
       paymentMethods: [{ type: String }],
     },
-    year: { type: Number, required: true },
+    year: { 
+      type: Number, 
+      required: true,
+      min: 1900,
+      max: new Date().getFullYear() + 2,
+    },
   },
-  { timestamps: true }
+  { 
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
 );
 
+// Add compound indexes for better query performance
+CarSchema.index({ brand: 1, type: 1 });
+CarSchema.index({ 'pricing.daily': 1 });
+CarSchema.index({ year: -1 });
+
+// Add virtual field for display name
+CarSchema.virtual('displayName').get(function() {
+  return `${this.year} ${this.brand} ${this.name}`;
+});
+
 export default mongoose.models.Car || mongoose.model("Car", CarSchema);
+

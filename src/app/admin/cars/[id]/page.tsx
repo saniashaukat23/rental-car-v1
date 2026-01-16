@@ -29,14 +29,33 @@ interface CarData {
   fuel: string;
   seats: number;
   doors: number;
+  engine: string;
   horsepower: number;
   images: string[];
-  applyDiscount: boolean; // Ensure this is in interface
+  applyDiscount: boolean;
+  about: string;
+  chauffeurService: string;
+  features: string[];
+  keyFeatures: string[];
+  securityDeposit: number;
+  mileage: {
+    dailyIncluded: number;
+    extraMileagePrice: number;
+  };
   pricing: {
     daily: number;
     weekly: number;
     monthly: number;
     currency: string;
+    originalDaily?: number;
+    originalWeekly?: number;
+    originalMonthly?: number;
+  };
+  rentalInfo: {
+    pickupLocation: string;
+    insurance: string;
+    freePickupAndDrop: string;
+    paymentMethods: string[];
   };
 }
 
@@ -76,10 +95,23 @@ export default function EditCar() {
     fuel: "Gasoline",
     seats: 4,
     doors: 4,
-    horsepower: 500,
+    engine: "",
+    horsepower: 0,
     images: [],
     applyDiscount: false,
+    about: "",
+    chauffeurService: "Available",
+    features: [],
+    keyFeatures: [],
+    securityDeposit: 0,
+    mileage: { dailyIncluded: 250, extraMileagePrice: 5 },
     pricing: { daily: 0, weekly: 0, monthly: 0, currency: "AED" },
+    rentalInfo: {
+      pickupLocation: "Dubai Main Branch",
+      insurance: "Basic Comprehensive",
+      freePickupAndDrop: "On Monthly Rentals",
+      paymentMethods: ["Card", "Cash"],
+    },
   });
 
   useEffect(() => {
@@ -133,20 +165,25 @@ export default function EditCar() {
     });
   };
 
-  // 2. Confirm and Apply (SETS applyDiscount to TRUE)
+  // 2. Confirm and Apply (SETS applyDiscount to TRUE and SAVES original prices)
   const confirmDiscount = () => {
     if (discountPreview) {
       setCar((prev) => ({
         ...prev,
-        applyDiscount: true, // <--- IMPORTANT: Marks car as discounted
+        applyDiscount: true,
         pricing: {
           ...prev.pricing,
+          // Store original prices only if they aren't already stored 
+          // (prevents overwriting original with already discounted prices)
+          originalDaily: prev.applyDiscount ? prev.pricing.originalDaily : prev.pricing.daily,
+          originalWeekly: prev.applyDiscount ? prev.pricing.originalWeekly : prev.pricing.weekly,
+          originalMonthly: prev.applyDiscount ? prev.pricing.originalMonthly : prev.pricing.monthly,
           ...discountPreview,
         },
       }));
       setDiscountPreview(null);
       setDiscount("");
-      alert(`Discount applied! Don't forget to click "Save Changes".`);
+      alert(`Discount applied! Original prices saved. Don't forget to click "Save Changes".`);
     }
   };
 
@@ -155,13 +192,20 @@ export default function EditCar() {
     setDiscountPreview(null);
   };
 
-  // 4. Remove Discount (Reset Flag)
+  // 4. Remove Discount (RESTORES original prices)
   const handleRemoveDiscount = () => {
     setCar((prev) => ({
       ...prev,
-      applyDiscount: false, // <--- Turns off discount badge
+      applyDiscount: false,
+      pricing: {
+        ...prev.pricing,
+        // Restore from original pricing fields
+        daily: prev.pricing.originalDaily || prev.pricing.daily,
+        weekly: prev.pricing.originalWeekly || prev.pricing.weekly,
+        monthly: prev.pricing.originalMonthly || prev.pricing.monthly,
+      },
     }));
-    alert("Discount status removed. Update prices manually if needed.");
+    alert("Discount status removed. Original prices restored. Don't forget to click 'Save Changes'.");
   };
 
   // --- IMAGE & SUBMIT LOGIC ---
@@ -364,13 +408,75 @@ export default function EditCar() {
                   value={car.color}
                   onChange={handleChange}
                 />
-                {/* Add Selects for Type, Transmission, Fuel here (omitted for brevity) */}
+                {/* Type Dropdown */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
+                    Type
+                  </label>
+                  <select
+                    name="type"
+                    value={car.type}
+                    onChange={handleChange}
+                    className="w-full border border-slate-200 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">Select Type</option>
+                    <option>Sedan</option>
+                    <option>SUV</option>
+                    <option>Sports</option>
+                    <option>Luxury</option>
+                    <option>Convertible</option>
+                  </select>
+                </div>
+                {/* Transmission Dropdown */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
+                    Transmission
+                  </label>
+                  <select
+                    name="transmission"
+                    value={car.transmission}
+                    onChange={handleChange}
+                    className="w-full border border-slate-200 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option>Automatic</option>
+                    <option>Manual</option>
+                    <option>Semi-Automatic</option>
+                  </select>
+                </div>
+                {/* Fuel Dropdown */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
+                    Fuel
+                  </label>
+                  <select
+                    name="fuel"
+                    value={car.fuel}
+                    onChange={handleChange}
+                    className="w-full border border-slate-200 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option>Gasoline</option>
+                    <option>Diesel</option>
+                    <option>Electric</option>
+                    <option>Hybrid</option>
+                  </select>
+                </div>
               </div>
             </div>
 
             {/* Specs */}
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-              <div className="grid grid-cols-3 gap-4">
+              <div className="flex items-center gap-2 mb-4">
+                <Settings className="w-5 h-5 text-purple-500" />
+                <h3 className="font-bold">Specs</h3>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <InputGroup
+                  label="Engine"
+                  name="engine"
+                  value={car.engine}
+                  onChange={handleChange}
+                  placeholder="V8 4.4L"
+                />
                 <InputGroup
                   label="Horsepower"
                   name="horsepower"
@@ -390,6 +496,62 @@ export default function EditCar() {
                   name="doors"
                   type="number"
                   value={car.doors}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            {/* About / Description */}
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+              <div className="flex items-center gap-2 mb-4">
+                <Car className="w-5 h-5 text-green-500" />
+                <h3 className="font-bold">Description</h3>
+              </div>
+              <textarea
+                name="about"
+                value={car.about}
+                onChange={(e) => setCar((prev) => ({ ...prev, about: e.target.value }))}
+                placeholder="Describe the car..."
+                className="w-full h-24 border border-slate-200 rounded-lg p-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              />
+            </div>
+
+            {/* Mileage & Deposit */}
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+              <div className="flex items-center gap-2 mb-4">
+                <Settings className="w-5 h-5 text-orange-500" />
+                <h3 className="font-bold">Mileage & Deposit</h3>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <InputGroup
+                  label="Daily Mileage (KM)"
+                  name="dailyIncluded"
+                  type="number"
+                  value={car.mileage.dailyIncluded}
+                  onChange={(e) =>
+                    setCar((prev) => ({
+                      ...prev,
+                      mileage: { ...prev.mileage, dailyIncluded: Number(e.target.value) },
+                    }))
+                  }
+                />
+                <InputGroup
+                  label="Extra KM Price (AED)"
+                  name="extraMileagePrice"
+                  type="number"
+                  value={car.mileage.extraMileagePrice}
+                  onChange={(e) =>
+                    setCar((prev) => ({
+                      ...prev,
+                      mileage: { ...prev.mileage, extraMileagePrice: Number(e.target.value) },
+                    }))
+                  }
+                />
+                <InputGroup
+                  label="Security Deposit (AED)"
+                  name="securityDeposit"
+                  type="number"
+                  value={car.securityDeposit}
                   onChange={handleChange}
                 />
               </div>

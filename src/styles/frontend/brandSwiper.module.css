@@ -130,3 +130,33 @@
     display: none;
   }
 }
+
+/* Pagination dots */
+.pagination {
+  display: none;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+/* Show pagination only on mobile */
+@media (max-width: 640px) {
+  .pagination {
+    display: flex;
+  }
+}
+
+/* Custom pagination bullet styles */
+.pagination :global(.swiper-pagination-bullet) {
+  width: 8px;
+  height: 8px;
+  background: #d1d5db;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.pagination :global(.swiper-pagination-bullet-active) {
+  background: #f97316;
+  width: 24px;
+  border-radius: 4px;
+}

@@ -2,21 +2,22 @@
 import React from "react";
 import { Phone, MessageCircle, Mail, MapPin, Clock } from "lucide-react";
 import styles from "../../../styles/frontend/contactus.module.css";
+import CTAButtons from "../../../components/CTAButtons";
 
 // Data for the contact list (Left Column)
 const contactDetails = [
   {
     icon: Phone,
     title: "Phone",
-    content: "+971 52 304 8253",
-    href: "tel:+9711523048253",
+    content: "+971523048253",
+    href: "tel:+971523048253",
     colorClass: styles.iconPrimary,
   },
   {
     icon: MessageCircle,
     title: "WhatsApp",
-    content: "+971 52 304 8253",
-    href: "https://wa.me/9711523048253",
+    content: "+971523048253",
+    href: "https://wa.me/971523048253",
     colorClass: styles.iconGreen, // Special color for WhatsApp
   },
   {
@@ -103,24 +104,11 @@ export default function ContactPage() {
                   For immediate assistance, reach out to us via WhatsApp or
                   phone. Were here to help you find the perfect luxury vehicle.
                 </p>
-                <div className={styles.buttonGroup}>
-                  <a
-                    href="https://wa.me/+971523048253?text=Hello, I need help with car rental"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${styles.btn} ${styles.btnWhatsapp}`}
-                  >
-                    <MessageCircle className="mr-2 h-4 w-4" />
-                    WhatsApp Us Now
-                  </a>
-                  <a
-                    href="tel:+9711523048253"
-                    className={`${styles.btn} ${styles.btnOutline}`}
-                  >
-                    <Phone className="mr-2 h-4 w-4" />
-                    Call Us Directly
-                  </a>
-                </div>
+                <CTAButtons 
+                  whatsappMessage="Hello, I need help with car rental"
+                  whatsappLabel="WhatsApp Us Now"
+                  callLabel="Call Us Directly"
+                />
               </div>
             </div>
 

@@ -49,22 +49,35 @@ function FleetContent() {
     fetchCars();
   }, []);
 
+  // Read URL parameters and apply filters from FilterBar navigation
   useEffect(() => {
+    const brandFromUrl = SearchParams.get("brand");
     const typeFromUrl = SearchParams.get("type");
+    const engineFromUrl = SearchParams.get("engine");
+
+    if (brandFromUrl) {
+      setSelectedBrand(brandFromUrl);
+    }
     if (typeFromUrl) {
       setSelectedType(typeFromUrl);
     }
+    // Note: engine filter is not currently implemented in the sidebar filters
+    // If you want to add engine filtering, you'll need to add it to the state and filtering logic
   }, [SearchParams]);
 
-  // 2. Filtering Logic
+  // 2. Filtering Logic (with case-insensitive matching)
   useEffect(() => {
     let result = allCars;
 
     if (selectedBrand) {
-      result = result.filter((car) => car.brand === selectedBrand);
+      result = result.filter((car) => 
+        car.brand.toLowerCase() === selectedBrand.toLowerCase()
+      );
     }
     if (selectedType) {
-      result = result.filter((car) => car.type === selectedType);
+      result = result.filter((car) => 
+        car.type.toLowerCase() === selectedType.toLowerCase()
+      );
     }
     if (selectedSeats) {
       result = result.filter((car) => Number(car.seats) === selectedSeats);
@@ -183,7 +196,7 @@ function FleetContent() {
                     <div
                       key={brand}
                       className={`${styles.filterItem} ${
-                        selectedBrand === brand ? styles.active : ""
+                        selectedBrand?.toLowerCase() === brand.toLowerCase() ? styles.active : ""
                       }`}
                       onClick={() =>
                         handleFilterClick(
@@ -221,7 +234,7 @@ function FleetContent() {
                     <div
                       key={type}
                       className={`${styles.filterItem} ${
-                        selectedType === type ? styles.active : ""
+                        selectedType?.toLowerCase() === type.toLowerCase() ? styles.active : ""
                       }`}
                       onClick={() =>
                         handleFilterClick(setSelectedType, selectedType, type)

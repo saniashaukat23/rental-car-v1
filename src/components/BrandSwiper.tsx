@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import styles from "../styles/frontend/brandSwiper.module.css";
 import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import Link from "next/link";
 type BrandLogo = {
   name: string;
@@ -43,11 +44,15 @@ export default function BrandSwiper() {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Swiper
-          modules={[Navigation]}
+          modules={[Navigation, Pagination]}
           loop
           spaceBetween={20}
           slidesPerGroup={2}
-          // The navigation class names remain the same
+          pagination={{
+            clickable: true,
+            el: ".brand-pagination",
+            dynamicBullets: true,
+          }}
           navigation={{
             nextEl: ".brand-next",
             prevEl: ".brand-prev",
@@ -87,6 +92,9 @@ export default function BrandSwiper() {
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {/* Pagination dots - visible on mobile */}
+        <div className={`brand-pagination ${styles.pagination}`}></div>
 
         {/* Custom navigation buttons using SVGs for cleaner look */}
         <button className={`brand-prev ${styles.navBtn}`}>

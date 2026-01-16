@@ -25,8 +25,9 @@ interface InputFieldProps {
   type?: string;
   placeholder?: string;
   width?: "full" | "half";
-  value: string | number; // 👈 Added: Value prop zaroori hai
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void; // 👈 Added: Change handler zaroori hai
+  value: string | number;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean; // New: Mark field as required
 }
 
 // --- Helper Components (MOVED OUTSIDE) ---
@@ -49,6 +50,7 @@ const InputField = ({
   width = "full",
   value,
   onChange,
+  required = false,
 }: InputFieldProps) => (
   <div
     className={`${
@@ -57,14 +59,21 @@ const InputField = ({
   >
     <label className="text-xs font-semibold text-slate-500 uppercase mb-1 block">
       {label}
+      {required && <span className="text-red-500 ml-1">*</span>}
+      {!required && <span className="text-slate-400 ml-1 text-[10px] normal-case">(optional)</span>}
     </label>
     <input
       type={type}
       name={name}
-      value={value} // 👈 Connected Value
-      onChange={onChange} // 👈 Connected Handler
+      value={value}
+      onChange={onChange}
       placeholder={placeholder}
-      className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all shadow-sm"
+      required={required}
+      className={`w-full bg-white border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all shadow-sm ${
+        required 
+          ? "border-slate-300 focus:ring-orange-500" 
+          : "border-slate-200 focus:ring-slate-400"
+      }`}
     />
   </div>
 );
@@ -101,6 +110,7 @@ const AddCar = () => {
     images: [] as string[],
     features: [] as string[],
     keyFeatures: [] as string[],
+    applyDiscount: false, // Added: To keep in sync with model
   });
 
   // --- Handlers ---
@@ -155,9 +165,24 @@ const AddCar = () => {
   const handleSave = async () => {
     setLoading(true);
 
-    // Basic Validation check (Optional but good)
-    if (!form.brand || !form.name || !form.dailyPrice) {
-      alert("Please fill in Brand, Model Name and Daily Price");
+    // Validation for required fields
+    const requiredFields = [
+      { field: form.brand, name: "Brand" },
+      { field: form.name, name: "Model Name" },
+      { field: form.year, name: "Year" },
+      { field: form.color, name: "Color" },
+      { field: form.type, name: "Vehicle Category" },
+      { field: form.seats, name: "Seats" },
+      { field: form.doors, name: "Doors" },
+      { field: form.dailyPrice, name: "Daily Price" },
+    ];
+
+    const missingFields = requiredFields
+      .filter((f) => !f.field || f.field === "")
+      .map((f) => f.name);
+
+    if (missingFields.length > 0) {
+      alert(`Please fill in required fields: ${missingFields.join(", ")}`);
       setLoading(false);
       return;
     }
@@ -187,6 +212,7 @@ const AddCar = () => {
         freePickupAndDrop: form.freePickupAndDrop,
         paymentMethods: ["Card", "Cash"],
       },
+      applyDiscount: form.applyDiscount,
     };
 
     try {
@@ -255,6 +281,7 @@ const AddCar = () => {
                 placeholder="e.g. BMW"
                 value={form.brand}
                 onChange={handleChange}
+                required
               />
               <InputField
                 label="Model Name"
@@ -262,6 +289,7 @@ const AddCar = () => {
                 placeholder="e.g. M5 Competition"
                 value={form.name}
                 onChange={handleChange}
+                required
               />
               <InputField
                 label="Year"
@@ -270,6 +298,7 @@ const AddCar = () => {
                 placeholder="2024"
                 value={form.year}
                 onChange={handleChange}
+                required
               />
               <InputField
                 label="Exterior Color"
@@ -277,12 +306,13 @@ const AddCar = () => {
                 placeholder="e.g. Alpine White"
                 value={form.color}
                 onChange={handleChange}
+                required
               />
 
               {/* Dropdowns */}
               <div className="col-span-2 md:col-span-1">
                 <label className="text-xs font-semibold text-slate-500 uppercase mb-1 block">
-                  Vehicle Category
+                  Vehicle Category<span className="text-red-500 ml-1">*</span>
                 </label>
                 <select
                   name="type"
@@ -356,6 +386,7 @@ const AddCar = () => {
                 placeholder="5"
                 value={form.seats}
                 onChange={handleChange}
+                required
               />
               <InputField
                 label="Doors"
@@ -364,6 +395,7 @@ const AddCar = () => {
                 placeholder="4"
                 value={form.doors}
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -481,6 +513,7 @@ const AddCar = () => {
                 width="full"
                 value={form.dailyPrice}
                 onChange={handleChange}
+                required
               />
               <InputField
                 label="Weekly Price"
@@ -500,6 +533,26 @@ const AddCar = () => {
                 value={form.monthlyPrice}
                 onChange={handleChange}
               />
+              <div className="flex items-center gap-2 pt-4 border-t border-slate-50 mt-4">
+                <input
+                  type="checkbox"
+                  id="applyDiscount"
+                  checked={form.applyDiscount}
+                  onChange={(e) =>
+                    setForm({ ...form, applyDiscount: e.target.checked })
+                  }
+                  className="w-4 h-4 text-orange-600 border-slate-300 rounded focus:ring-orange-500 cursor-pointer"
+                />
+                <label
+                  htmlFor="applyDiscount"
+                  className="text-sm font-bold text-slate-700 cursor-pointer flex items-center gap-2"
+                >
+                  Apply Discount Badge
+                  <span className="text-[10px] bg-orange-100 text-orange-600 px-1.5 py-0.5 rounded uppercase">
+                    Sale
+                  </span>
+                </label>
+              </div>
               <div className="pt-4 border-t border-slate-100 mt-4">
                 <InputField
                   label="Security Deposit"

@@ -24,7 +24,7 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
     e.stopPropagation();
     e.preventDefault();
     const message = `Hi, I am interested in renting the ${car.name}`;
-    const phoneNumber = "971500000000";
+    const phoneNumber = "971523048253";
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message
     )}`;
@@ -33,7 +33,7 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
 
   const handleCall = (e: React.MouseEvent) => {
     e.stopPropagation();
-    window.location.href = "tel:+971500000000";
+    window.location.href = "tel:+971523048253";
   };
 
   const displayName = car.name
@@ -42,9 +42,11 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
     .trim();
 
   // --- Discount Logic ---
-  // If applyDiscount is true, calculate a fake "old" price (e.g., +15%)
+  // Use STORED original price if available, otherwise fallback to estimation
   const isDiscounted = car.applyDiscount || false;
-  const oldPrice = isDiscounted ? Math.round(car.pricing.daily * 1.15) : null;
+  const oldPrice = isDiscounted 
+    ? (car.pricing.originalDaily || Math.round(car.pricing.daily * 1.15)) 
+    : null;
 
   return (
     <div

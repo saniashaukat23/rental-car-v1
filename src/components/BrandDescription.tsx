@@ -3,6 +3,7 @@ import Image from "next/image";
 // Adjust the path to where your CSS module is located
 import styles from "../styles/frontend/brandDescription.module.css";
 import { CarType } from "@/src/types/CarType";
+import CTAButtons from "./CTAButtons";
 // Assuming you have the FAQSection in the same folder or components folder
 
 type Props = {
@@ -299,48 +300,11 @@ const ContactCTA: React.FC<{ brandName: string }> = ({ brandName }) => {
           directly to your Dubai doorstep.
         </p>
 
-        <div className={styles.ctaButtonGroup}>
-          <a
-            href={`https://wa.me/971582947143?text=Hi, I want to rent an ${brandName} in Dubai`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.whatsappButton}
-          >
-            {/* WhatsApp Icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
-            </svg>
-            WhatsApp Us
-          </a>
-
-          <a href="tel:+971582947143" className={styles.callButton}>
-            {/* Phone Icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>
-            </svg>
-            Call Us Now
-          </a>
-        </div>
+        <CTAButtons 
+          whatsappMessage={`Hi, I want to rent a ${brandName} in Dubai`}
+          whatsappLabel="WhatsApp Us"
+          callLabel="Call Us Now"
+        />
       </div>
     </section>
   );

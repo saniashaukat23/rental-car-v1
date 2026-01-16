@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
-  throw new Error("⚠️ .env.local mein MONGODB_URI nahi mila!");
+  throw new Error("⚠️ MONGODB_URI not found in .env.local!");
 }
 
 interface MongooseCache {
@@ -26,8 +26,8 @@ async function dbConnect() {
 
   if (!cached.promise) {
     const opts = {
-      bufferCommands: false, // 👈 Wait mat karo
-      serverSelectionTimeoutMS: 5000, // 👈 (IMPORTANT) 5 sec mein connect na ho to fail ho jao
+      bufferCommands: false, // Don't wait for connection
+      serverSelectionTimeoutMS: 5000, // (IMPORTANT) Fail if not connected within 5 seconds
     };
 
     console.log("⏳ Connecting to Mongo with 5s Timeout...");
@@ -42,8 +42,8 @@ async function dbConnect() {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
-    console.error("❌ DB Connection Failed (Time out):", e);
-    throw e; // Ab ye error screen pe dikhega
+    console.error("❌ DB Connection Failed (Timeout):", e);
+    throw e; // This error will be shown on screen
   }
 
   return cached.conn;

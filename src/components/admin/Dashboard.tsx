@@ -14,7 +14,7 @@ interface DashboardProps {
 
 // 2. Add the type to the component arguments
 const Dashboard = ({ cars }: DashboardProps) => {
-  const [activeTab, setActiveTab] = useState("ADD A NEW CAR");
+  const [activeTab, setActiveTab] = useState("Add Car");
 
   return (
     <div className="flex h-screen bg-[#F8FAFC] font-sans text-[#334155]">
@@ -55,6 +55,17 @@ const Dashboard = ({ cars }: DashboardProps) => {
 
             {/* 3. Pass the cars prop down to TotalCars */}
             {activeTab === "Total Cars" ? <TotalCars cars={cars} /> : ""}
+
+            {/* Discounted Cars Tab */}
+            {activeTab === "Discounted Cars" ? (
+              <TotalCars
+                title="Active Promotions"
+                subtitle="Currently discounted vehicles appearing on the Special Offers page."
+                cars={cars.filter((car) => car.applyDiscount === true)}
+              />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </main>

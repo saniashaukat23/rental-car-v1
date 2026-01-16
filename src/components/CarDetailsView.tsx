@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import styles from "../styles/frontend/carDetails.module.css";
 import { CarType } from "../types/CarType";
+import ImageHoverCarousel from "./ImageHoverCarousel";
 
 interface CarDetailsViewProps {
   // Allow car to be null or undefined safely
@@ -40,13 +41,13 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
   const currentMonthly = car?.pricing?.monthly || dailyPrice * 30 * 0.8;
 
   const originalDaily = isDiscounted
-    ? Math.round(dailyPrice * 1.15)
+    ? car?.pricing?.originalDaily || Math.round(dailyPrice * 1.15)
     : undefined;
   const originalWeekly = isDiscounted
-    ? Math.round(currentWeekly * 1.15)
+    ? car?.pricing?.originalWeekly || Math.round(currentWeekly * 1.15)
     : undefined;
   const originalMonthly = isDiscounted
-    ? Math.round(currentMonthly * 1.15)
+    ? car?.pricing?.originalMonthly || Math.round(currentMonthly * 1.15)
     : undefined;
 
   // --- 2. LOADING/ERROR STATE ---
@@ -121,15 +122,25 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
       <div className={styles.mainGrid}>
         {/* LEFT COLUMN */}
         <div className={styles.leftColumn}>
-          <div className={styles.imageContainer}>
-            <Image
-              src={car?.images?.[0] || "/images/placeholder-car.jpg"}
-              alt={car?.name || "Car Image"}
-              fill
-              className={styles.mainImage}
-              priority
-            />
-          </div>
+          {/* Image Carousel */}
+          {car?.images && car.images.length > 0 ? (
+            <div className={styles.imageContainer}>
+              <ImageHoverCarousel
+                images={car.images}
+                alt={car?.name || "Car Image"}
+              />
+            </div>
+          ) : (
+            <div className={styles.imageContainer}>
+              <Image
+                src="/images/placeholder-car.jpg"
+                alt={car?.name || "Car Image"}
+                fill
+                className={styles.mainImage}
+                priority
+              />
+            </div>
+          )}
 
           <div className="mt-8"></div>
 
@@ -284,17 +295,18 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
 
             <div className={styles.actions}>
               <a
-                href="tel:+971500000000"
-                className={`${styles.btn} ${styles.btnCall}`}
-              >
-                <Phone size={18} /> Call Us
-              </a>
-              <a
-                href={`https://wa.me/971500000000?text=I am interested in ${car?.name}`}
+                href={`https://wa.me/971523048253?text=I am interested in ${car?.name}`}
                 target="_blank"
+                rel="noopener noreferrer"
                 className={`${styles.btn} ${styles.btnWhatsapp}`}
               >
-                <MessageCircle size={18} /> WhatsApp
+                <MessageCircle size={18} /> WhatsApp Us
+              </a>
+              <a
+                href="tel:971523048253"
+                className={`${styles.btn} ${styles.btnCall}`}
+              >
+                <Phone size={18} /> Call Now
               </a>
             </div>
             <div className={styles.secureNote}>
