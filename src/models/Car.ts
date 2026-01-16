@@ -85,12 +85,10 @@ const CarSchema: Schema<ICar> = new Schema(
     },
     transmission: { 
       type: String, 
-      enum: ['Automatic', 'Manual', 'Semi-Automatic'],
       default: 'Automatic',
     },
     fuel: { 
       type: String, 
-      enum: ['Gasoline', 'Diesel', 'Electric', 'Hybrid'],
       default: 'Gasoline',
     },
     doors: { 

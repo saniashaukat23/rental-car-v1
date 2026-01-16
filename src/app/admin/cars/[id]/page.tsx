@@ -192,20 +192,43 @@ export default function EditCar() {
     setDiscountPreview(null);
   };
 
-  // 4. Remove Discount (RESTORES original prices)
-  const handleRemoveDiscount = () => {
-    setCar((prev) => ({
-      ...prev,
+  // 4. Remove Discount (RESTORES original prices and SAVES to database)
+  const handleRemoveDiscount = async () => {
+    if (!confirm("Remove discount and restore original prices?")) return;
+    
+    const updatedCar = {
+      ...car,
       applyDiscount: false,
       pricing: {
-        ...prev.pricing,
-        // Restore from original pricing fields
-        daily: prev.pricing.originalDaily || prev.pricing.daily,
-        weekly: prev.pricing.originalWeekly || prev.pricing.weekly,
-        monthly: prev.pricing.originalMonthly || prev.pricing.monthly,
+        ...car.pricing,
+        daily: car.pricing.originalDaily || car.pricing.daily,
+        weekly: car.pricing.originalWeekly || car.pricing.weekly,
+        monthly: car.pricing.originalMonthly || car.pricing.monthly,
       },
-    }));
-    alert("Discount status removed. Original prices restored. Don't forget to click 'Save Changes'.");
+    };
+
+    try {
+      setSaving(true);
+      const res = await fetch(`/api/cars/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedCar),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Update failed");
+      }
+      
+      setCar(updatedCar);
+      alert("✅ Discount removed and original prices restored!");
+    } catch (error) {
+      console.error("Remove discount error:", error);
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
+      alert(`Failed to remove discount: ${errorMessage}`);
+    } finally {
+      setSaving(false);
+    }
   };
 
   // --- IMAGE & SUBMIT LOGIC ---

@@ -48,7 +48,8 @@ export async function PUT(request: Request, { params }: Props) {
     return NextResponse.json({ message: "Car Updated", car: updatedCar });
   } catch (error: unknown) {
     const errorMessage =
-      error instanceof Error ? error : "Status update failed";
+      error instanceof Error ? error.message : "Status update failed";
+    console.error("PUT Error:", error);
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
@@ -66,7 +67,8 @@ export async function DELETE(request: Request, { params }: Props) {
 
     return NextResponse.json({ message: "Car Deleted Successfully" });
   } catch (error) {
-    const errorMessage = error instanceof Error ? error : "Delete Failed";
+    const errorMessage = error instanceof Error ? error.message : "Delete Failed";
+    console.error("DELETE Error:", error);
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
