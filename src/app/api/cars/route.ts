@@ -63,7 +63,12 @@ export async function GET(request: NextRequest) {
       cars: cars,
     };
 
-    return NextResponse.json(response);
+    // Add cache headers for faster subsequent loads
+    return NextResponse.json(response, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+      },
+    });
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";
     console.error("API Error:", error);

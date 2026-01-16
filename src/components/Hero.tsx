@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
+import { unstable_cache } from "next/cache";
 import styles from "../styles/frontend/hero.module.css";
 import FilterBox from "./FilterBar";
 import SectionHeader from "./SectionHeader";
@@ -13,25 +14,36 @@ import PaymentSection from "./PaymentSection";
 import dbConnect from "../lib/db";
 import Car from "../models/Car";
 import SecurityDeposit from "./DepositInformation";
+
+// Cached data fetcher - revalidates every 5 minutes
+const getCachedCarsByCategory = unstable_cache(
+  async (category: string) => {
+    try {
+      await dbConnect();
+      const regex = new RegExp(`^${category}$`, "i");
+
+      const cars = await Car.find({ type: { $regex: regex } })
+        .select(
+          "name brand type images pricing transmission fuel seats color carId applyDiscount"
+        )
+        .limit(10)
+        .sort({ createdAt: -1 })
+        .lean();
+
+      return JSON.parse(JSON.stringify(cars));
+    } catch (error) {
+      console.error(`Error fetching ${category}:`, error);
+      return [];
+    }
+  },
+  ['cars-by-category'],
+  { revalidate: 300, tags: ['cars'] } // Cache for 5 minutes
+);
+
 async function getCarsByCategory(category: string) {
-  try {
-    await dbConnect();
-    const regex = new RegExp(`^${category}$`, "i");
-
-    const cars = await Car.find({ type: { $regex: regex } })
-      .select(
-        "name brand type images pricing transmission fuel seats color carId"
-      )
-      .limit(10)
-      .sort({ createdAt: -1 })
-      .lean();
-
-    return JSON.parse(JSON.stringify(cars));
-  } catch (error) {
-    console.error(`Error fetching ${category}:`, error);
-    return [];
-  }
+  return getCachedCarsByCategory(category);
 }
+
 export default async function Hero() {
   const [suvs, sports, sedan] = await Promise.all([
     getCarsByCategory("SUV"),

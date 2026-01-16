@@ -26,11 +26,17 @@ async function dbConnect() {
 
   if (!cached.promise) {
     const opts = {
-      bufferCommands: false, // Don't wait for connection
-      serverSelectionTimeoutMS: 5000, // (IMPORTANT) Fail if not connected within 5 seconds
+      bufferCommands: false,
+      serverSelectionTimeoutMS: 10000, // 10 seconds for cold start
+      socketTimeoutMS: 45000, // Close sockets after 45 seconds
+      maxPoolSize: 10, // Maintain up to 10 socket connections
+      minPoolSize: 1, // Maintain at least 1 socket connection
+      maxIdleTimeMS: 30000, // Close connections after 30 seconds of inactivity
+      retryWrites: true,
+      retryReads: true,
     };
 
-    console.log("⏳ Connecting to Mongo with 5s Timeout...");
+    console.log("⏳ Connecting to MongoDB...");
 
     cached.promise = mongoose.connect(MONGODB_URI!, opts).then((mongoose) => {
       console.log("✅ DB Connected Successfully!");
@@ -42,8 +48,8 @@ async function dbConnect() {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
-    console.error("❌ DB Connection Failed (Timeout):", e);
-    throw e; // This error will be shown on screen
+    console.error("❌ DB Connection Failed:", e);
+    throw e;
   }
 
   return cached.conn;
