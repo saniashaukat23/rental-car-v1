@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, use } from "react";
+import { useEffect, useState, use, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Car, MessageCircle, Truck, Sparkles, Shield, Zap } from "lucide-react";
@@ -25,6 +25,28 @@ export default function BrandCarsPage({ params }: PageProps) {
 
   const [cars, setCars] = useState<CarType[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // --- ANIMATION ON SCROLL ---
+  const underlineRef = useRef<HTMLDivElement>(null);
+  const [underlineInView, setUnderlineInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setUnderlineInView(true);
+          observer.disconnect(); // Trigger once
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    if (underlineRef.current) {
+      observer.observe(underlineRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   // Fetch Cars
   useEffect(() => {
@@ -157,7 +179,10 @@ export default function BrandCarsPage({ params }: PageProps) {
           <h1 className={styles.listingTitle}>
             Rent {brandDisplayName} in Dubai
           </h1>
-          <div className={styles.listingUnderline}></div>
+          <div 
+            ref={underlineRef}
+            className={`${styles.listingUnderline} ${underlineInView ? styles.isVisible : ""}`}
+          ></div>
         </section>
 
         <div className={styles.carGrid}>

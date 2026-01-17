@@ -120,30 +120,88 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
 
       {/* Main Grid */}
       <div className={styles.mainGrid}>
-        {/* LEFT COLUMN */}
-        <div className={styles.leftColumn}>
-          {/* Image Carousel */}
-          {car?.images && car.images.length > 0 ? (
-            <div className={styles.imageContainer}>
-              <ImageHoverCarousel
-                images={car.images}
-                alt={car?.name || "Car Image"}
-              />
-            </div>
-          ) : (
-            <div className={styles.imageContainer}>
-              <Image
-                src="/images/placeholder-car.jpg"
-                alt={car?.name || "Car Image"}
-                fill
-                className={styles.mainImage}
-                priority
-              />
-            </div>
-          )}
+        {/* Image Carousel */}
+        {car?.images && car.images.length > 0 ? (
+          <div className={styles.imageContainer}>
+            <ImageHoverCarousel
+              images={car.images}
+              alt={car?.name || "Car Image"}
+            />
+          </div>
+        ) : (
+          <div className={styles.imageContainer}>
+            <Image
+              src="/images/placeholder-car.jpg"
+              alt={car?.name || "Car Image"}
+              fill
+              className={styles.mainImage}
+              priority
+            />
+          </div>
+        )}
 
-          <div className="mt-8"></div>
+        {/* Pricing Card (Mobile: after images, Desktop: sidebar) */}
+        <div className={styles.pricingCard}>
+          <div className={styles.pricingHeader}>
+            <h3 className={styles.sectionTitle} style={{ marginBottom: 0 }}>
+              Pricing
+            </h3>
+            <Image
+              src={`/images/carLogos/${car?.brand}.webp`}
+              alt={car?.brand || "Brand"}
+              width={50}
+              height={50}
+              className={styles.brandLogo}
+            />
+          </div>
 
+          <div className={styles.priceRows}>
+            <PriceRow
+              label="Daily"
+              price={dailyPrice}
+              originalPrice={originalDaily}
+              currency={car?.pricing?.currency || "AED"}
+            />
+            <PriceRow
+              label="Weekly"
+              price={currentWeekly}
+              originalPrice={originalWeekly}
+              currency={car?.pricing?.currency || "AED"}
+              save={car?.pricing?.weeklyDiscount}
+            />
+            <PriceRow
+              label="Monthly"
+              price={currentMonthly}
+              originalPrice={originalMonthly}
+              currency={car?.pricing?.currency || "AED"}
+              save={car?.pricing?.monthlyDiscount}
+            />
+          </div>
+
+          <div className={styles.detailsList}>
+            <DetailRow
+              label="Security Deposit"
+              value={`${car?.pricing?.currency} ${car?.securityDeposit || 0}`}
+            />
+            <DetailRow
+              label="Daily Mileage"
+              value={`${car?.mileage?.dailyIncluded || 250} km included`}
+            />
+            <DetailRow
+              label="Extra Mileage"
+              value={`${car?.pricing?.currency} ${
+                car?.mileage?.extraMileagePrice || 5
+              }/km`}
+            />
+            <DetailRow
+              label="Chauffeur Service"
+              value={car?.chauffeurService || "Available"}
+            />
+          </div>
+        </div>
+
+        {/* Content sections */}
+        <div className={styles.contentColumn}>
           {/* Key Features */}
           <div className={styles.sectionCard}>
             <h2 className={styles.sectionTitle}>Key Features</h2>
@@ -232,87 +290,25 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* RIGHT COLUMN */}
-        <div>
-          <div className={styles.pricingCard}>
-            <div className={styles.pricingHeader}>
-              <h3 className={styles.sectionTitle} style={{ marginBottom: 0 }}>
-                Pricing
-              </h3>
-              <Image
-                src={`/images/carLogos/${car?.brand}.webp`}
-                alt={car?.brand || "Brand"}
-                width={50}
-                height={50}
-                className={styles.brandLogo}
-              />
-            </div>
-
-            <div className={styles.priceRows}>
-              <PriceRow
-                label="Daily"
-                price={dailyPrice}
-                originalPrice={originalDaily}
-                currency={car?.pricing?.currency || "AED"}
-              />
-              <PriceRow
-                label="Weekly"
-                price={currentWeekly}
-                originalPrice={originalWeekly}
-                currency={car?.pricing?.currency || "AED"}
-                save={car?.pricing?.weeklyDiscount}
-              />
-              <PriceRow
-                label="Monthly"
-                price={currentMonthly}
-                originalPrice={originalMonthly}
-                currency={car?.pricing?.currency || "AED"}
-                save={car?.pricing?.monthlyDiscount}
-              />
-            </div>
-
-            <div className={styles.detailsList}>
-              <DetailRow
-                label="Security Deposit"
-                value={`${car?.pricing?.currency} ${car?.securityDeposit || 0}`}
-              />
-              <DetailRow
-                label="Daily Mileage"
-                value={`${car?.mileage?.dailyIncluded || 250} km included`}
-              />
-              <DetailRow
-                label="Extra Mileage"
-                value={`${car?.pricing?.currency} ${
-                  car?.mileage?.extraMileagePrice || 5
-                }/km`}
-              />
-              <DetailRow
-                label="Chauffeur Service"
-                value={car?.chauffeurService || "Available"}
-              />
-            </div>
-
-            <div className={styles.actions}>
-              <a
-                href={`https://wa.me/971523048253?text=I am interested in ${car?.name}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.btn} ${styles.btnWhatsapp}`}
-              >
-                <MessageCircle size={18} /> WhatsApp Us
-              </a>
-              <a
-                href="tel:971523048253"
-                className={`${styles.btn} ${styles.btnCall}`}
-              >
-                <Phone size={18} /> Call Now
-              </a>
-            </div>
-            <div className={styles.secureNote}>
-              <Shield size={14} /> <span>Instant Booking • No Hidden Fees</span>
-            </div>
-          </div>
+      {/* Sticky CTA Buttons (Mobile Only) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 p-4">
+        <div className="flex gap-3">
+          <a
+            href={`https://wa.me/971523048253?text=I am interested in ${car?.name}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.btn} ${styles.btnWhatsapp} flex-1`}
+          >
+            <MessageCircle size={18} /> WhatsApp
+          </a>
+          <a
+            href="tel:971523048253"
+            className={`${styles.btn} ${styles.btnCall} flex-1`}
+          >
+            <Phone size={18} /> Call
+          </a>
         </div>
       </div>
     </main>

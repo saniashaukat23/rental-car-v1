@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
-import { unstable_cache } from "next/cache";
 import styles from "../styles/frontend/hero.module.css";
 import FilterBox from "./FilterBar";
 import SectionHeader from "./SectionHeader";
 import CarCategoryGrid from "./carCategoryGrid";
-import BrandSwiper from "./BrandSwiper";
+import BrandSwiperWrapper from "./BrandSwiperWrapper";
 import LuxuryCarProcess from "./LuxuryCarProcess";
 import CarCardsSection from "./CarCardsSection";
 import WhyChooseUs from "./WhyUs";
@@ -15,33 +14,33 @@ import dbConnect from "../lib/db";
 import Car from "../models/Car";
 import SecurityDeposit from "./DepositInformation";
 
-// Cached data fetcher - revalidates every 5 minutes
-const getCachedCarsByCategory = unstable_cache(
-  async (category: string) => {
-    try {
-      await dbConnect();
-      const regex = new RegExp(`^${category}$`, "i");
-
-      const cars = await Car.find({ type: { $regex: regex } })
-        .select(
-          "name brand type images pricing transmission fuel seats color carId applyDiscount"
-        )
-        .limit(10)
-        .sort({ createdAt: -1 })
-        .lean();
-
-      return JSON.parse(JSON.stringify(cars));
-    } catch (error) {
-      console.error(`Error fetching ${category}:`, error);
-      return [];
-    }
-  },
-  ['cars-by-category'],
-  { revalidate: 300, tags: ['cars'] } // Cache for 5 minutes
-);
-
+// Direct data fetcher without caching to avoid 2MB limit errors
 async function getCarsByCategory(category: string) {
-  return getCachedCarsByCategory(category);
+  try {
+    await dbConnect();
+    const regex = new RegExp(`^${category}$`, "i");
+
+    const cars = await Car.find({ type: { $regex: regex } })
+      .select(
+        "name brand type pricing transmission fuel seats color carId applyDiscount images"
+      )
+      .limit(6)
+      .sort({ createdAt: -1 })
+      .lean();
+
+    // Only keep first image to reduce payload size
+    const processedCars = cars.map((car: Record<string, unknown>) => ({
+      ...car,
+      images: Array.isArray(car.images) && car.images.length > 0 
+        ? [car.images[0]] 
+        : []
+    }));
+
+    return JSON.parse(JSON.stringify(processedCars));
+  } catch (error) {
+    console.error(`Error fetching ${category}:`, error);
+    return [];
+  }
 }
 
 export default async function Hero() {
@@ -107,7 +106,7 @@ export default async function Hero() {
             description="Luxury brands you love, all in one place"
           />
         </div>
-        <BrandSwiper />
+        <BrandSwiperWrapper />
       </section>
       <section className="pt-12">
         <div className="px-8">

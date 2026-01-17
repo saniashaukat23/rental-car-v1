@@ -3,8 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Image optimization
   images: {
-    // Allow remote images if you use external URLs in the future
-    remotePatterns: [],
+    // Allow remote images from S3
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'luxuryinmotiondubai.s3.eu-central-1.amazonaws.com',
+        pathname: '/**',
+      },
+    ],
     // Optimize images served from public folder
     formats: ['image/avif', 'image/webp'],
     // Cache optimized images for 1 year

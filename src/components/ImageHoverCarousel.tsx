@@ -13,6 +13,11 @@ export default function ImageHoverCarousel({ images, alt, disableOnMobile = fals
   const [isMobile, setIsMobile] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
+  // Handle empty/undefined images array
+  const validImages = images?.filter(img => img && img.trim() !== '') || [];
+  const fallbackImage = "/images/placeholder-car.jpg";
+  const displayImages = validImages.length > 0 ? validImages : [fallbackImage];
+
   // Detect mobile screen size
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -27,7 +32,7 @@ export default function ImageHoverCarousel({ images, alt, disableOnMobile = fals
       <div className={styles.wrapper}>
         <div className={styles.imageWrapper}>
           <Image
-            src={images[0]}
+            src={displayImages[0]}
             alt={alt}
             fill
             className={styles.image}
@@ -51,10 +56,10 @@ export default function ImageHoverCarousel({ images, alt, disableOnMobile = fals
     if (Math.abs(diff) > 50) {
       if (diff > 0) {
         // Swiped left - go to next image
-        setActiveIndex((prev) => (prev + 1) % images.length);
+        setActiveIndex((prev) => (prev + 1) % displayImages.length);
       } else {
         // Swiped right - go to previous image
-        setActiveIndex((prev) => (prev - 1 + images.length) % images.length);
+        setActiveIndex((prev) => (prev - 1 + displayImages.length) % displayImages.length);
       }
     }
 
@@ -69,8 +74,8 @@ export default function ImageHoverCarousel({ images, alt, disableOnMobile = fals
         onTouchEnd={handleTouchEnd}
       >
         <Image
-          key={images[activeIndex]} // Keeps the image unmounted/remounted on change
-          src={images[activeIndex]}
+          key={displayImages[activeIndex]} // Keeps the image unmounted/remounted on change
+          src={displayImages[activeIndex]}
           alt={alt}
           fill
           className={styles.image}
@@ -78,7 +83,7 @@ export default function ImageHoverCarousel({ images, alt, disableOnMobile = fals
       </div>
 
       <div className={styles.dots}>
-        {images.map((_, i) => (
+        {displayImages.map((_, i) => (
           <span
             key={i}
             className={`${styles.dot} ${

@@ -55,12 +55,24 @@ export async function GET(request: NextRequest) {
       if (maxPrice) query["pricing.daily"].$lte = maxPrice;
     }
 
-    const cars = await Car.find(query).sort({ createdAt: -1 });
+    // Select essential fields and limit results to prevent memory overflow
+    const cars = await Car.find(query)
+      .select("name brand type pricing transmission fuel seats color carId applyDiscount images")
+      .limit(50)
+      .lean();
+    
+    // Process to keep only first image per car
+    const processedCars = cars.map((car: Record<string, unknown>) => ({
+      ...car,
+      images: Array.isArray(car.images) && car.images.length > 0 
+        ? [car.images[0]] 
+        : []
+    }));
     
     const response: CarListResponse = {
       success: true,
-      count: cars.length,
-      cars: cars,
+      count: processedCars.length,
+      cars: processedCars,
     };
 
     // Add cache headers for faster subsequent loads

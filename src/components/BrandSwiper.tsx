@@ -14,7 +14,6 @@ type BrandLogo = {
 };
 
 const brandLogos: BrandLogo[] = [
-  // ... (Your brandLogos array remains the same)
   { name: "Audi", imagePath: "/images/carLogos/audi.webp" },
   { name: "BMW", imagePath: "/images/carlogos/bmw.webp" },
   { name: "BRABUS", imagePath: "/images/carlogos/brabus.webp" },
@@ -30,11 +29,10 @@ const brandLogos: BrandLogo[] = [
   { name: "Mansory", imagePath: "/images/carlogos/Mansory.webp" },
   { name: "McLaren", imagePath: "/images/carlogos/Mclaren.webp" },
   { name: "Nissan", imagePath: "/images/carlogos/Nissan.webp" },
-  { name: "Rolls Royce", imagePath: "/images/carlogos/RollsRoyce.webp" },
+  { name: "Rolls Royce", imagePath: "/images/carlogos/Rolls-Royce.webp" },
   { name: "Rox", imagePath: "/images/carlogos/rox.webp" },
   { name: "Jetour", imagePath: "/images/carlogos/Jetour.webp" },
-  { name: "Land Rover", imagePath: "/images/carlogos/landrover.webp" },
-  { name: "Bentley", imagePath: "/images/carlogos/bentley.webp" },
+  { name: "Land Rover", imagePath: "/images/carlogos/land rover.webp" },
 ];
 
 export default function BrandSwiper() {
@@ -45,7 +43,7 @@ export default function BrandSwiper() {
       <div className={styles.container}>
         <Swiper
           modules={[Navigation, Pagination]}
-          loop
+          rewind={true}
           spaceBetween={20}
           slidesPerGroup={3}
           pagination={{

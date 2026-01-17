@@ -10,7 +10,13 @@ const ADMIN_EMAIL = "saniashaukat2002@gmail.com";
 async function getCars() {
   try {
     await dbConnect();
-    const totalCars = await Car.find({}).sort({ createdAt: -1 }).lean();
+    // Select only essential fields - no sort to avoid memory overflow
+    // MongoDB sorts before limit, which causes memory issues with large datasets
+    const totalCars = await Car.find({})
+      .select("name brand type carId pricing applyDiscount createdAt")
+      .limit(100)
+      .lean();
+    
     return JSON.parse(JSON.stringify(totalCars));
   } catch (error) {
     console.error("Error fetching cars:", error);
