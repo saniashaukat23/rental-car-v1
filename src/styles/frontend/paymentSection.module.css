@@ -1,0 +1,344 @@
+.container {
+  max-width: 1200px;
+  font-weight: 500;
+  margin: 0 auto;
+  padding: 60px 20px;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+  color: #333;
+}
+
+.topBadge {
+  width: 22%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.mainTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.blueText {
+  background: linear-gradient(to right, #2563eb, #16a34a);
+
+  /* Clip the background to the text */
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  /* Make the original text color transparent so the background shows through */
+  color: transparent;
+
+  /* Optional: Ensure it looks bold for better visibility */
+  font-weight: 800;
+  display: inline-block;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #4b5563;
+  margin-bottom: 4px;
+}
+
+.methodDescription {
+  color: #6b7280;
+  font-size: 12px;
+  text-align: center;
+  /* Use opacity for smooth transitions */
+  opacity: 0;
+  margin-bottom: 1rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  /* Ensure it doesn't take up space/interfere when hidden */
+  pointer-events: none;
+}
+
+/* Payment Grid */
+.methodGrid {
+  display: grid;
+  /* Use auto-fill to ensure cards don't stretch too wide on huge screens */
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 40px auto;
+}
+.methodCard:hover .methodDescription {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* 1. Set the initial state for smooth transition */
+
+.methodCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 180px;
+
+  /* Uniform height logic */
+  justify-content: center;
+  border: 2px solid rgb(229, 231, 235);
+  border-radius: 16px;
+  padding: 24px;
+  background: #fff;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.methodCard:hover {
+  background: #ffffffe6;
+
+  /* The Blur Effect (Glassmorphism) */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Lifting the card */
+  transform: translateY(-8px);
+
+  /* Very soft, spread-out shadow using your 5.9% opacity logic */
+  box-shadow: 0 20px 40px 10px rgba(0, 0, 0, 0.1);
+
+  /* Your Blue Border */
+  border: 2px solid #2563eb;
+}
+
+.bottomBadge {
+  height: 0.3rem; /* Slightly thinner for a cleaner look */
+  width: 3.5rem; /* w-12 equivalent from your earlier code */
+  background: linear-gradient(to right, #2563eb, #16a34a);
+  border-radius: 99px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  position: absolute;
+  bottom: 20px;
+}
+.methodCard:hover .bottomBadge {
+  opacity: 1;
+}
+.methodImg {
+  /* Keep your existing margins */
+  margin: 0px 18px 12px 18px;
+  /* Force exact dimensions */
+  width: 64px !important;
+  height: 64px !important;
+  /* Ensures the image isn't distorted inside the 64x64 box */
+  object-fit: contain;
+
+  /* Prevents the flexbox/grid from squeezing the image */
+  flex-shrink: 0;
+}
+
+.logoPlaceholder {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.methodName {
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+/* SSL Footer */
+.sslBadge {
+  display: inline-block;
+  background: #f9fafb;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  color: #4b5563;
+  margin-bottom: 60px;
+}
+
+.sslBadge strong {
+  color: #10b981;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #f3f4f6;
+  margin-bottom: 60px;
+}
+
+/* Feature Grid */
+.featureGrid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.featureItem {
+  flex: 1;
+  min-width: 250px;
+  padding: 10px;
+}
+
+.featureIcon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  background: #eff6ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.featureTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.featureDescription {
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+.glowOrb {
+  display: none;
+  position: absolute;
+  background-color: #10b98123;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 2;
+}
+.methodCard:hover .glowOrb {
+  opacity: 1;
+}
+.description {
+  margin-bottom: 4rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: rgb(107 114 128);
+  font-weight: 400;
+}
+.midBar {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 9999px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)),
+    0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+}
+.LockIcon {
+  height: 1.25rem;
+  width: 1.25rem;
+  color: oklch(62.7% 0.194 149.214);
+}
+.midBar p {
+  color: rgb(107 114 128);
+  font-weight: 500;
+}
+.midBar p span {
+  color: oklch(62.7% 0.194 149.214);
+  font-weight: 600;
+  text-wrap: nowrap;
+}
+
+/*-----------------------Trust Features Section----------------*/
+.trustGrid {
+  margin-top: 4rem;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 56rem;
+  display: grid;
+  /* Default: 1 column for small screens/tablets */
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 0 1rem; /* Added padding so it doesn't touch screen edges on mobile */
+}
+
+.innerTrustGrid {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Medium screens (768px) and up: 3 columns */
+@media (min-width: 768px) {
+  .glowOrb {
+    display: flex;
+  }
+  .trustGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.iconWrapper {
+  width: 4rem; /* w-16 */
+  height: 4rem; /* h-16 */
+  border-radius: 9999px; /* rounded-full */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem; /* mb-4 */
+}
+.trustIcons {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.trustTitle {
+  font-weight: 600; /* font-semibold */
+  font-size: 1.125rem; /* text-lg */
+  margin-bottom: 0.5rem; /* mb-2 */
+}
+
+.trustDesc {
+  color: #4b5563; /* text-gray-600 */
+  font-size: 0.875rem; /* text-sm */
+}
+
+/* Color Variations */
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 15px; /* Less padding on mobile */
+  }
+
+  .mainTitle {
+    font-size: 1.8rem; /* Scale down heading for mobile */
+  }
+
+  .topBadge {
+    width: auto; /* Don't force 22% on narrow screens */
+    display: inline-flex;
+  }
+
+  .methodGrid {
+    /* Switch to 2 columns on small tablets, 1 on phones */
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+  }
+
+  .midBar {
+    width: 90%; /* Let it breathe on mobile */
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+}

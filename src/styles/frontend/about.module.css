@@ -1,0 +1,390 @@
+/* about.module.css - Redesigned with Professional Design System */
+
+.section {
+  position: relative;
+  padding: var(--space-20) var(--space-4);
+  background: linear-gradient(to bottom, var(--bg-secondary), var(--bg-primary));
+  overflow: hidden;
+}
+
+.sectionContainer {
+  position: relative;
+  padding: var(--space-16) var(--space-4);
+  background-color: var(--bg-primary);
+  overflow: hidden;
+}
+
+/* --- Decorative Background Effects --- */
+.backgroundEffects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  border-radius: var(--radius-full);
+  background-color: var(--primary-light);
+  filter: blur(80px);
+  opacity: 0.1;
+}
+
+.blobRight { top: -5rem; right: -5rem; }
+.blobLeft { bottom: -5rem; left: -10rem; }
+.blobTopRight { top: 5rem; right: -8rem; }
+.blobBottomLeft { bottom: 10rem; left: -8rem; }
+
+/* --- Layout Containers --- */
+.container {
+  position: relative;
+  z-index: var(--z-base);
+  max-width: var(--container-xl);
+  margin: 0 auto;
+}
+
+.contentWrapper {
+  max-width: var(--container-lg);
+  margin: 0 auto;
+  position: relative;
+  z-index: var(--z-base);
+}
+
+/* --- Typography --- */
+.textContent {
+  max-width: 800px;
+  margin: 0 auto var(--space-12);
+  text-align: center;
+}
+
+.title {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-extrabold);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+  color: var(--text-primary);
+}
+
+.highlight {
+  color: var(--primary);
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+/* --- Hero Image Section --- */
+.imageWrapper {
+  width: 100%;
+  margin-top: var(--space-8);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-2xl);
+  border: 1px solid var(--border-light);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform var(--transition-slow) var(--ease-smooth);
+}
+
+.imageContainer:hover .image {
+  transform: scale(1.02);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+}
+
+/* --- Intro Header --- */
+.introHeader {
+  margin-bottom: var(--space-16);
+  text-align: center;
+}
+
+.introText {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* --- Stats Grid --- */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-8);
+  margin-bottom: var(--space-20);
+}
+
+.statItem {
+  text-align: center;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  transition: all var(--transition-base);
+}
+
+.statItem:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+}
+
+.statIconCircle {
+  width: 5rem;
+  height: 5rem;
+  border-radius: var(--radius-full);
+  background-color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+  box-shadow: var(--shadow-primary);
+}
+
+.statValue {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: white;
+}
+
+.statLabel {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.statSubLabel {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* --- Feature Cards Grid --- */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-8);
+  margin-bottom: var(--space-20);
+}
+
+.featureCard {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+  height: 100%;
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.cardContent {
+  padding: var(--space-8);
+  text-align: center;
+}
+
+.iconWrapper {
+  width: 4rem;
+  height: 4rem;
+  border-radius: var(--radius-full);
+  background-color: var(--primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-6);
+  box-shadow: var(--shadow-primary);
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  color: var(--primary);
+}
+
+.cardTitle {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-3);
+  color: var(--text-primary);
+}
+
+.cardText {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+/* --- "Why Choose Us" Section --- */
+.whyChooseSection {
+  margin-bottom: var(--space-20);
+  background-color: var(--bg-secondary);
+  padding: var(--space-12);
+  border-radius: var(--radius-3xl);
+  border: 1px solid var(--border-light);
+}
+
+.sectionTitle {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  text-align: center;
+  margin-bottom: var(--space-12);
+  color: var(--text-primary);
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-8);
+}
+
+.benefitItem {
+  text-align: center;
+}
+
+.benefitCircle {
+  width: 5rem;
+  height: 5rem;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+}
+
+.benefitValue {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--primary);
+}
+
+.benefitTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+}
+
+.benefitText {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+/* --- Call To Action Box --- */
+.ctaBox {
+  background: var(--bg-dark);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-12) var(--space-8);
+  text-align: center;
+  box-shadow: var(--shadow-2xl);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative effect for CTA */
+.ctaBox::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: var(--primary);
+  filter: blur(100px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.ctaTitle {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-4);
+  color: var(--text-on-dark);
+}
+
+.ctaText {
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: var(--space-8);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-lg);
+  font-weight: var(--font-semibold);
+  transition: all var(--transition-base);
+  text-decoration: none;
+  font-size: var(--text-base);
+}
+
+.btnWhatsapp {
+  background: linear-gradient(135deg, var(--whatsapp) 0%, var(--whatsapp-dark) 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+}
+
+.btnWhatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
+}
+
+.btnCall {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-primary);
+}
+
+.btnCall:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-primary-lg);
+}
+
+/* --- Responsive Media Queries --- */
+@media (min-width: 768px) {
+  .title { font-size: var(--text-5xl); }
+  .imageContainer { aspect-ratio: 21 / 9; }
+  .ctaButtons { flex-direction: row; }
+  .section { padding: var(--space-24) var(--space-8); }
+}
+
+@media (min-width: 1024px) {
+  .container { padding: 0 var(--space-8); }
+  .whyChooseSection { padding: var(--space-20); }
+}

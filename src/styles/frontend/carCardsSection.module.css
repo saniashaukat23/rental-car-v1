@@ -1,0 +1,75 @@
+/* CarCardsSection.module.css */
+
+.sectionContainer {
+  padding: 1.5rem 0.5rem;
+  position: relative;
+}
+
+/* Responsive Padding for larger screens */
+@media (min-width: 768px) {
+  .sectionContainer {
+    padding-left: 3rem; /* md:px-12 */
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sectionContainer {
+    padding-left: 8rem; /* lg:px-32 */
+    padding-right: 8rem;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 2rem; /* pb-6 */
+}
+
+.title {
+  font-weight: 600; /* font-semibold */
+  font-size: 1.25rem; /* text-xl */
+  letter-spacing: -0.025em; /* tracking-tight */
+}
+
+.viewAllLink {
+  color: #f97316; /* text-[#f97316] */
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600; /* font-semibold */
+  letter-spacing: -0.025em; /* tracking-tight */
+}
+
+.viewAllLink:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Pagination Dots */
+.pagination {
+  display: flex;
+  width: 100%;
+  padding: 1rem 0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Custom pagination bullet styles */
+.pagination :global(.swiper-pagination-bullet) {
+  width: 8px;
+  height: 8px;
+  background: #d1d5db;
+  opacity: 1;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+
+.pagination :global(.swiper-pagination-bullet-active) {
+  background: #f97316;
+  width: 24px;
+  border-radius: 12px;
+}

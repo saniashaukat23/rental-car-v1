@@ -1,0 +1,275 @@
+/* fleet.module.css - Fleet Page Styles */
+
+.pageContainer {
+  margin: 0 auto;
+  max-width: var(--container-xl);
+  padding: 6rem var(--space-4);
+  min-height: 100vh;
+}
+
+.fleet {
+  height: 100%;
+  width: 100%;
+  background-color: var(--bg-secondary);
+}
+
+.layoutGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: relative;
+}
+
+/* --- Sidebar Styles --- */
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  height: fit-content;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+}
+
+.filterGroup {
+  padding-right: var(--space-1);
+  max-height: 50vh;
+  overflow-y: scroll;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.filterGroup:last-child {
+  border-bottom: none;
+}
+
+.filterTitle {
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.filterList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.filterItem {
+  font-weight: var(--font-semibold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-2);
+  background: var(--gray-100);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+}
+
+.filterItem:hover {
+  background: var(--gray-200);
+}
+
+.filterItem.active {
+  background: var(--primary);
+  color: white;
+  font-weight: var(--font-semibold);
+}
+
+.countBadge {
+  background: var(--gray-300);
+  padding: 1px 6px;
+  border-radius: var(--radius-lg);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.active .countBadge {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.resetBtn {
+  width: 100%;
+  padding: var(--space-3);
+  background: var(--text-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  margin-top: var(--space-4);
+  transition: background var(--transition-base);
+}
+
+.resetBtn:hover {
+  background: var(--gray-700);
+}
+
+/* --- Main Content Styles --- */
+.mainContent {
+  flex: 1;
+}
+
+.headerArea {
+  margin-bottom: var(--space-6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pageTitle {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-extrabold);
+  color: var(--text-primary);
+}
+
+.resultCount {
+  color: var(--text-tertiary);
+  font-size: var(--text-sm);
+}
+
+.carsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+.noResults {
+  text-align: center;
+  padding: var(--space-16);
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  color: var(--text-tertiary);
+}
+
+/* --- Mobile Specific --- */
+.mobileFilterToggle {
+  display: none;
+  width: 100%;
+  padding: var(--space-4);
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-4);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  transition: background var(--transition-base);
+}
+
+.mobileFilterToggle:hover {
+  background: var(--primary-hover);
+}
+
+/* --- Mobile Drawer --- */
+.filtersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 250px;
+}
+
+/* Backdrop Overlay */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-modal-backdrop);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-smooth);
+}
+
+.backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive Media Query */
+@media (max-width: 1024px) {
+  .mobileFilterToggle {
+    display: flex;
+  }
+
+  .filtersContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    height: 100dvh;
+    /* Use dynamic viewport height for mobile */
+    width: 280px;
+    max-width: 85vw;
+    background-color: var(--bg-primary);
+    z-index: var(--z-modal);
+    padding: var(--space-6);
+    padding-bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    /* Prevents swipe gestures from affecting parent */
+    -webkit-overflow-scrolling: touch;
+    box-shadow: var(--shadow-2xl);
+    transform: translateX(-100%);
+    transition: transform var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filtersContainer.show {
+    transform: translateX(0);
+  }
+
+  /* Make sidebars scrollable within container */
+  .filtersContainer .sidebar {
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .filtersContainer .filterGroup {
+    max-height: 180px;
+    /* Default smaller max-height on mobile for each group */
+    position: relative;
+  }
+
+  /* Make filter title sticky within each group */
+  .filtersContainer .filterTitle {
+    position: sticky;
+    top: 0;
+    background: var(--bg-primary);
+    z-index: 1;
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-2);
+  }
+
+  /* First sidebar (Brands) gets more height */
+  .filtersContainer .sidebar:first-of-type .filterGroup {
+    max-height: 280px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pageContainer {
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 5rem var(--space-4);
+  }
+}
+
+/* fleet.module.css */

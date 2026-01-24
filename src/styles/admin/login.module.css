@@ -1,0 +1,220 @@
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* LEFT SIDE: Visual/Branding */
+.visualSection {
+  display: none;
+  flex: 1;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to top right, #cffafe, #f3e8ff, #ffedd5);
+}
+
+.cubePattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+}
+
+.sphere {
+  position: relative;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sphereGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+}
+
+.brandingText {
+  z-index: 10;
+  text-align: center;
+  padding: 2rem;
+}
+
+.brandingText h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.brandingText p {
+  color: #4b5563;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* RIGHT SIDE: Form Section */
+.formSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 2rem;
+}
+
+.formWrapper {
+  max-width: 28rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 2.5rem;
+}
+
+.header h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+  padding-bottom: 0.5rem;
+  margin: 0;
+}
+
+.header p {
+  color: #6b7280;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.forgotBtn {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9ca3af;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.forgotBtn:hover {
+  color: #000;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  transition: all 0.2s;
+  outline: none;
+  font-size: 1rem;
+}
+
+.input:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #000;
+}
+
+.inputIcon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.eyeButton {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.eyeButton:hover {
+  color: #000;
+}
+
+.submitBtn {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+}
+
+.submitBtn:hover {
+  background-color: #1f2937;
+}
+
+.submitBtn:active {
+  transform: scale(0.98);
+}
+
+/* RESPONSIVENESS */
+@media (min-width: 1024px) {
+  .visualSection {
+    display: flex;
+  }
+}
+
+@media (min-width: 768px) {
+  .formSection {
+    padding: 0 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .formSection {
+    padding: 0 6rem;
+  }
+}

@@ -1,0 +1,178 @@
+:root {
+  --primary-orange: #f28d35;
+  --primary-soft: rgba(242, 141, 53, 0.1);
+  --text-dark: #18181b;
+  --text-gray: #71717a;
+  --border-light: #f4f4f5;
+}
+@media (min-width: 640px) {
+  .processcontainer {
+    /* padding: 80px 20px; */
+    max-width: 1100px;
+  }
+}
+.processcontainer {
+  margin: 0 auto;
+  position: relative;
+  font-family: "Inter", sans-serif;
+}
+
+.processgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+}
+.processcard {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 32px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+
+  /* Initial State Shadow: Soft and subtle */
+  box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.05);
+
+  /* Smooth transition for both the border and the shadow */
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.processcard:hover {
+  border-color: var(--primary-orange);
+
+  /* Hover State Shadow: Large spread and deeper blur */
+  /* This creates the "elevated" effect from your images */
+  box-shadow: 0px 20px 60px 0px rgba(0, 0, 0, 0.2);
+
+  /* Optional: Lift the card slightly to sell the effect */
+}
+
+.cardcorneraccent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 7rem;
+  height: 7rem;
+  background: linear-gradient(
+    to bottom right,
+    var(--primary-soft),
+    transparent
+  );
+  border-bottom-left-radius: 100%;
+}
+
+.cardheadertop {
+  display: flex;
+  /* gap: 1.5rem; */
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.iconcontainer {
+  /* height: 64px;
+  width: 64px; */
+  height: 52px;
+  width: 52px;
+  background-color: var(--primary-soft);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-orange);
+}
+
+.secondaryicon {
+  color: rgba(242, 141, 53, 0.3);
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cardtitle {
+  /* font-size: 1.5rem; */
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.carddescription {
+  /* font-size: 0.9rem; */
+  font-size: 0.7rem;
+  color: var(--text-gray);
+  font-weight: 500;
+}
+
+.featurelist {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.featureitem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.checkIcon {
+  color: var(--primary-orange);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.featureText {
+  display: flex;
+  flex-direction: column;
+}
+
+.reqTitle {
+  font-weight: 600;
+  /* font-size: 1rem; */
+  font-size: 0.85rem;
+
+  color: var(--text-dark);
+}
+
+.reqSubtitle {
+  /* font-size: 0.85rem; */
+  font-size: 0.6rem;
+  color: var(--text-gray);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--border-light);
+  margin: 20px 0;
+}
+
+.footerNote {
+  font-size: 0.8rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-gray);
+}
+
+.glowOrb {
+  position: absolute;
+  width: 25rem;
+  height: 25rem;
+  background: radial-gradient(
+    circle,
+    rgba(242, 141, 53, 0.1) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 2;
+}

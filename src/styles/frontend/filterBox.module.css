@@ -1,0 +1,155 @@
+/* filterBox.module.css */
+
+/* Main container - glassmorphism */
+.filterContainer {
+  position: relative;
+  margin-top: var(--space-8);
+  width: 100%;
+  z-index: var(--z-dropdown);
+  padding: var(--space-6);
+  border-radius: var(--radius-3xl);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  transition: all var(--transition-slow);
+}
+
+/* Flex wrapper inside container */
+.filterWrapper {
+  position: relative;
+  z-index: var(--z-base);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Individual dropdown container */
+.dropdownContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Label */
+.dropdownLabel {
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+  margin-bottom: var(--space-1);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Dropdown button */
+.dropdownButton {
+  width: 100%;
+  text-align: left;
+  padding: var(--space-2) 0;
+  background: transparent;
+  color: var(--text-on-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  transition: opacity var(--transition-base);
+}
+
+.dropdownButton:hover {
+  opacity: 0.8;
+}
+
+/* Dropdown menu */
+.dropdownMenu {
+  overflow-y: scroll;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  max-height: 16rem;
+  z-index: 100;
+  box-shadow: var(--shadow-xl);
+  animation: fadeIn var(--transition-base) var(--ease-out);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Dropdown option */
+.dropdownOption {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  width: 100%;
+  text-align: left;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background var(--transition-base);
+}
+
+.dropdownOption:hover {
+  background: var(--gray-100);
+}
+
+/* Search button */
+.searchButton {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-smooth);
+  box-shadow: var(--shadow-primary);
+}
+
+.searchButton:hover {
+  background: var(--primary-hover);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-primary-lg);
+}
+
+/* --- RESPONSIVE QUERIES --- */
+
+/* Tablet & Up (Horizontal Layout) */
+@media (min-width: 768px) {
+  .filterWrapper {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 0;
+  }
+
+  .dropdownContainer {
+    padding: 0 var(--space-6);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .dropdownContainer:nth-last-child(2) {
+    border-right: none;
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1024px) {
+  .filterContainer {
+    width: 60%;
+    max-width: 900px;
+    padding: var(--space-6) var(--space-8);
+  }
+}

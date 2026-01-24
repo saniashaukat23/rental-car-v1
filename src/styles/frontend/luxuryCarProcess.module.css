@@ -1,0 +1,181 @@
+:root {
+  --primary-orange: #f28d35;
+  --primary-soft: rgba(242, 141, 53, 0.17); /* #f983152b */
+  --text-dark: #333;
+  --text-gray: #666;
+  --border-light: #eee;
+  --bg-soft: #fffaf5;
+}
+
+.processcontainer {
+  position: relative;
+  /* padding-bottom: 4rem;
+  padding-top: 4rem; */
+  z-index: 1;
+  margin: 0 auto;
+  max-width: 1280px;
+  /* padding-left: 1.5rem;
+  padding-right: 1.5rem; */
+  /* padding: 60px 0;
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+.processgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+.secondaryicon {
+  color: rgba(249, 115, 22, 0.5); /* Faded orange to match your step numbers */
+  position: relative;
+  z-index: 1;
+}
+.processcard {
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  /* transition-all duration-300 */
+  transition: all 0.3s ease-in-out;
+
+  /* hover:shadow-lg equivalent */
+}
+.processcard:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(
+    -4px
+  ); /* Optional: adds a slight lift effect often paired with shadows */
+}
+.processcard:hover {
+  border: 2px solid var(--primary-orange);
+}
+
+/* Corner background accent */
+.cardcorneraccent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6rem;
+  height: 6rem;
+  background: linear-gradient(
+    to bottom right,
+    var(--primary-soft),
+    transparent
+  );
+  border-bottom-left-radius: 9999px;
+  z-index: 0;
+}
+
+/* Top alignment wrapper */
+.cardheadertop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Aligns both sides to the very top */
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cardheader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Rounded Icon Container */
+.iconcontainer {
+  height: 3rem;
+  width: 3rem;
+  background-color: var(--primary-soft);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-orange);
+}
+
+.stepnumber {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1; /* Ensures no extra vertical space */
+  color: rgba(249, 115, 22, 0.2); /* Faded orange number */
+}
+
+.searchicon {
+  color: rgba(249, 115, 22, 0.2);
+  margin-top: 5px; /* Slight adjustment to match the visual center of the corner */
+}
+
+.cardtitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+  margin-bottom: 12px;
+  z-index: 1;
+}
+
+.carddescription {
+  font-weight: 500;
+  color: #71717a;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--border-light);
+  margin-bottom: 1rem;
+}
+
+.featurelist {
+  list-style: none;
+  padding: 0;
+}
+
+/* Targeting featureitem directly or via module */
+.featureitem {
+  color: #71717a;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  padding-left: 20px;
+  position: relative;
+  font-size: 12px;
+}
+
+.featureitem::before {
+  content: "•";
+  color: var(--primary-orange);
+  font-size: medium;
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+}
+
+@media (max-width: 768px) {
+  .processgrid {
+    grid-template-columns: 1fr;
+  }
+}
+.glowOrb {
+  position: absolute;
+  width: 12rem;
+  height: 12rem;
+  background-color: rgba(249, 131, 21, 0.1);
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}

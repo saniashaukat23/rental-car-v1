@@ -1,0 +1,170 @@
+.wrapper {
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0rem 2rem;
+  position: relative;
+  z-index: 0;
+}
+
+.logoItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.logoBox {
+  height: 70px; /* 👈 SAME HEIGHT FOR ALL LOGOS */
+  width: 100%;
+  display: flex;
+  align-items: center; /* Vertical center */
+  justify-content: center; /* Horizontal center */
+  padding-top: 10px;
+}
+
+/* IMAGE SCALING */
+.logoImage {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0.8;
+  transition: all 0.3s ease; /* 👈 REQUIRED */
+}
+
+.logoItem:hover .logoImage {
+  opacity: 1;
+}
+
+.brandName {
+  font-size: 0.75rem;
+  padding-top: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease; /* 👈 REQUIRED */
+}
+
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 999px;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.navBtn:first-of-type {
+  left: -12px;
+}
+
+.navBtn:last-of-type {
+  right: -12px;
+}
+/* Hover animation like grid cards */
+.logoItem {
+  transition: all 0.4 ease;
+  cursor: pointer;
+}
+
+.logoItem:hover .logoImage {
+  opacity: 1;
+  transform: translateY(-7px);
+}
+
+.logoItem:hover .brandName {
+  color: #f97316; /* same orange */
+  transform: translateY(-7px);
+}
+
+/* Navigation button base */
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* 👈 circle */
+  background-color: white; /* black */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Arrow color */
+.navBtn svg {
+  width: 18px;
+  height: 18px;
+  color: black; /* white arrow */
+}
+
+/* Hover effect */
+.navBtn:hover {
+  background-color: #f97316; /* orange */
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* Positioning */
+.brand-prev {
+  left: -14px;
+}
+
+.brand-next {
+  right: -14px;
+}
+.navBtn {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+@media (max-width: 640px) {
+  .navBtn {
+    display: none;
+  }
+}
+
+/* Pagination dots */
+.pagination {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-bottom: 0.5rem;
+  gap: 6px;
+}
+
+/* Show pagination only on mobile */
+@media (max-width: 640px) {
+  .pagination {
+    display: flex !important;
+  }
+  
+  .container {
+    padding-bottom: 1rem;
+  }
+}
+
+/* Custom pagination bullet styles */
+.pagination :global(.swiper-pagination-bullet) {
+  width: 8px;
+  height: 8px;
+  background: #9ca3af; /* gray-400 for inactive */
+  opacity: 1;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.pagination :global(.swiper-pagination-bullet-active) {
+  background: #f97316; /* primary orange for active */
+  width: 20px;
+  border-radius: 10px;
+}

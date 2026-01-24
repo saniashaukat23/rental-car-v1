@@ -1,0 +1,804 @@
+/* src/styles/frontend/brandpage.module.css */
+/* Professional Brand Page - Unique Design */
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(-25%); }
+  50% { transform: translateY(0); }
+}
+
+/* Base Page */
+.pageWrapper {
+  min-height: 100vh;
+  background: #ffffff;
+  padding-top: 4rem;
+}
+
+/* ============================================
+   HERO SECTION - Full Width Immersive
+   ============================================ */
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 55vh;
+  min-height: 400px;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.heroContent {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  height: 100%;
+}
+
+.heroContent::-webkit-scrollbar {
+  display: none;
+}
+
+.heroImageWrapper {
+  position: relative;
+  height: 100%;
+  min-width: 100%;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+  overflow: hidden;
+}
+
+.heroImage {
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: brightness(0.85);
+}
+
+.heroImageWrapper:hover .heroImage {
+  transform: scale(1.05);
+  filter: brightness(0.9);
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.1) 40%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+}
+
+/* Premium Glass Badges */
+.badgeGlass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  z-index: 20;
+  pointer-events: none;
+  animation: scaleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logoBadge {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  padding: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.countBadge {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.countNumber {
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.countLabel {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+/* Scroll Indicator */
+.scrollIndicator {
+  display: none;
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  z-index: 20;
+  animation: fadeIn 1s ease-out 0.8s both;
+}
+
+.scrollMouse {
+  width: 1.5rem;
+  height: 2.5rem;
+  border: 2px solid currentColor;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.scrollDot {
+  width: 3px;
+  height: 8px;
+  background-color: currentColor;
+  border-radius: 9999px;
+  animation: bounce 2s infinite;
+}
+
+/* ============================================
+   CONTENT CONTAINER
+   ============================================ */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+/* ============================================
+   SECTION TITLES - Premium Typography
+   ============================================ */
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: #111827;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.sectionSubtitle {
+  text-align: center;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.2s forwards;
+}
+
+/* ============================================
+   CAR LISTING HEADER
+   ============================================ */
+.listingHeader {
+  margin-bottom: 3rem;
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.listingTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #111827;
+  letter-spacing: -0.03em;
+}
+
+.listingUnderline {
+  height: 4px;
+  width: 80px;
+  background: linear-gradient(90deg, #f97316, #fb923c);
+  border-radius: 2px;
+  margin: 1.5rem auto 0;
+}
+
+.carGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* ============================================
+   TEXT BLOCK - SEO Content
+   ============================================ */
+.textBlock {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #4b5563;
+  line-height: 1.9;
+  text-align: center;
+  font-size: 1.0625rem;
+  opacity: 0;
+  animation: fadeIn 0.7s ease-out 0.3s forwards;
+}
+
+.highlight {
+  color: #ea580c;
+  font-weight: 600;
+}
+
+/* ============================================
+   FEATURES GRID - Premium Cards
+   ============================================ */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.featureCard {
+  background: #ffffff;
+  border: 1px solid #f3f4f6;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.featureCard:nth-child(1) { animation-delay: 0.1s; }
+.featureCard:nth-child(2) { animation-delay: 0.2s; }
+.featureCard:nth-child(3) { animation-delay: 0.3s; }
+
+.featureCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #f97316, #fbbf24);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featureCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.12);
+  border-color: #e5e7eb;
+}
+
+.featureCard:hover::before {
+  transform: scaleX(1);
+}
+
+.featureCardIcon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: #ea580c;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featureCard:hover .featureCardIcon {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: white;
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.featureCardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.featureCardText {
+  color: #6b7280;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+/* ============================================
+   PRICING TABLE - Clean & Modern
+   ============================================ */
+.tableContainer {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.table {
+  width: 100%;
+  min-width: 500px; /* Ensures table doesn't collapse on mobile */
+  border-collapse: collapse;
+}
+
+.tableHead {
+  background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
+  color: white;
+}
+
+.table th {
+  padding: 1.25rem 1rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+
+.table th:first-child {
+  text-align: left;
+}
+
+.table td {
+  padding: 1.25rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  font-size: 0.9375rem;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover td {
+  background: #fff7ed;
+}
+
+.table td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: #111827;
+}
+
+.noteBox {
+  background: linear-gradient(90deg, #fffbeb 0%, #fef3c7 100%);
+  border-left: 4px solid #f59e0b;
+  padding: 1rem 1.5rem;
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+
+.noteText {
+  font-size: 0.875rem;
+  color: #92400e;
+  line-height: 1.5;
+}
+
+/* Mobile scroll hint */
+@media (max-width: 640px) {
+  .tableContainer {
+    position: relative;
+  }
+
+  
+  .table th {
+    padding: 1rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .table td {
+    padding: 1rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* ============================================
+   STEPS SECTION - Timeline Style
+   ============================================ */
+.stepsContainer {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.stepItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid #f3f4f6;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.stepItem:nth-child(1) { animation-delay: 0.1s; }
+.stepItem:nth-child(2) { animation-delay: 0.2s; }
+.stepItem:nth-child(3) { animation-delay: 0.3s; }
+
+.stepItem:last-child {
+  margin-bottom: 0;
+}
+
+.stepItem:hover {
+  border-color: #fed7aa;
+  box-shadow: 0 8px 24px -8px rgba(249, 115, 22, 0.15);
+  transform: translateX(8px);
+}
+
+.stepIconBox {
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.4s ease;
+}
+
+.stepItem:hover .stepIconBox {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+.stepIcon {
+  color: #ea580c;
+  width: 22px;
+  height: 22px;
+  transition: color 0.3s;
+}
+
+.stepItem:hover .stepIcon {
+  color: white;
+}
+
+.stepNumber {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f97316;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.25rem;
+}
+
+.stepTitle {
+  font-weight: 700;
+  color: #111827;
+  font-size: 1.0625rem;
+  margin-bottom: 0.25rem;
+}
+
+.stepText {
+  font-size: 0.875rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* ============================================
+   CTA SECTION - Premium Call to Action
+   ============================================ */
+.ctaSection {
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  border-radius: 1.5rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 4rem;
+  opacity: 0;
+  animation: scaleIn 0.7s ease-out forwards;
+}
+
+.ctaSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f97316, #fbbf24, #f97316);
+}
+
+.ctaTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+
+.ctaText {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.ctaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  font-size: 0.9375rem;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.45);
+}
+
+.btnSecondary {
+  background: white;
+  color: #111827;
+  border: 2px solid #e5e7eb;
+}
+
+.btnSecondary:hover {
+  border-color: #f97316;
+  color: #ea580c;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================
+   FAQ SECTION - Clean Accordion Style
+   ============================================ */
+.faqItem {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.75rem;
+  border: 1px solid #f3f4f6;
+  margin-bottom: 1rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.faqItem:nth-child(1) { animation-delay: 0.1s; }
+.faqItem:nth-child(2) { animation-delay: 0.15s; }
+.faqItem:nth-child(3) { animation-delay: 0.2s; }
+
+.faqItem:hover {
+  border-color: #fed7aa;
+  box-shadow: 0 8px 24px -8px rgba(249, 115, 22, 0.12);
+}
+
+.faqQuestion {
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.faqAnswer {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  line-height: 1.7;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+.emptyPageWrapper {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #fafafa;
+}
+
+.emptyCard {
+  background: white;
+  padding: 3.5rem 2.5rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f3f4f6;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  animation: scaleIn 0.6s ease-out;
+}
+
+.emptyIconWrapper {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+.emptyIcon {
+  font-size: 2rem;
+  color: #9ca3af;
+}
+
+.emptyTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.emptyText {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.searchButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  color: white;
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s;
+  gap: 0.5rem;
+}
+
+.searchButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+@media (min-width: 640px) {
+  .carGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ctaGroup {
+    flex-direction: row;
+  }
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .heroSection {
+    height: 60vh;
+  }
+  .featuresGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .sectionTitle {
+    font-size: 2.25rem;
+  }
+  .listingTitle {
+    font-size: 2.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .heroSection {
+    height: 70vh;
+  }
+  .heroContent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: visible;
+  }
+  .heroImageWrapper {
+    min-width: 0;
+  }
+  .logoBadge {
+    top: 12%;
+    left: 6%;
+    padding: 1.25rem;
+  }
+  .countBadge {
+    bottom: 20%;
+    right: 4%;
+    padding: 1.5rem 2rem;
+  }
+  .countNumber {
+    font-size: 2.75rem;
+  }
+  .scrollIndicator {
+    display: flex;
+  }
+  .carGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .container {
+    padding: 5rem 2rem;
+  }
+  .ctaSection {
+    padding: 5rem 3rem;
+  }
+}

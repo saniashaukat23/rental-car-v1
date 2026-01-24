@@ -1,0 +1,516 @@
+/* MonthlyCarRental.module.css */
+
+:root {
+  /* --- User Provided Orange Shades --- */
+  --primary: #f97316;
+  --primary-70: rgba(
+    249,
+    115,
+    22,
+    0.7
+  ); /* Adjusted to match Orange base for smooth gradients */
+  --primary-10: #f973161a;
+  --primary-5: #f974160f;
+  --primary-light: #f97416c7;
+
+  /* --- UI Colors --- */
+  --green-500: #22c55e;
+  --green-600: #16a34a;
+  --white: #ffffff;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-900: #111827;
+
+  --bg-card: #ffffff;
+  --border-color: #e5e7eb;
+
+  /* --- Shadows --- */
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* --- Layout Utilities --- */
+.mainWrapper {
+  padding-top: 4rem;
+  flex: 1;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  overflow-x: hidden;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+.textCenter {
+  text-align: center;
+}
+.textPrimary {
+  color: var(--primary);
+}
+.fontSemibold {
+  font-weight: 600;
+}
+.textMuted {
+  color: var(--gray-600);
+  font-size: 0.875rem;
+}
+.textSmallMuted {
+  color: var(--gray-500);
+  font-size: 0.75rem;
+}
+
+/* --- Buttons --- */
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+  padding: 0 1rem;
+}
+@media (min-width: 640px) {
+  .buttonGroup {
+    flex-direction: row;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btnGreen {
+  background-color: var(--green-500);
+  color: var(--white);
+}
+.btnGreen:hover {
+  background-color: var(--green-600);
+}
+
+.btnOutline {
+  background-color: var(--white);
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+.btnOutline:hover {
+  background-color: var(--primary-5);
+}
+
+.btnLarge {
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+}
+
+/* --- Hero Section --- */
+.heroHeader {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .heroHeader {
+    margin-bottom: 3rem;
+  }
+}
+
+.heroTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, var(--primary), var(--primary-70));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@media (min-width: 640px) {
+  .heroTitle {
+    font-size: 1.875rem;
+  }
+}
+@media (min-width: 768px) {
+  .heroTitle {
+    font-size: 2.25rem;
+  }
+}
+
+.heroDesc {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+@media (min-width: 640px) {
+  .heroDesc {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .heroDesc {
+    font-size: 1.125rem;
+  }
+}
+
+/* --- Section Headers --- */
+.sectionMargin {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 768px) {
+  .sectionMargin {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .sectionTitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* --- Feature Grid (Small Icons) --- */
+.gridSix {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .gridSix {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .gridSix {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.featureCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.featureCard:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+@media (min-width: 768px) {
+  .featureCard {
+    padding: 1.25rem;
+  }
+}
+
+.iconCircle {
+  width: 3.5rem;
+  height: 3.5rem;
+  background-color: var(--primary-10);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+  color: var(--primary);
+}
+@media (min-width: 768px) {
+  .iconCircle {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+/* --- Benefits Grid (12 Items) --- */
+.benefitsHeader {
+  margin-bottom: 1rem;
+}
+@media (min-width: 640px) {
+  .benefitsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+@media (min-width: 640px) {
+  .benefitsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .benefitsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+.benefitCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s;
+}
+.benefitCard:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.benefitContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.benefitIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+/* --- How It Works --- */
+.howItWorksSection {
+  padding: 4rem 0;
+  position: relative;
+}
+
+.howItWorksGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .howItWorksGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .howItWorksGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.stepCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s;
+}
+.stepCard:hover {
+  box-shadow: var(--shadow-xl);
+}
+@media (min-width: 768px) {
+  .stepCard {
+    padding: 1.5rem;
+  }
+}
+
+.stepIconBox {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--primary-10);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  color: var(--primary);
+}
+@media (min-width: 768px) {
+  .stepIconBox {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* --- Rates Section --- */
+.ratesSection {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.ratesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+@media (min-width: 640px) {
+  .ratesGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.rateCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s;
+}
+.rateCard:hover {
+  box-shadow: var(--shadow-xl);
+}
+@media (min-width: 768px) {
+  .rateCard {
+    padding: 1.5rem;
+  }
+}
+
+.rateCardHighlight {
+  border: 2px solid var(--primary);
+}
+
+.priceText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.25rem;
+}
+
+.saveText {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--green-600);
+}
+
+/* --- Why Choose (Text/List Blocks) --- */
+.textBlocksGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .textBlocksGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.textBlockCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s;
+}
+.textBlockCard:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+.listStack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+/* --- Final CTA --- */
+.ctaSection {
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaBlurBg {
+  position: absolute;
+  inset: 0;
+}
+.blurBlob {
+  position: absolute;
+  width: 16rem;
+  height: 16rem;
+  background-color: var(--primary-5);
+  border-radius: 50%;
+  filter: blur(40px);
+}
+.blobLeft {
+  top: 25%;
+  left: 25%;
+}
+.blobRight {
+  bottom: 25%;
+  right: 25%;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 56rem;
+  margin: 0 auto;
+}
