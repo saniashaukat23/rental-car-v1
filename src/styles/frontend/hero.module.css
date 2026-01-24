@@ -21,6 +21,11 @@
   width: 100%;
 }
 
+.bgImage {
+  object-fit: cover;
+}
+
+
 /* Black Overlay */
 .overlay {
   position: absolute;
@@ -128,4 +133,49 @@
   .mainTitle {
     font-size: var(--text-6xl);
   }
+}
+
+/* --- Section Styles --- */
+.sectionmargin {
+  max-width: var(--container-xl);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+.sectionPadding {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
+.sectionPaddingTop {
+  padding-top: var(--space-12);
+}
+
+.sectionPaddingBottom {
+  padding-bottom: var(--space-16);
+}
+
+.sectionPaddingX {
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.sectionPaddingXLarge {
+  padding-left: var(--space-8);
+  padding-right: var(--space-8);
+}
+
+.bgGrayLight {
+  background-color: #f4f4f580;
+}
+
+.marginTop10 {
+  margin-top: var(--space-10);
+}
+
+.paddingX4 {
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
 }

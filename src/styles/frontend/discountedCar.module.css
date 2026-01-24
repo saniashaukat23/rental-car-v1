@@ -2,7 +2,8 @@
 
 .main {
   min-height: 100vh;
-  background-color: #f8fafc; /* bg-slate-50 */
+  background-color: #f8fafc;
+  /* bg-slate-50 */
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
@@ -14,7 +15,8 @@
 }
 
 .container {
-  max-width: 80rem; /* max-w-7xl */
+  max-width: 80rem;
+  /* max-w-7xl */
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -29,7 +31,8 @@
 }
 
 .subHeader {
-  color: #f97316; /* text-orange-500 */
+  color: #f97316;
+  /* text-orange-500 */
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.875rem;
@@ -41,7 +44,8 @@
 .title {
   font-size: 2.25rem;
   font-weight: 900;
-  color: #0f172a; /* text-slate-900 */
+  color: #0f172a;
+  /* text-slate-900 */
   margin-bottom: 1rem;
 }
 
@@ -52,7 +56,8 @@
 }
 
 .description {
-  color: #64748b; /* text-slate-500 */
+  color: #64748b;
+  /* text-slate-500 */
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -99,7 +104,8 @@
   top: 1rem;
   left: 1rem;
   z-index: 10;
-  background-color: #f97316; /* primary orange */
+  background-color: #f97316;
+  /* primary orange */
   color: white;
   padding: 0.375rem 0.75rem;
   border-radius: 9999px;
@@ -243,7 +249,8 @@
 .newPrice {
   font-size: 1rem;
   font-weight: 700;
-  color: #16a34a; /* green-600 */
+  color: #16a34a;
+  /* green-600 */
 }
 
 /* Buttons */
@@ -364,14 +371,19 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   background-size: 200% 100%;
   animation: shimmer 3s infinite;
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .ctaBtnPrimary:hover {
@@ -402,4 +414,51 @@
   background-color: white;
   border-radius: 1.5rem;
   border: 1px dashed #cbd5e1;
+}
+
+/* Utility Classes */
+.iconLarge {
+  width: 3rem;
+  height: 3rem;
+}
+
+.iconMedium {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.textSlate300 {
+  color: #cbd5e1;
+}
+
+.textSlate400 {
+  color: #94a3b8;
+}
+
+.textOrange500 {
+  color: #f97316;
+}
+
+.textLg {
+  font-size: 1.125rem;
+}
+
+.textSm {
+  font-size: 0.875rem;
+}
+
+.fontMedium {
+  font-weight: 500;
+}
+
+.fontSemibold {
+  font-weight: 600;
+}
+
+.mb4 {
+  margin-bottom: 1rem;
+}
+
+.mt1 {
+  margin-top: 0.25rem;
 }

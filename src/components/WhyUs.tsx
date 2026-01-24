@@ -33,10 +33,10 @@ const WhyChooseUs = () => {
     <section className={`${styles.whyUsSection} ${styles.container}`}>
       {/* Decorative background element */}
       <div
-        className={`${styles.glowOrb} -top-20 right-[4%] lg:flex hidden`}
+        className={`${styles.glowOrb} ${styles.glowOrbTopRight} ${styles.hiddenMobile}`}
       ></div>
       <div
-        className={`${styles.glowOrb} -bottom-4 left-60 -z-10 lg:flex hidden`}
+        className={`${styles.glowOrb} ${styles.glowOrbBottomLeft} ${styles.hiddenMobile}`}
       ></div>
       <SectionHeader
         title="Why Choose Car Hire Now"
@@ -47,14 +47,14 @@ const WhyChooseUs = () => {
         {benefits.map((benefit, item) => (
           <div
             key={item}
-            className={`shadow-sm hover:shadow-xl ${styles.benefitCard}`}
+            className={`${styles.benefitCard} ${styles.shadowHover}`}
           >
             {/* Card Content Goes Here */}
-            <div className=" w-full flex items-start justify-center gap-4">
-              <div className="h-10 w-10 bg-[#f9831516] rounded-full flex justify-center items-center">
-                <p className="text-md text-[#f98315]">{item + 1}</p>
+            <div className={styles.cardContent}>
+              <div className={styles.numberBadge}>
+                <p className={styles.numberText}>{item + 1}</p>
               </div>
-              <div className="flex flex-col w-[80%]">
+              <div className={styles.contentWrapper}>
                 <p className={styles.cardTitle}>{benefit.title}</p>
                 <p className={styles.description}>
                   {benefit.description}

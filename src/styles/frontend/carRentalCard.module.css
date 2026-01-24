@@ -33,9 +33,11 @@
   .imageContainer {
     height: 14rem;
   }
+
   .carName {
     font-size: var(--text-lg);
   }
+
   .category {
     font-size: var(--text-sm);
   }
@@ -245,4 +247,26 @@
   display: flex;
   align-items: baseline;
   gap: var(--space-1);
+}
+
+/* Utility Classes */
+.cursorPointer {
+  cursor: pointer;
+}
+
+.noTextDecoration {
+  text-decoration: none;
+}
+
+/* Icon Sizing for Tailwind Replacements */
+.iconSmall {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: 0.5rem;
+}
+
+.iconMedium {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
 }

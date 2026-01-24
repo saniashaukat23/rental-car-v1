@@ -65,10 +65,10 @@ const WeeklyCarRental = () => {
         <FeatureGrid title="Why Choose Weekly Rental" features={features} />
 
         {/* View All Cars Button */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: "3rem" }}>
+        <div className={`${styles.flexJustifyCenter} ${styles.mb3rem}`}>
           <a className={`${styles.btn} ${styles.btnGreen}`} href="/cars">
             View All Cars
-            <Car className="w-4 h-4" style={{ marginLeft: "0.5rem" }} />
+            <Car className={`${styles.iconSize} ${styles.ml0_5rem}`} />
           </a>
         </div>
 

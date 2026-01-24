@@ -608,3 +608,106 @@
     font-size: 0.875rem;
   }
 }
+
+/* Utility Classes for Inline Styles */
+
+/* Error/Not Found State */
+.errorContainer {
+  text-align: center;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.errorTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.errorLink {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background: #000;
+  color: #fff;
+  border-radius: 0.25rem;
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* Header Section */
+.headerSection {
+  margin-bottom: 1.5rem;
+}
+
+/* Icon Colors */
+.iconBlue {
+  color: #2563eb;
+}
+
+/* Brand Logo Image */
+.brandLogoImage {
+  object-fit: contain;
+  padding: 4px;
+}
+
+/* Price Row Text Align */
+.textRight {
+  text-align: right;
+}
+
+/* Included Features Text */
+.includedText {
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+/* About Section Text */
+.aboutText {
+  color: #4b5563;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* Rental Info Spacing */
+.rentalTitleSpacing {
+  margin-bottom: 1.5rem;
+}
+
+/* FAQ Title Flex */
+.faqTitleFlex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.faqContainer {
+  margin-top: 1rem;
+}
+
+/* Rental Item Styles */
+.rentalItemWrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.rentalItemIcon {
+  color: #2563eb;
+  margin-top: 0.25rem;
+}
+
+.rentalItemContent {
+  min-width: 0;
+}
+
+.rentalItemTitle {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: #111827;
+}
+
+.rentalItemDesc {
+  font-size: 0.875rem;
+  color: #4b5563;
+  word-break: break-word;
+}

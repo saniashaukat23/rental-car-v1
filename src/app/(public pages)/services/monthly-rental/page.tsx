@@ -91,10 +91,10 @@ const MonthlyCarRental = () => {
         <FeatureGrid title="Why Choose Monthly Rental" features={features} />
 
         {/* View All Cars Button */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: "3rem" }}>
+        <div className={`${styles.flexJustifyCenter} ${styles.mb3rem}`}>
           <a className={`${styles.btn} ${styles.btnGreen}`} href="/cars">
             View All Cars
-            <Car className="w-4 h-4" style={{ marginLeft: "0.5rem" }} />
+            <Car className={`${styles.iconSize} ${styles.ml0_5rem}`} />
           </a>
         </div>
 
@@ -132,9 +132,9 @@ const MonthlyCarRental = () => {
 
         {/* Why Choose Monthly - Text Blocks */}
         <section className={styles.sectionMargin}>
-          <div className={styles.textCenter} style={{ marginBottom: "2rem" }}>
+          <div className={`${styles.textCenter} ${styles.mb2rem}`}>
             <h2 className={styles.sectionTitle}>Why Choose Monthly Rental</h2>
-            <p className={styles.textMuted} style={{ maxWidth: "42rem", margin: "0 auto" }}>
+            <p className={`${styles.textMuted} ${styles.maxW42rem} ${styles.mxAuto}`}>
               Perfect solution for{" "}
               <span className={`${styles.textPrimary} ${styles.fontSemibold}`}>
                 residents and long-term visitors
@@ -143,14 +143,14 @@ const MonthlyCarRental = () => {
           </div>
           <div className={styles.textBlocksGrid}>
             {textBlocks.map((block, index) => (
-              <div key={index} className={styles.textBlockCard} style={{ animationDelay: `${index * 0.1}s` }}>
-                <h3 style={{ fontSize: "1.125rem", fontWeight: 600, marginBottom: "0.75rem" }}>{block.title}</h3>
-                <p className={styles.textMuted} style={{ marginBottom: "1rem" }}>{block.description}</p>
+              <div key={index} className={styles.textBlockCard}>
+                <h3 className={`${styles.fontSize1_125rem} ${styles.fontWeight600} ${styles.mb0_75rem}`}>{block.title}</h3>
+                <p className={`${styles.textMuted} ${styles.mb1rem}`}>{block.description}</p>
                 <ul className={styles.listStack}>
                   {block.points.map((point, i) => (
                     <li key={i} className={styles.listItem}>
-                      <CheckCircle2 className="w-4 h-4" style={{ color: "#22c55e", marginTop: "0.125rem" }} />
-                      <span style={{ fontSize: "0.875rem" }}>{point}</span>
+                      <CheckCircle2 className={`${styles.iconSize} ${styles.textGreen500} ${styles.mt0_125rem}`} />
+                      <span className={styles.fontSize0_875rem}>{point}</span>
                     </li>
                   ))}
                 </ul>

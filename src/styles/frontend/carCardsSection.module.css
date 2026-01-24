@@ -8,14 +8,16 @@
 /* Responsive Padding for larger screens */
 @media (min-width: 768px) {
   .sectionContainer {
-    padding-left: 3rem; /* md:px-12 */
+    padding-left: 3rem;
+    /* md:px-12 */
     padding-right: 3rem;
   }
 }
 
 @media (min-width: 1024px) {
   .sectionContainer {
-    padding-left: 8rem; /* lg:px-32 */
+    padding-left: 8rem;
+    /* lg:px-32 */
     padding-right: 8rem;
   }
 }
@@ -24,20 +26,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 2rem; /* pb-6 */
+  padding-bottom: 2rem;
+  /* pb-6 */
 }
 
 .title {
-  font-weight: 600; /* font-semibold */
-  font-size: 1.25rem; /* text-xl */
-  letter-spacing: -0.025em; /* tracking-tight */
+  font-weight: 600;
+  /* font-semibold */
+  font-size: 1.25rem;
+  /* text-xl */
+  letter-spacing: -0.025em;
+  /* tracking-tight */
 }
 
 .viewAllLink {
-  color: #f97316; /* text-[#f97316] */
-  font-size: 0.875rem; /* text-sm */
-  font-weight: 600; /* font-semibold */
-  letter-spacing: -0.025em; /* tracking-tight */
+  color: #f97316;
+  /* text-[#f97316] */
+  font-size: 0.875rem;
+  /* text-sm */
+  font-weight: 600;
+  /* font-semibold */
+  letter-spacing: -0.025em;
+  /* tracking-tight */
 }
 
 .viewAllLink:hover {
@@ -72,4 +82,80 @@
   background: #f97316;
   width: 24px;
   border-radius: 12px;
+}
+
+/* Container */
+.container {
+  max-width: 80rem;
+  /* max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  /* px-4 */
+  padding-right: 1rem;
+}
+
+/* Swiper Wrapper */
+.swiperWrapper {
+  position: relative;
+}
+
+.swiperWrapper:hover .navArrow {
+  opacity: 1;
+}
+
+.swiperContainer {
+  padding-bottom: 2rem;
+  /* pb-8 */
+  position: relative;
+  z-index: 0;
+}
+
+/* Navigation Arrows */
+.navArrow {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2rem;
+  /* w-8 */
+  height: 2rem;
+  /* h-8 */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #E4E4E7;
+  background-color: rgba(255, 255, 255, 0.9);
+  /* bg-[#ffffffe6] */
+  border-radius: 9999px;
+  /* rounded-full */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  /* shadow-md */
+  color: #000000;
+  /* text-black */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+@media (min-width: 1024px) {
+  .navArrow {
+    display: flex;
+    /* lg:flex */
+  }
+}
+
+.navArrowLeft {
+  left: -3.25rem;
+  /* -left-13 */
+}
+
+.navArrowRight {
+  right: -3.25rem;
+  /* -right-13 */
+}
+
+.navArrow:hover {
+  opacity: 1;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }

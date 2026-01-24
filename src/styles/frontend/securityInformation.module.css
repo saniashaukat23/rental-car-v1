@@ -17,16 +17,15 @@
   box-shadow: 0 8px 40px -5px rgba(0, 0, 0, 0.2);
   font-weight: 500;
 }
+
 .glowOrb {
   display: none;
   position: absolute;
   width: 25rem;
   height: 25rem;
-  background: radial-gradient(
-    circle,
-    rgba(242, 141, 53, 0.1) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(242, 141, 53, 0.1) 0%,
+      transparent 70%);
   border-radius: 50%;
   filter: blur(40px);
   pointer-events: none;
@@ -88,7 +87,8 @@
 }
 
 .itemIconGreen {
-  color: #22c55e; /* Green for Flexible Scheduling icon */
+  color: #22c55e;
+  /* Green for Flexible Scheduling icon */
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -150,11 +150,9 @@
   right: 0;
   width: 7rem;
   height: 7rem;
-  background: linear-gradient(
-    to bottom right,
-    var(--primary-soft),
-    transparent
-  );
+  background: linear-gradient(to bottom right,
+      var(--primary-soft),
+      transparent);
   border-bottom-left-radius: 100%;
 }
 
@@ -170,8 +168,27 @@
     gap: 20px;
   }
 }
+
 @media (min-width: 768px) {
   .glowOrb {
     display: flex;
   }
+}
+
+/* Section Wrapper */
+.sectionWrapper {
+  padding-bottom: 4rem;
+  background-color: rgba(244, 244, 245, 0.5);
+  position: relative;
+}
+
+/* Glow Orb Positioning */
+.glowOrbBottom {
+  bottom: 0;
+  left: 5%;
+}
+
+/* Icon Utilities */
+.supportIcon {
+  flex-shrink: 0;
 }

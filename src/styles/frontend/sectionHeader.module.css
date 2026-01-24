@@ -1,0 +1,36 @@
+/* SectionHeader.module.css */
+
+.container {
+    text-align: center;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 400;
+    padding-bottom: 1rem;
+    letter-spacing: 0.025em;
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 1.5rem;
+    }
+}
+
+.description {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    color: #4b5563;
+}
+
+@media (min-width: 768px) {
+    .description {
+        width: 60%;
+    }
+}

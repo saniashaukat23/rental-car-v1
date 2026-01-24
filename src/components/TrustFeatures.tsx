@@ -26,13 +26,13 @@ const TrustFeatures = () => {
   ];
 
   return (
-    <div className={`${styles.trustGrid}`}>
-      <div className={`${styles.glowOrb} h-48 w-48 left-[55%] blur-3xl`}></div>
+    <div className={styles.trustGrid}>
+      <div className={`${styles.glowOrb} ${styles.h48} ${styles.w48} ${styles.leftCenter} ${styles.blur3xl}`}></div>
       {features.map((feature, index) => (
-        <div key={index} className={` ${styles.innerTrustGrid}`}>
-          <div className={`${feature.bgColor} ${styles.iconWrapper}`}>
+        <div key={index} className={styles.innerTrustGrid}>
+          <div className={`${styles.iconWrapper} ${styles[`bg${feature.bgColor.split('-')[1].charAt(0).toUpperCase() + feature.bgColor.split('-')[1].slice(1)}${feature.bgColor.split('-')[2]}`]}`}>
             <feature.icon
-              className={`${styles.trustIcons} ${feature.iconColor}`}
+              className={`${styles.trustIcons} ${styles[`text${feature.iconColor.split('-')[1].charAt(0).toUpperCase() + feature.iconColor.split('-')[1].slice(1)}${feature.iconColor.split('-')[2]}`]}`}
               aria-hidden="true"
             />
           </div>

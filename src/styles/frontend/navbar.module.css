@@ -120,7 +120,7 @@
     padding: var(--space-3) var(--space-8);
     gap: var(--space-4);
   }
-  
+
   .desktopLinks {
     display: flex;
     font-size: var(--text-sm);
@@ -130,20 +130,20 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .navLink {
     padding: var(--space-2) var(--space-3);
     font-size: var(--text-sm);
   }
-  
+
   .mobileMenuButton {
     display: none;
   }
-  
+
   .mobileMenu {
     display: none;
   }
-  
+
   .logoImage {
     height: 2rem;
     width: 140px;
@@ -155,11 +155,11 @@
   .navWrapper {
     padding: var(--space-3) var(--space-6);
   }
-  
+
   .linksGroup {
     gap: var(--space-4);
   }
-  
+
   .logoImage {
     width: 130px;
     height: 1.75rem;
@@ -171,12 +171,12 @@
     padding: var(--space-3) var(--space-4);
     gap: var(--space-2);
   }
-  
+
   .logoImage {
     width: 110px;
     height: 1.75rem;
   }
-  
+
   .mobileMenuButton {
     flex-shrink: 0;
   }
@@ -193,4 +193,146 @@
     width: 160px;
     height: 2rem;
   }
+}
+
+/* Utility Classes */
+.flexItemsCenter {
+  display: flex;
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.mlAuto {
+  margin-left: auto;
+}
+
+.groupHoverOrange:hover .dropdownArrow {
+  color: #d97706;
+}
+
+/* Mobile Menu Specific Styles */
+.mobileMenuContainer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 50;
+}
+
+.mobileMenuScroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.mobilePaddingBottom {
+  padding-bottom: 5rem;
+}
+
+.flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.borderBottom {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.lastNoBorder:last-child {
+  border-bottom: none;
+}
+
+.flexJustifyBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.px4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.flexGap2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bgGray50 {
+  background-color: #f9fafb;
+}
+
+.p4 {
+  padding: 1rem;
+}
+
+.borderTop {
+  border-top: 1px solid #e5e7eb;
+}
+
+.shadowInner {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.gridCols2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.subItemLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s;
+}
+
+.subItemLink:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.relativeImageContainer {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.objectContain {
+  object-fit: contain;
+}
+
+.textXs {
+  font-size: 0.75rem;
+}
+
+.fontMedium {
+  font-weight: 500;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.textGray700 {
+  color: #374151;
 }

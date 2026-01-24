@@ -65,7 +65,7 @@ const PaymentSection: React.FC = () => {
           <div key={index} className={styles.methodCard}>
             {/* Background Glow */}
             <div
-              className={`${styles.glowOrb} bottom-5 blur-2xl opacity-0 h-24 w-24`}
+              className={`${styles.glowOrb} ${styles.glowOrbBottom} ${styles.blur2xl} ${styles.opacity0} ${styles.h24} ${styles.w24}`}
             ></div>
 
             <Image

@@ -125,7 +125,7 @@ const PartnerSection: React.FC<{ brandName: string }> = ({ brandName }) => {
       <div className={styles.partnerContainer}>
         <h2 className={styles.partnerTitle}>
           Your Go-To Partner for an Unforgettable{" "}
-          <span className="capitalize">{brandName}</span> Experience
+          <span className={styles.capitalize}>{brandName}</span> Experience
         </h2>
 
         <div className={styles.partnerGrid}>
@@ -136,7 +136,7 @@ const PartnerSection: React.FC<{ brandName: string }> = ({ brandName }) => {
             <p className={styles.partnerCardText}>
               You will enjoy our fully digital booking process, completed in
               mere minutes. We deliver your chosen{" "}
-              <span className="capitalize">{brandName}</span> right to your
+              <span className={styles.capitalize}>{brandName}</span> right to your
               doorstep anywhere in Dubai.
             </p>
           </div>
@@ -148,7 +148,7 @@ const PartnerSection: React.FC<{ brandName: string }> = ({ brandName }) => {
             <p className={styles.partnerCardText}>
               We guarantee you only pay the quoted price—there are absolutely no
               commissions or hidden fees. Enjoy the finest{" "}
-              <span className="capitalize">{brandName}s</span> at the most
+              <span className={styles.capitalize}>{brandName}s</span> at the most
               competitive and honest rates.
             </p>
           </div>
@@ -158,7 +158,7 @@ const PartnerSection: React.FC<{ brandName: string }> = ({ brandName }) => {
               Exquisitely Maintained Fleet Guaranteed
             </h3>
             <p className={styles.partnerCardText}>
-              Every <span className="capitalize">{brandName}</span> is
+              Every <span className={styles.capitalize}>{brandName}</span> is
               rigorously inspected and flawlessly maintained before your rental
               begins. You are guaranteed a vehicle performing and looking like
               it just left the factory.
@@ -195,15 +195,15 @@ const PricingSection: React.FC<Props> = ({ brandName, cars = [] }) => {
       <div className={styles.pricingContentWrapper}>
         <div className={styles.pricingHeader}>
           <h2 className={styles.pricingTitle}>
-            Cheap Rent <span className="capitalize">{brandName}</span> Dubai
+            Cheap Rent <span className={styles.capitalize}>{brandName}</span> Dubai
             Price — Transparent Rates
           </h2>
           <p className={styles.pricingDescription}>
             We let you hire your executive{" "}
-            <span className="capitalize">{brandName}</span> rental in Dubai with
+            <span className={styles.capitalize}>{brandName}</span> rental in Dubai with
             complete confidence and total pricing transparency. Get behind the
             wheels of meticulously maintained{" "}
-            <span className="capitalize">{brandName}</span> masterpieces
+            <span className={styles.capitalize}>{brandName}</span> masterpieces
             starting for just{" "}
             <span className={styles.highlight}>AED 250 a day</span>. You are
             guaranteed the most competitive rates, with absolutely zero hidden
@@ -215,7 +215,7 @@ const PricingSection: React.FC<Props> = ({ brandName, cars = [] }) => {
         <div className={styles.tableSection}>
           <h3 className={styles.tableSubtitle}>
             Here are our transparent{" "}
-            <span className="capitalize">{brandName}</span> rental Dubai prices:
+            <span className={styles.capitalize}>{brandName}</span> rental Dubai prices:
           </h3>
 
           <div className={styles.tableWrapper}>
@@ -223,14 +223,14 @@ const PricingSection: React.FC<Props> = ({ brandName, cars = [] }) => {
               <thead className={styles.tableHead}>
                 <tr>
                   <th className={styles.headCell}>
-                    <span className="capitalize">{brandName}</span> Model
+                    <span className={styles.capitalize}>{brandName}</span> Model
                   </th>
                   <th className={styles.headCellCenter}>Daily</th>
                   <th className={styles.headCellCenter}>Weekly</th>
                   <th className={styles.headCellCenter}>Monthly</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200">
+              <tbody className={styles.tableDivider}>
                 {safeCars.length > 0 ? (
                   safeCars.map((car) => (
                     <tr key={car._id} className={styles.tableRow}>
@@ -255,7 +255,7 @@ const PricingSection: React.FC<Props> = ({ brandName, cars = [] }) => {
                 ) : (
                   <tr className={styles.tableRow}>
                     <td className={styles.bodyCell}>
-                      <span className="capitalize">{brandName}</span> Fleet
+                      <span className={styles.capitalize}>{brandName}</span> Fleet
                     </td>
                     <td className={styles.bodyCellCenter}>From AED 250</td>
                     <td className={styles.bodyCellCenter}>Contact Us</td>
@@ -269,8 +269,8 @@ const PricingSection: React.FC<Props> = ({ brandName, cars = [] }) => {
 
         <div className={styles.noteBox}>
           <p className={styles.noteText}>
-            <span className="font-semibold">Important note:</span> Our{" "}
-            <span className="capitalize">{brandName}</span> rental prices are
+            <span className={styles.fontSemibold}>Important note:</span> Our{" "}
+            <span className={styles.capitalize}>{brandName}</span> rental prices are
             subject to change with different seasonal demand, availability, and
             hiring duration. Contact us for the latest and current quote.
           </p>
@@ -288,19 +288,19 @@ const ContactCTA: React.FC<{ brandName: string }> = ({ brandName }) => {
     <section className={styles.ctaSection}>
       <div className={styles.ctaContainer}>
         <h2 className={styles.ctaTitle}>
-          Ready To Command Your <span className="capitalize">{brandName}</span>{" "}
+          Ready To Command Your <span className={styles.capitalize}>{brandName}</span>{" "}
           in Dubai?
         </h2>
         <p className={styles.ctaText}>
           Do not settle for an ordinary travel partner. Your executive{" "}
-          <span className="capitalize">{brandName}</span> masterpiece awaits
+          <span className={styles.capitalize}>{brandName}</span> masterpiece awaits
           your command in the vibrant metropolis of Dubai. Contact us via
           WhatsApp or call us to finalize your effortless, seamless booking and
           delivery. Choose your elite model today and we will deliver it
           directly to your Dubai doorstep.
         </p>
 
-        <CTAButtons 
+        <CTAButtons
           whatsappMessage={`Hi, I want to rent a ${brandName} in Dubai`}
           whatsappLabel="WhatsApp Us"
           callLabel="Call Us Now"
@@ -319,7 +319,7 @@ const MasterpieceSection: React.FC<{ brandName: string }> = ({ brandName }) => {
 
   return (
     <section className={styles.detailsSection}>
-      <div className="absolute inset-0 pointer-events-none">
+      <div className={`${styles.absolute} ${styles.inset0} ${styles.pointerEventsNone}`}>
         <div className={`${styles.blurBlob} ${styles.blobTopRight}`}></div>
         <div className={`${styles.blurBlob} ${styles.blobBottomLeft}`}></div>
       </div>
@@ -328,12 +328,12 @@ const MasterpieceSection: React.FC<{ brandName: string }> = ({ brandName }) => {
         {/* --- Top Masterpieces Section --- */}
         <div className={styles.detailsHeader}>
           <h2 className={styles.detailsTitle}>
-            Top <span className="capitalize">{brandName}</span> Masterpieces to
+            Top <span className={styles.capitalize}>{brandName}</span> Masterpieces to
             Rent in Dubai
           </h2>
           <p className={styles.detailsText}>
             Our meticulously selected fleet features the most sought-after{" "}
-            <span className="capitalize">{brandName}</span> models. Each one
+            <span className={styles.capitalize}>{brandName}</span> models. Each one
             offers you a distinct way to command Dubai's roads with confidence.
             Simply browse this expertly curated selection to find the
             masterpiece that perfectly matches your journey.
@@ -349,7 +349,7 @@ const MasterpieceSection: React.FC<{ brandName: string }> = ({ brandName }) => {
                 <div key={index}>
                   <h3 className={styles.modelTitle}>
                     <span className={styles.bulletPoint}>●</span>
-                    <span className="capitalize">{item.title}</span>
+                    <span className={styles.capitalize}>{item.title}</span>
                   </h3>
                   <ul className={styles.featureList}>
                     {item.features.map((feature, idx) => (
@@ -363,9 +363,9 @@ const MasterpieceSection: React.FC<{ brandName: string }> = ({ brandName }) => {
         </div>
 
         {/* --- How To Rent Section --- */}
-        <div className={`${styles.detailsHeader} mt-16`}>
+        <div className={`${styles.detailsHeader} ${styles.mt16}`}>
           <h2 className={styles.detailsTitle}>
-            How To Rent an <span className="capitalize">{brandName}</span> In
+            How To Rent an <span className={styles.capitalize}>{brandName}</span> In
             Three Easy Steps
           </h2>
         </div>
@@ -395,7 +395,7 @@ const MasterpieceSection: React.FC<{ brandName: string }> = ({ brandName }) => {
                   <p className={styles.stepTitle}>1. Select Your Masterpiece</p>
                   <p className={styles.stepDesc}>
                     Browse our versatile, exclusive fleet to find the precise{" "}
-                    <span className="capitalize">{brandName}</span> masterpiece
+                    <span className={styles.capitalize}>{brandName}</span> masterpiece
                     that perfectly matches your executive style.
                   </p>
                 </div>
@@ -449,7 +449,7 @@ const MasterpieceSection: React.FC<{ brandName: string }> = ({ brandName }) => {
                   <p className={styles.stepTitle}>3. Receive and Command</p>
                   <p className={styles.stepDesc}>
                     We deliver your confirmed{" "}
-                    <span className="capitalize">{brandName}</span> directly to
+                    <span className={styles.capitalize}>{brandName}</span> directly to
                     your office, hotel, residence, or the airport terminal. It
                     arrives pristine, fully fueled, and instantly ready for you.
                   </p>
@@ -475,11 +475,11 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
               How much does it cost to rent an{" "}
-              <span className="capitalize">{brandName}</span> in Dubai?
+              <span className={styles.capitalize}>{brandName}</span> in Dubai?
             </h3>
             <p className={styles.answer}>
               The general cost to rent an{" "}
-              <span className="capitalize">{brandName}</span> in Dubai starts at
+              <span className={styles.capitalize}>{brandName}</span> in Dubai starts at
               AED 250/day, AED 1,400/week, and AED 5,000/month, exclusive of the
               5% VAT.
             </p>
@@ -489,10 +489,10 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
               What are the requirements of renting an{" "}
-              <span className="capitalize">{brandName}</span> in Dubai?
+              <span className={styles.capitalize}>{brandName}</span> in Dubai?
             </h3>
             <p className={styles.answer}>
-              To rent an <span className="capitalize">{brandName}</span> in
+              To rent an <span className={styles.capitalize}>{brandName}</span> in
               Dubai, you must be 21 years or more. UAE residents need their
               Emirates ID and UAE driving license. Tourists or visitors need
               their passport, visa copy, home country driving license, and an
@@ -521,12 +521,12 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           {/* Q4 */}
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
-              Which <span className="capitalize">{brandName}</span> models can I
+              Which <span className={styles.capitalize}>{brandName}</span> models can I
               rent in Dubai?
             </h3>
             <p className={styles.answer}>
               We offer an exclusive selection of{" "}
-              <span className="capitalize">{brandName}</span> models for rent in
+              <span className={styles.capitalize}>{brandName}</span> models for rent in
               Dubai. Depending on availability, this includes commanding
               supercars, high-performance SUVs, executive luxury sedans,
               aggressive coupes, and sophisticated family SUVs.
@@ -536,12 +536,12 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           {/* Q5 */}
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
-              Can I rent an <span className="capitalize">{brandName}</span> car
+              Can I rent an <span className={styles.capitalize}>{brandName}</span> car
               at the airport?
             </h3>
             <p className={styles.answer}>
               Of course, you can rent an{" "}
-              <span className="capitalize">{brandName}</span> at the airport.
+              <span className={styles.capitalize}>{brandName}</span> at the airport.
               Provide us the details of your flight at the time of booking
               online, and we'll make sure your vehicle is available at the
               arrival terminal car park.
@@ -552,12 +552,12 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
               Can tourists rent an{" "}
-              <span className="capitalize">{brandName}</span> in Dubai with a
+              <span className={styles.capitalize}>{brandName}</span> in Dubai with a
               foreign license?
             </h3>
             <p className={styles.answer}>
               Yes, tourists can rent an{" "}
-              <span className="capitalize">{brandName}</span> in Dubai with
+              <span className={styles.capitalize}>{brandName}</span> in Dubai with
               their foreign license if it is recognized by the RTA. If it is not
               recognized by the RTA, they will need a supporting document, an
               IDP (International Drivers Permit).
@@ -568,11 +568,11 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
               What is the minimum age to rent an{" "}
-              <span className="capitalize">{brandName}</span>?
+              <span className={styles.capitalize}>{brandName}</span>?
             </h3>
             <p className={styles.answer}>
               For luxury cars like{" "}
-              <span className="capitalize">{brandName}</span> models, we require
+              <span className={styles.capitalize}>{brandName}</span> models, we require
               renters to be at least 21 years old. All drivers must also have
               had a valid driving license for at least one year.
             </p>
@@ -582,7 +582,7 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
               What is the cancellation policy for{" "}
-              <span className="capitalize">{brandName}</span> rentals?
+              <span className={styles.capitalize}>{brandName}</span> rentals?
             </h3>
             <p className={styles.answer}>
               We have a flexible cancellation policy. Here's how it works:
@@ -614,7 +614,7 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
               Is insurance included with the{" "}
-              <span className="capitalize">{brandName}</span> rental?
+              <span className={styles.capitalize}>{brandName}</span> rental?
             </h3>
             <p className={styles.answer}>
               Yes, a basic TPL is mandatory default for all rentals in Dubai.
@@ -630,11 +630,11 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
               What is the fuel policy for{" "}
-              <span className="capitalize">{brandName}</span> rentals?
+              <span className={styles.capitalize}>{brandName}</span> rentals?
             </h3>
             <p className={styles.answer}>
               We follow a "same-to-same" fuel policy. You will receive your{" "}
-              <span className="capitalize">{brandName}</span> with a certain
+              <span className={styles.capitalize}>{brandName}</span> with a certain
               fuel level and should return it with the same amount. If you bring
               it back with less fuel, we charge only for the difference needed
               to refill.
@@ -645,10 +645,10 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
               Are there any mileage limits on my{" "}
-              <span className="capitalize">{brandName}</span> rental?
+              <span className={styles.capitalize}>{brandName}</span> rental?
             </h3>
             <p className={styles.answer}>
-              Yes. Every <span className="capitalize">{brandName}</span> rental
+              Yes. Every <span className={styles.capitalize}>{brandName}</span> rental
               comes with a standard mileage allowance of 250 km/day, 1,750
               km/week, and 4,500 km/month. If you exceed that limit, extra
               charges per kilometer will apply as per your agreement.
@@ -658,7 +658,7 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           {/* Q12 */}
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
-              Can I extend my <span className="capitalize">{brandName}</span>{" "}
+              Can I extend my <span className={styles.capitalize}>{brandName}</span>{" "}
               rental period if I need to?
             </h3>
             <p className={styles.answer}>
@@ -673,11 +673,11 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
               Do you offer a chauffeur service with your{" "}
-              <span className="capitalize">{brandName}</span> rentals?
+              <span className={styles.capitalize}>{brandName}</span> rentals?
             </h3>
             <p className={styles.answer}>
               Yes, we offer a professional chauffeur service for most vehicles,
-              including <span className="capitalize">{brandName}</span> models.
+              including <span className={styles.capitalize}>{brandName}</span> models.
               You can hire a trained driver for comfortable door-to-door
               service, airport transfers, or city tours. Let us know when you
               book if you'd like a chauffeur, and we'll arrange it.
@@ -688,13 +688,13 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
               What happens if the{" "}
-              <span className="capitalize">{brandName}</span> rental gets
+              <span className={styles.capitalize}>{brandName}</span> rental gets
               damaged or scratched?
             </h3>
             <p className={styles.answer}>
               Upon any accident (even a minor scratch), you need to inspect the
               vehicle and file a police report right away. If the{" "}
-              <span className="capitalize">{brandName}</span> comes back with
+              <span className={styles.capitalize}>{brandName}</span> comes back with
               scratches, dents, or traffic citations that weren't handled on the
               spot, we will charge for the cost of repairs or fines. However,
               rest assured that we'll always provide proof (photos or invoices)
@@ -706,13 +706,13 @@ export const FAQSection: React.FC<Props> = ({ brandName }) => {
           <div className={styles.faqCard}>
             <h3 className={styles.question}>
               Do you offer long-term rental rates for{" "}
-              <span className="capitalize">{brandName}</span> vehicles?
+              <span className={styles.capitalize}>{brandName}</span> vehicles?
             </h3>
             <p className={styles.answer}>
               Yes, we do offer long-term rental for our vehicles, including{" "}
-              <span className="capitalize">{brandName}s</span>. We have special
+              <span className={styles.capitalize}>{brandName}s</span>. We have special
               discounted rates for long-term rentals. Whether you need an{" "}
-              <span className="capitalize">{brandName}</span> for a week or a
+              <span className={styles.capitalize}>{brandName}</span> for a week or a
               month, just let us know and we'll give you a personalized quote
               for a more cost-effective hire.
             </p>
@@ -740,25 +740,25 @@ export const BrandDescription: React.FC<Props> = ({ brandName, cars = [] }) => {
           <div className={styles.headerWrapper}>
             <div className={styles.textContent}>
               <p>
-                Rent an <span className="capitalize">{brandName}</span> in Dubai
+                Rent an <span className={styles.capitalize}>{brandName}</span> in Dubai
                 to experience the effortless fusion of{" "}
                 <span className={styles.highlight}>
                   groundbreaking automotive technology
                 </span>{" "}
                 and sophistication on the city's grandest stage. Let the{" "}
-                <span className="capitalize">{brandName}</span> represent you
+                <span className={styles.capitalize}>{brandName}</span> represent you
                 and your ambition amongst Dubai's elite circles. Relish a
                 progressive, intelligent luxury, serving your ultimate travel
                 goal with confident and executive presence.
               </p>
               <p>
-                Top-tier <span className="capitalize">{brandName}</span>{" "}
+                Top-tier <span className={styles.capitalize}>{brandName}</span>{" "}
                 selections instantly elevate your Dubai travel. You are
                 guaranteed{" "}
                 <span className={styles.highlight}>seamless booking</span> and
                 stress-free logistics. Get your{" "}
                 <span className={styles.highlight}>
-                  <span className="capitalize">{brandName}</span> rentals in
+                  <span className={styles.capitalize}>{brandName}</span> rentals in
                   Dubai
                 </span>{" "}
                 delivered to your doorstep—be it at your hotel, office, or the
@@ -769,15 +769,15 @@ export const BrandDescription: React.FC<Props> = ({ brandName, cars = [] }) => {
 
           <div className={styles.headerWrapper}>
             <h2 className={styles.sectionTitle}>
-              Why Rent a <span className="capitalize">{brandName}</span> in
+              Why Rent a <span className={styles.capitalize}>{brandName}</span> in
               Dubai
             </h2>
             <p className={styles.sectionSubtitle}>
               In a city defined by high performance and luxury,{" "}
-              <span className="capitalize">{brandName}</span> perfectly matches
+              <span className={styles.capitalize}>{brandName}</span> perfectly matches
               this executive standard. Stop settling for ordinary transport and
               elevate your entire Dubai experience with a{" "}
-              <span className="capitalize">{brandName}</span>.
+              <span className={styles.capitalize}>{brandName}</span>.
             </p>
 
             <div className={styles.featuresGrid}>
@@ -786,7 +786,7 @@ export const BrandDescription: React.FC<Props> = ({ brandName, cars = [] }) => {
                   Unmatched Versatility for Every Journey
                 </h3>
                 <p className={styles.cardText}>
-                  <span className="capitalize">{brandName}</span> doesn't limit
+                  <span className={styles.capitalize}>{brandName}</span> doesn't limit
                   you to one type of vehicle. This prestige brand flaunts a{" "}
                   <span className={styles.highlight}>versatile fleet</span>{" "}
                   offering everything from{" "}

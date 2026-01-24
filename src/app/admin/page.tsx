@@ -16,7 +16,7 @@ async function getCars() {
       .select("name brand type carId pricing applyDiscount createdAt images year transmission fuel seats")
       .limit(100)
       .lean();
-    
+
     return JSON.parse(JSON.stringify(totalCars));
   } catch (error) {
     console.error("Error fetching cars:", error);
@@ -30,7 +30,7 @@ export default async function AdminDashboardPage() {
   const userEmail = user.emailAddresses[0].emailAddress;
   if (userEmail !== ADMIN_EMAIL) {
     return (
-      <div className="flex h-screen items-center justify-center text-red-500 font-bold text-xl">
+      <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center', color: '#ef4444', fontWeight: 'bold', fontSize: '1.25rem' }}>
         Access Denied: You are not an admin.
       </div>
     );

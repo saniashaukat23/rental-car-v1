@@ -72,29 +72,24 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
 
   return (
     <div className={styles.dropdownContainer}>
-      <div className="w-full">
+      <div className={styles.fullWidth}>
         <label className={styles.dropdownLabel}>{label}</label>
         <button
           type="button"
           className={styles.dropdownButton}
           onClick={onToggle}
         >
-          <div className="flex items-center gap-2">
-            {Icon && <Icon className="h-4 w-4 text-orange-400" />}
+          <div className={styles.flexItemsGap}>
+            {Icon && <Icon className={`${styles.iconSmall} ${styles.iconOrange}`} />}
             <span
-              className={`truncate ${
-                currentSelectionLabel ? "text-white" : "text-white/60"
-              }`}
+              className={`${styles.truncate} ${currentSelectionLabel ? styles.textWhite : styles.textWhiteMuted
+                }`}
             >
               {currentSelectionLabel || placeholder}
             </span>
           </div>
           <ChevronDown
-            className="h-4 w-4 text-white/60"
-            style={{
-              transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 0.3s ease",
-            }}
+            className={`${styles.chevronIcon} ${isOpen ? styles.chevronOpen : styles.chevronClosed}`}
           />
         </button>
       </div>
@@ -111,9 +106,9 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
               }}
             >
               {option.value === selectedValue ? (
-                <Check className="h-4 w-4 text-orange-500" />
+                <Check className={`${styles.iconSmall} ${styles.iconOrangePrimary}`} />
               ) : (
-                <div className="h-4 w-4" />
+                <div className={styles.iconPlaceholder} />
               )}
               <span>{option.label}</span>
             </button>
@@ -203,9 +198,9 @@ const FilterBox: React.FC = () => {
           onSelect={(val) => handleSelect("engineType", val)}
         />
 
-        <div className="flex justify-center md:justify-end">
+        <div className={styles.searchButtonWrapper}>
           <button className={styles.searchButton} onClick={handleSearch}>
-            <Search className="h-5 w-5 text-white" />
+            <Search className={styles.searchIcon} />
           </button>
         </div>
       </div>

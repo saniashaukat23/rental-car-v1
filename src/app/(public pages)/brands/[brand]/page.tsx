@@ -18,14 +18,16 @@ type PageProps = {
 
 export default function BrandCarsPage({ params }: PageProps) {
   const { brand } = use(params);
-  const brandSlug = brand.toLowerCase();
-  const brandDisplayName = brandSlug
+
+  // Normalize brand name for API query
+  // Convert URL slug (e.g., "rolls-royce") to proper brand name (e.g., "Rolls Royce")
+  const brandDisplayName = brand
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 
-  // Fetch cars by brand using React Query
-  const { data: cars = [], isLoading: loading } = useCars({ brand });
+  // Fetch cars by brand using the display name (API uses case-insensitive regex)
+  const { data: cars = [], isLoading: loading } = useCars({ brand: brandDisplayName });
 
   // --- ANIMATION ON SCROLL ---
   const underlineRef = useRef<HTMLDivElement>(null);
@@ -74,9 +76,9 @@ export default function BrandCarsPage({ params }: PageProps) {
   // --- LOADING STATE ---
   if (loading) {
     return (
-      <div className="h-screen flex flex-col items-center justify-center bg-white">
-        <div className="w-12 h-12 border-4 border-gray-100 border-t-orange-500 rounded-full animate-spin mb-6"></div>
-        <p className="text-gray-400 text-sm tracking-widest uppercase animate-pulse">
+      <div className={styles.loadingContainer}>
+        <div className={styles.spinner}></div>
+        <p className={styles.loadingText}>
           Locating {brandDisplayName} Fleet...
         </p>
       </div>
@@ -113,11 +115,11 @@ export default function BrandCarsPage({ params }: PageProps) {
         {/* Overlay: Logo */}
         <div className={`${styles.badgeGlass} ${styles.logoBadge}`}>
           <Image
-            src={`/images/carLogos/${brandSlug}.webp`}
+            src={`/images/carLogos/${brand}.webp`}
             width={60}
             height={60}
             alt={`${brandDisplayName} Logo`}
-            className="w-10 h-10 lg:w-[60px] lg:h-[60px] object-contain"
+            className={styles.logoImageSize}
             onError={(e) => (e.currentTarget.style.display = "none")}
           />
         </div>
@@ -173,10 +175,10 @@ export default function BrandCarsPage({ params }: PageProps) {
         </div>
 
         {/* --- SEO TEXT SECTION --- */}
-        <section className="py-16">
-          <div className="text-center mb-12">
+        <section className={styles.py16}>
+          <div className={`${styles.textCenter} ${styles.mb12}`}>
             <div className={styles.textBlock}>
-              <p className="mb-4">
+              <p className={styles.mb4}>
                 Rent a{" "}
                 <span className={styles.highlight}>{brandDisplayName}</span> in
                 Dubai to experience the effortless fusion of groundbreaking
@@ -197,7 +199,7 @@ export default function BrandCarsPage({ params }: PageProps) {
         </section>
 
         {/* --- BENEFITS GRID --- */}
-        <section className="mb-16">
+        <section className={styles.mb16}>
           <h2 className={styles.sectionTitle}>
             Why Rent a {brandDisplayName}?
           </h2>
@@ -287,7 +289,7 @@ export default function BrandCarsPage({ params }: PageProps) {
               <div className={styles.stepIconBox}>
                 <Car className={styles.stepIcon} />
               </div>
-              <div className="text-left">
+              <div className={styles.textLeft}>
                 <p className={styles.stepNumber}>Step 1</p>
                 <p className={styles.stepTitle}>Select Your Masterpiece</p>
                 <p className={styles.stepText}>
@@ -299,7 +301,7 @@ export default function BrandCarsPage({ params }: PageProps) {
               <div className={styles.stepIconBox}>
                 <MessageCircle className={styles.stepIcon} />
               </div>
-              <div className="text-left">
+              <div className={styles.textLeft}>
                 <p className={styles.stepNumber}>Step 2</p>
                 <p className={styles.stepTitle}>Contact Us</p>
                 <p className={styles.stepText}>
@@ -311,7 +313,7 @@ export default function BrandCarsPage({ params }: PageProps) {
               <div className={styles.stepIconBox}>
                 <Truck className={styles.stepIcon} />
               </div>
-              <div className="text-left">
+              <div className={styles.textLeft}>
                 <p className={styles.stepNumber}>Step 3</p>
                 <p className={styles.stepTitle}>Receive & Drive</p>
                 <p className={styles.stepText}>
@@ -336,27 +338,27 @@ export default function BrandCarsPage({ params }: PageProps) {
         </section>
 
         {/* --- FAQ SECTION --- */}
-        <section className="max-w-4xl mx-auto">
+        <section className={`${styles.maxW4xl} ${styles.mxAuto}`}>
           <h2 className={styles.sectionTitle}>FAQs</h2>
-          <div className="space-y-4">
+          <div className={styles.spaceY4}>
             <div className={styles.faqItem}>
-              <h3 className="font-bold mb-2">
+              <h3 className={`${styles.fontBold} ${styles.mb2}`}>
                 Requirements to rent a {brandDisplayName}?
               </h3>
-              <p className="text-sm text-gray-600">
+              <p className={`${styles.textSm} ${styles.textGray600}`}>
                 Valid Passport, Visa Copy, Home Country License, and IDP (if
                 applicable). Residents need Emirates ID and UAE License.
               </p>
             </div>
             <div className={styles.faqItem}>
               <h3 className="font-bold mb-2">Is insurance included?</h3>
-              <p className="text-sm text-gray-600">
+              <p className={`${styles.textSm} ${styles.textGray600}`}>
                 Yes, basic comprehensive insurance is included.
               </p>
             </div>
             <div className={styles.faqItem}>
-              <h3 className="font-bold mb-2">Mileage limits?</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className={`${styles.fontBold} ${styles.mb2}`}>Mileage limits?</h3>
+              <p className={`${styles.textSm} ${styles.textGray600}`}>
                 Standard limit is 250km/day. Excess mileage is charged per km.
               </p>
             </div>

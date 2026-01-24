@@ -77,10 +77,12 @@
   max-width: 1100px;
   margin: 0 auto 40px auto;
 }
+
 .methodCard:hover .methodDescription {
   opacity: 1;
   pointer-events: auto;
 }
+
 /* 1. Set the initial state for smooth transition */
 
 .methodCard {
@@ -119,8 +121,10 @@
 }
 
 .bottomBadge {
-  height: 0.3rem; /* Slightly thinner for a cleaner look */
-  width: 3.5rem; /* w-12 equivalent from your earlier code */
+  height: 0.3rem;
+  /* Slightly thinner for a cleaner look */
+  width: 3.5rem;
+  /* w-12 equivalent from your earlier code */
   background: linear-gradient(to right, #2563eb, #16a34a);
   border-radius: 99px;
   opacity: 0;
@@ -128,9 +132,11 @@
   position: absolute;
   bottom: 20px;
 }
+
 .methodCard:hover .bottomBadge {
   opacity: 1;
 }
+
 .methodImg {
   /* Keep your existing margins */
   margin: 0px 18px 12px 18px;
@@ -215,6 +221,7 @@
   color: #6b7280;
   line-height: 1.5;
 }
+
 .glowOrb {
   display: none;
   position: absolute;
@@ -223,9 +230,11 @@
   pointer-events: none;
   z-index: 2;
 }
+
 .methodCard:hover .glowOrb {
   opacity: 1;
 }
+
 .description {
   margin-bottom: 4rem;
   font-size: 1.125rem;
@@ -233,6 +242,7 @@
   color: rgb(107 114 128);
   font-weight: 400;
 }
+
 .midBar {
   display: inline-flex;
   align-items: center;
@@ -242,15 +252,18 @@
   box-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)),
     0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
 }
+
 .LockIcon {
   height: 1.25rem;
   width: 1.25rem;
   color: oklch(62.7% 0.194 149.214);
 }
+
 .midBar p {
   color: rgb(107 114 128);
   font-weight: 500;
 }
+
 .midBar p span {
   color: oklch(62.7% 0.194 149.214);
   font-weight: 600;
@@ -268,7 +281,8 @@
   /* Default: 1 column for small screens/tablets */
   grid-template-columns: 1fr;
   gap: 2rem;
-  padding: 0 1rem; /* Added padding so it doesn't touch screen edges on mobile */
+  padding: 0 1rem;
+  /* Added padding so it doesn't touch screen edges on mobile */
 }
 
 .innerTrustGrid {
@@ -283,49 +297,64 @@
   .glowOrb {
     display: flex;
   }
+
   .trustGrid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 .iconWrapper {
-  width: 4rem; /* w-16 */
-  height: 4rem; /* h-16 */
-  border-radius: 9999px; /* rounded-full */
+  width: 4rem;
+  /* w-16 */
+  height: 4rem;
+  /* h-16 */
+  border-radius: 9999px;
+  /* rounded-full */
   display: flex;
   align-items: center;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 1rem; /* mb-4 */
+  margin-bottom: 1rem;
+  /* mb-4 */
 }
+
 .trustIcons {
   height: 1.5rem;
   width: 1.5rem;
 }
+
 .trustTitle {
-  font-weight: 600; /* font-semibold */
-  font-size: 1.125rem; /* text-lg */
-  margin-bottom: 0.5rem; /* mb-2 */
+  font-weight: 600;
+  /* font-semibold */
+  font-size: 1.125rem;
+  /* text-lg */
+  margin-bottom: 0.5rem;
+  /* mb-2 */
 }
 
 .trustDesc {
-  color: #4b5563; /* text-gray-600 */
-  font-size: 0.875rem; /* text-sm */
+  color: #4b5563;
+  /* text-gray-600 */
+  font-size: 0.875rem;
+  /* text-sm */
 }
 
 /* Color Variations */
 @media (max-width: 768px) {
   .container {
-    padding: 40px 15px; /* Less padding on mobile */
+    padding: 40px 15px;
+    /* Less padding on mobile */
   }
 
   .mainTitle {
-    font-size: 1.8rem; /* Scale down heading for mobile */
+    font-size: 1.8rem;
+    /* Scale down heading for mobile */
   }
 
   .topBadge {
-    width: auto; /* Don't force 22% on narrow screens */
+    width: auto;
+    /* Don't force 22% on narrow screens */
     display: inline-flex;
   }
 
@@ -336,9 +365,73 @@
   }
 
   .midBar {
-    width: 90%; /* Let it breathe on mobile */
+    width: 90%;
+    /* Let it breathe on mobile */
     justify-content: center;
     padding: 0.75rem 1rem;
     font-size: 0.85rem;
   }
+}
+
+/* Utility Classes */
+.glowOrbBottom {
+  bottom: 1.25rem;
+}
+
+.blur2xl {
+  filter: blur(40px);
+}
+
+.opacity0 {
+  opacity: 0;
+}
+
+.h24 {
+  height: 6rem;
+}
+
+.w24 {
+  width: 6rem;
+}
+
+.h48 {
+  height: 12rem;
+}
+
+.w48 {
+  width: 12rem;
+}
+
+.leftCenter {
+  left: 55%;
+}
+
+.blur3xl {
+  filter: blur(64px);
+}
+
+/* Background Color Utilities */
+.bgBlue100 {
+  background-color: #dbeafe;
+}
+
+.bgGreen100 {
+  background-color: #dcfce7;
+}
+
+.bgPurple100 {
+  background-color: #f3e8ff;
+}
+
+/* Text Color Utilities */
+.textBlue600 {
+  color: #2563eb;
+}
+
+.textGreen600 {
+  color: #16a34a;
+}
+
+.textPurple600 {
+  color: #9333ea;
 }

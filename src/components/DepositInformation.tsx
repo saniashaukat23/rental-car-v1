@@ -14,15 +14,12 @@ import { PHONE_NUMBER_FORMATTED, WHATSAPP_URL, DEFAULT_INQUIRY_MESSAGE } from ".
 
 const SecurityDeposit: React.FC = () => {
   return (
-    <section className="pb-16 bg-[#f4f4f580] relative">
+    <section className={styles.sectionWrapper}>
       <SectionHeader
         title="Deposit & Security Policy"
         description="Understanding our transparent deposit and security procedures"
       />
-      <div
-        className={`${styles.glowOrb}`}
-        style={{ bottom: "0", left: "5%" }}
-      ></div>
+      <div className={`${styles.glowOrb} ${styles.glowOrbBottom}`}></div>
       <div className={styles.container}>
         <div className={styles.card}>
           <div className={styles.cardcorneraccent}></div>
@@ -113,7 +110,7 @@ const SecurityDeposit: React.FC = () => {
                 <p className={styles.supportInstruction}>
                   For deposit complaints or follow-up:
                 </p>
-                <a 
+                <a
                   href={WHATSAPP_URL(`Hi, I have a question about my security deposit. ${DEFAULT_INQUIRY_MESSAGE}`)}
                   target="_blank"
                   rel="noopener noreferrer"

@@ -3,52 +3,113 @@
 
 /* Animations */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-40px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes slideInRight {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(-25%); }
-  50% { transform: translateY(0); }
+
+  0%,
+  100% {
+    transform: translateY(-25%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
 }
 
 /* Base Page */
@@ -105,12 +166,10 @@
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.3) 0%,
-    rgba(0, 0, 0, 0.1) 40%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.1) 40%,
+      rgba(0, 0, 0, 0.5) 100%);
   pointer-events: none;
 }
 
@@ -299,9 +358,17 @@
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-.featureCard:nth-child(1) { animation-delay: 0.1s; }
-.featureCard:nth-child(2) { animation-delay: 0.2s; }
-.featureCard:nth-child(3) { animation-delay: 0.3s; }
+.featureCard:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.featureCard:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.featureCard:nth-child(3) {
+  animation-delay: 0.3s;
+}
 
 .featureCard::before {
   content: '';
@@ -375,7 +442,8 @@
 
 .table {
   width: 100%;
-  min-width: 500px; /* Ensures table doesn't collapse on mobile */
+  min-width: 500px;
+  /* Ensures table doesn't collapse on mobile */
   border-collapse: collapse;
 }
 
@@ -440,12 +508,12 @@
     position: relative;
   }
 
-  
+
   .table th {
     padding: 1rem 0.75rem;
     font-size: 0.75rem;
   }
-  
+
   .table td {
     padding: 1rem 0.75rem;
     font-size: 0.875rem;
@@ -475,9 +543,17 @@
   animation: slideInLeft 0.6s ease-out forwards;
 }
 
-.stepItem:nth-child(1) { animation-delay: 0.1s; }
-.stepItem:nth-child(2) { animation-delay: 0.2s; }
-.stepItem:nth-child(3) { animation-delay: 0.3s; }
+.stepItem:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stepItem:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stepItem:nth-child(3) {
+  animation-delay: 0.3s;
+}
 
 .stepItem:last-child {
   margin-bottom: 0;
@@ -639,9 +715,17 @@
   animation: fadeInUp 0.5s ease-out forwards;
 }
 
-.faqItem:nth-child(1) { animation-delay: 0.1s; }
-.faqItem:nth-child(2) { animation-delay: 0.15s; }
-.faqItem:nth-child(3) { animation-delay: 0.2s; }
+.faqItem:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.faqItem:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.faqItem:nth-child(3) {
+  animation-delay: 0.2s;
+}
 
 .faqItem:hover {
   border-color: #fed7aa;
@@ -741,9 +825,11 @@
   .carGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .ctaGroup {
     flex-direction: row;
   }
+
   .featuresGrid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -753,12 +839,15 @@
   .heroSection {
     height: 60vh;
   }
+
   .featuresGrid {
     grid-template-columns: repeat(3, 1fr);
   }
+
   .sectionTitle {
     font-size: 2.25rem;
   }
+
   .listingTitle {
     font-size: 2.75rem;
   }
@@ -768,37 +857,142 @@
   .heroSection {
     height: 70vh;
   }
+
   .heroContent {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     overflow: visible;
   }
+
   .heroImageWrapper {
     min-width: 0;
   }
+
   .logoBadge {
     top: 12%;
     left: 6%;
     padding: 1.25rem;
   }
+
   .countBadge {
     bottom: 20%;
     right: 4%;
     padding: 1.5rem 2rem;
   }
+
   .countNumber {
     font-size: 2.75rem;
   }
+
   .scrollIndicator {
     display: flex;
   }
+
   .carGrid {
     grid-template-columns: repeat(3, 1fr);
   }
+
   .container {
     padding: 5rem 2rem;
   }
+
   .ctaSection {
     padding: 5rem 3rem;
   }
+}
+
+/* Utility Classes */
+.loadingContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border-width: 4px;
+  border-color: #f3f4f6;
+  border-top-color: #f97316;
+  border-radius: 9999px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1.5rem;
+}
+
+.loadingText {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.logoImageSize {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .logoImageSize {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.fontBold {
+  font-weight: 700;
+}
+
+.mb2 {
+  margin-bottom: 0.5rem;
+}
+
+.textSm {
+  font-size: 0.875rem;
+}
+
+.textGray600 {
+  color: #4b5563;
+}
+
+.spaceY4>*+* {
+  margin-top: 1rem;
+}
+
+.maxW4xl {
+  max-width: 56rem;
+}
+
+.mxAuto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.py16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.mb16 {
+  margin-bottom: 4rem;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.mb12 {
+  margin-bottom: 3rem;
+}
+
+.mb4 {
+  margin-bottom: 1rem;
 }

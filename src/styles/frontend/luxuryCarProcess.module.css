@@ -1,6 +1,7 @@
 :root {
   --primary-orange: #f28d35;
-  --primary-soft: rgba(242, 141, 53, 0.17); /* #f983152b */
+  --primary-soft: rgba(242, 141, 53, 0.17);
+  /* #f983152b */
   --text-dark: #333;
   --text-gray: #666;
   --border-light: #eee;
@@ -28,11 +29,14 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 25px;
 }
+
 .secondaryicon {
-  color: rgba(249, 115, 22, 0.5); /* Faded orange to match your step numbers */
+  color: rgba(249, 115, 22, 0.5);
+  /* Faded orange to match your step numbers */
   position: relative;
   z-index: 1;
 }
+
 .processcard {
   background: white;
   border: 1px solid var(--border-light);
@@ -50,13 +54,14 @@
 
   /* hover:shadow-lg equivalent */
 }
+
 .processcard:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transform: translateY(
-    -4px
-  ); /* Optional: adds a slight lift effect often paired with shadows */
+  transform: translateY(-4px);
+  /* Optional: adds a slight lift effect often paired with shadows */
 }
+
 .processcard:hover {
   border: 2px solid var(--primary-orange);
 }
@@ -68,11 +73,9 @@
   right: 0;
   width: 6rem;
   height: 6rem;
-  background: linear-gradient(
-    to bottom right,
-    var(--primary-soft),
-    transparent
-  );
+  background: linear-gradient(to bottom right,
+      var(--primary-soft),
+      transparent);
   border-bottom-left-radius: 9999px;
   z-index: 0;
 }
@@ -81,7 +84,8 @@
 .cardheadertop {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* Aligns both sides to the very top */
+  align-items: flex-start;
+  /* Aligns both sides to the very top */
   margin-bottom: 1rem;
   position: relative;
   z-index: 1;
@@ -108,13 +112,16 @@
 .stepnumber {
   font-size: 3rem;
   font-weight: 700;
-  line-height: 1; /* Ensures no extra vertical space */
-  color: rgba(249, 115, 22, 0.2); /* Faded orange number */
+  line-height: 1;
+  /* Ensures no extra vertical space */
+  color: rgba(249, 115, 22, 0.2);
+  /* Faded orange number */
 }
 
 .searchicon {
   color: rgba(249, 115, 22, 0.2);
-  margin-top: 5px; /* Slight adjustment to match the visual center of the corner */
+  margin-top: 5px;
+  /* Slight adjustment to match the visual center of the corner */
 }
 
 .cardtitle {
@@ -169,6 +176,7 @@
     grid-template-columns: 1fr;
   }
 }
+
 .glowOrb {
   position: absolute;
   width: 12rem;
@@ -178,4 +186,25 @@
   filter: blur(80px);
   pointer-events: none;
   z-index: 0;
+}
+
+/* Utility Classes */
+.glowOrbBottomLeft {
+  bottom: -5rem;
+  left: 19%;
+}
+
+.glowOrbBottomRight {
+  bottom: -5rem;
+  right: 10%;
+}
+
+.hiddenMobile {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hiddenMobile {
+    display: flex;
+  }
 }

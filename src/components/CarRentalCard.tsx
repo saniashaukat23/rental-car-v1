@@ -47,9 +47,8 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
 
   return (
     <div
-      className={styles.card}
+      className={`${styles.card} ${styles.cursorPointer}`}
       onClick={handleCardClick}
-      style={{ cursor: "pointer" }}
     >
       <div className={styles.imageContainer}>
         {/* Discount Badge */}
@@ -120,16 +119,15 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
 
           <div className={styles.actions}>
             <button onClick={handleCall} className={styles.callButton}>
-              <FaPhoneAlt className="w-3 h-3 mr-2" />
+              <FaPhoneAlt className={styles.iconSmall} />
               <span className={styles.buttonTextHidden}>Call</span>
             </button>
 
             <a
               onClick={handleWhatsApp}
-              className={styles.whatsappButton}
-              style={{ textDecoration: "none" }}
+              className={`${styles.whatsappButton} ${styles.noTextDecoration}`}
             >
-              <IoLogoWhatsapp className="w-4 h-4 mr-2" />
+              <IoLogoWhatsapp className={styles.iconMedium} />
               <span className={styles.buttonTextHidden}>WhatsApp</span>
             </a>
           </div>

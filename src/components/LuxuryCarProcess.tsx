@@ -70,10 +70,10 @@ const LuxuryCarProcess: React.FC = () => {
   return (
     <section className={styles.processcontainer}>
       <div
-        className={`${styles.glowOrb} -bottom-20 left-[19%] lg:flex hidden`}
+        className={`${styles.glowOrb} ${styles.glowOrbBottomLeft} ${styles.hiddenMobile}`}
       ></div>
       <div
-        className={`${styles.glowOrb} -bottom-20 right-[10%] lg:flex hidden `}
+        className={`${styles.glowOrb} ${styles.glowOrbBottomRight} ${styles.hiddenMobile}`}
       ></div>
 
       <div className={styles.processgrid}>
@@ -84,9 +84,8 @@ const LuxuryCarProcess: React.FC = () => {
           return (
             <div
               key={step.number}
-              className={`${styles.processcard} ${
-                step.number === 2 ? styles.highlight : ""
-              }`}
+              className={`${styles.processcard} ${step.number === 2 ? styles.highlight : ""
+                }`}
             >
               <div className={styles.cardcorneraccent}></div>
 

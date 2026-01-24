@@ -29,14 +29,14 @@ const CTAButtons: React.FC<CTAButtonsProps> = ({
         rel="noopener noreferrer"
         className={`${styles.btn} ${styles.btnGreen} ${sizeClass}`}
       >
-        <MessageCircle className="w-4 h-4" />
+        <MessageCircle className={styles.iconSize} />
         {whatsappLabel}
       </a>
       <a
         href={PHONE_URL}
         className={`${styles.btn} ${styles.btnOutline} ${sizeClass}`}
       >
-        <Phone className="w-4 h-4" />
+        <Phone className={styles.iconSize} />
         {callLabel}
       </a>
     </div>

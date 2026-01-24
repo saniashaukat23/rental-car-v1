@@ -98,12 +98,12 @@ const ChauffeurService = () => {
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className={styles.benefitCard} style={{ animationDelay: `${index * 0.1}s` }}>
+                <div key={index} className={styles.benefitCard}>
                   <div className={styles.processIconBox}>
-                    <Icon className="w-6 h-6" />
+                    <Icon className={styles.iconMedium} />
                   </div>
                   <div>
-                    <h3 style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.25rem" }}>{feature.title}</h3>
+                    <h3 className={`${styles.fontSize1rem} ${styles.fontWeight600} ${styles.mb0_25rem}`}>{feature.title}</h3>
                     <p className={styles.textMuted}>{feature.description}</p>
                   </div>
                 </div>
@@ -121,13 +121,13 @@ const ChauffeurService = () => {
 
         {/* Fleet Link */}
         <section className={`${styles.sectionMargin} ${styles.textCenter}`}>
-          <h3 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: "1rem" }}>Our Premium Fleet</h3>
-          <p className={styles.sectionDesc} style={{ marginBottom: "2rem" }}>
+          <h3 className={`${styles.fontSize1_5rem} ${styles.fontWeight700} ${styles.mb1rem}`}>Our Premium Fleet</h3>
+          <p className={`${styles.sectionDesc} ${styles.mb2rem}`}>
             Travel in luxury with our carefully selected premium vehicles
           </p>
           <a className={`${styles.btn} ${styles.btnGreen}`} href="/cars">
             View All Vehicles
-            <Car className="w-4 h-4" style={{ marginLeft: "0.5rem" }} />
+            <Car className={`${styles.iconSize} ${styles.ml0_5rem}`} />
           </a>
         </section>
 
@@ -141,11 +141,11 @@ const ChauffeurService = () => {
             {popularServices.map((service, index) => {
               const Icon = service.icon;
               return (
-                <div key={index} className={styles.servicesCard} style={{ animationDelay: `${index * 0.1}s` }}>
+                <div key={index} className={styles.servicesCard}>
                   <div className={`${styles.processIconBox} ${styles.iconBoxCentered}`}>
-                    <Icon className="w-6 h-6" />
+                    <Icon className={styles.iconMedium} />
                   </div>
-                  <h3 style={{ fontWeight: 600, marginBottom: "0.5rem" }}>{service.title}</h3>
+                  <h3 className={`${styles.fontWeight600} ${styles.mb0_5rem}`}>{service.title}</h3>
                   <p className={styles.textMuted}>{service.description}</p>
                 </div>
               );
@@ -155,24 +155,24 @@ const ChauffeurService = () => {
 
         {/* Why Choose Section */}
         <section className={styles.whyChooseSection}>
-          <div style={{ maxWidth: "56rem", margin: "0 auto", textAlign: "center" }}>
-            <h2 className={styles.sectionTitle} style={{ marginBottom: "2rem" }}>
+          <div className={`${styles.maxW56rem} ${styles.mxAuto} ${styles.textCenter}`}>
+            <h2 className={`${styles.sectionTitle} ${styles.mb2rem}`}>
               Why Choose Our Chauffeur Service?
             </h2>
-            <div className={styles.checklistGrid} style={{ textAlign: "left" }}>
+            <div className={`${styles.checklistGrid} ${styles.textLeft}`}>
               <div>
                 {benefits.slice(0, 5).map((benefit, index) => (
                   <div key={index} className={styles.checklistItem}>
-                    <CheckCircle2 className={`${styles.checkIcon} w-5 h-5`} />
-                    <span style={{ fontSize: "0.875rem" }}>{benefit}</span>
+                    <CheckCircle2 className={`${styles.checkIcon} ${styles.iconSmall}`} />
+                    <span className={styles.fontSize0_875rem}>{benefit}</span>
                   </div>
                 ))}
               </div>
               <div>
                 {benefits.slice(5).map((benefit, index) => (
                   <div key={index} className={styles.checklistItem}>
-                    <CheckCircle2 className={`${styles.checkIcon} w-5 h-5`} />
-                    <span style={{ fontSize: "0.875rem" }}>{benefit}</span>
+                    <CheckCircle2 className={`${styles.checkIcon} ${styles.iconSmall}`} />
+                    <span className={styles.fontSize0_875rem}>{benefit}</span>
                   </div>
                 ))}
               </div>

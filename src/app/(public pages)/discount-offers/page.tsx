@@ -52,11 +52,11 @@ export default async function DiscountedCarsPage() {
           ) : (
             /* Empty State */
             <div className={styles.emptyState}>
-              <Tag className="w-12 h-12 text-slate-300 mb-4" />
-              <p className="text-slate-400 text-lg font-medium">
+              <Tag className={`${styles.iconLarge} ${styles.textSlate300} ${styles.mb4}`} />
+              <p className={`${styles.textSlate400} ${styles.textLg} ${styles.fontMedium}`}>
                 No discounted cars available at the moment.
               </p>
-              <p className="text-slate-400 text-sm mt-1">
+              <p className={`${styles.textSlate400} ${styles.textSm} ${styles.mt1}`}>
                 Check back later for exclusive deals!
               </p>
             </div>
@@ -73,7 +73,7 @@ export default async function DiscountedCarsPage() {
           <p className={styles.ctaText}>
             These special discounts are available for a limited time only. Book
             now to experience{" "}
-            <span className="text-orange-500 font-semibold">
+            <span className={`${styles.textOrange500} ${styles.fontSemibold}`}>
               luxury at unbeatable prices
             </span>
             .
@@ -85,14 +85,14 @@ export default async function DiscountedCarsPage() {
               rel="noopener noreferrer"
               className={`${styles.ctaBtn} ${styles.ctaBtnPrimary}`}
             >
-              <MessageCircle className="w-5 h-5" />
+              <MessageCircle className={styles.iconMedium} />
               WhatsApp Us
             </a>
             <a
               href="tel:971582947143"
               className={`${styles.ctaBtn} ${styles.ctaBtnSecondary}`}
             >
-              <Phone className="w-5 h-5" />
+              <Phone className={styles.iconMedium} />
               Call Us Now
             </a>
           </div>

@@ -82,6 +82,7 @@
     opacity: 0;
     transform: translateY(-5px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -152,4 +153,83 @@
     max-width: 900px;
     padding: var(--space-6) var(--space-8);
   }
+}
+
+/* Utility Classes */
+.fullWidth {
+  width: 100%;
+}
+
+.flexItemsGap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.iconSmall {
+  height: 1rem;
+  width: 1rem;
+}
+
+.iconOrange {
+  color: #fb923c;
+}
+
+.iconWhite {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.iconOrangePrimary {
+  color: #f97316;
+}
+
+.textWhite {
+  color: white;
+}
+
+.textWhiteMuted {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chevronIcon {
+  height: 1rem;
+  width: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.chevronClosed {
+  transform: rotate(0deg);
+}
+
+.iconPlaceholder {
+  height: 1rem;
+  width: 1rem;
+}
+
+.searchButtonWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .searchButtonWrapper {
+    justify-content: flex-end;
+  }
+}
+
+.searchIcon {
+  height: 1.25rem;
+  width: 1.25rem;
+  color: white;
 }

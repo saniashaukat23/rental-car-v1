@@ -158,7 +158,7 @@ function FleetContent() {
           onClick={() => setShowMobileFilters(false)}
         />
 
-        <div className="flex gap-8 relative">
+        <div className={styles.flexGap8}>
           {/* ---------------- FILTER SIDEBAR CONTAINER ---------------- */}
           {/* We wrap all asides in this container for the Mobile Drawer logic */}
           <div
@@ -184,7 +184,7 @@ function FleetContent() {
                       }`}
                     onClick={() => setSelectedBrand(null)}
                   >
-                    <span className="font-semibold">All Brands</span>
+                    <span className={styles.fontSemibold}>All Brands</span>
                     <span className={styles.countBadge}>{allCars.length}</span>
                   </div>
 
@@ -201,15 +201,15 @@ function FleetContent() {
                         )
                       }
                     >
-                      <div className="flex gap-1 items-center justify-center">
+                      <div className={`${styles.flexGap1} ${styles.itemsCenter} ${styles.justifyCenter}`}>
                         <Image
                           src={getBrandImagePath(brand)}
                           alt={brand}
                           height={20}
                           width={20}
-                          className="object-contain"
+                          className={styles.objectContain}
                         />
-                        <span className="capitalize">{brand}</span>
+                        <span className={styles.capitalize}>{brand}</span>
                       </div>
                       <span className={styles.countBadge}>
                         {getCount("brand", brand)}
@@ -234,7 +234,7 @@ function FleetContent() {
                         handleFilterClick(setSelectedType, selectedType, type)
                       }
                     >
-                      <span className="capitalize">{type}</span>
+                      <span className={styles.capitalize}>{type}</span>
                       <span className={styles.countBadge}>
                         {getCount("type", type)}
                       </span>
@@ -330,8 +330,7 @@ function FleetContent() {
                 <h3>No cars match your filters</h3>
                 <button
                   onClick={resetFilters}
-                  className={styles.resetBtn}
-                  style={{ width: "auto", marginTop: "1rem" }}
+                  className={`${styles.resetBtn} ${styles.resetBtnInline}`}
                 >
                   Reset Filters
                 </button>
@@ -346,13 +345,13 @@ function FleetContent() {
 
                 {/* --- Pagination Controls --- */}
                 {totalPages > 1 && (
-                  <div className="flex justify-center items-center gap-2 mt-8 mb-4">
+                  <div className={styles.paginationContainer}>
                     <button
                       onClick={() => paginate(currentPage - 1)}
                       disabled={currentPage === 1}
-                      className={`p-2 rounded-md border ${currentPage === 1
-                        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                        : "bg-white text-gray-700 hover:bg-gray-50 border-gray-300"
+                      className={`${styles.paginationButton} ${currentPage === 1
+                          ? styles.paginationButtonDisabled
+                          : styles.paginationButtonEnabled
                         }`}
                     >
                       <FaChevronLeft size={14} />
@@ -363,9 +362,9 @@ function FleetContent() {
                         <button
                           key={number}
                           onClick={() => paginate(number)}
-                          className={`w-8 h-8 rounded-md flex items-center justify-center text-sm font-medium transition-colors ${currentPage === number
-                            ? "bg-orange-500 text-white"
-                            : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300"
+                          className={`${styles.pageNumber} ${currentPage === number
+                              ? styles.pageNumberActive
+                              : styles.pageNumberInactive
                             }`}
                         >
                           {number}
@@ -376,9 +375,9 @@ function FleetContent() {
                     <button
                       onClick={() => paginate(currentPage + 1)}
                       disabled={currentPage === totalPages}
-                      className={`p-2 rounded-md border ${currentPage === totalPages
-                        ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                        : "bg-white text-gray-700 hover:bg-gray-50 border-gray-300"
+                      className={`${styles.paginationButton} ${currentPage === totalPages
+                          ? styles.paginationButtonDisabled
+                          : styles.paginationButtonEnabled
                         }`}
                     >
                       <FaChevronRight size={14} />

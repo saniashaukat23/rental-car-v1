@@ -39,9 +39,9 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
 
   if (!car) {
     return (
-      <div className={styles.container} style={{ textAlign: "center", minHeight: "50vh", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-        <h2 style={{ fontSize: "1.25rem", fontWeight: "bold" }}>Car not found</h2>
-        <Link href="/cars" style={{ marginTop: "1rem", padding: "0.5rem 1.5rem", background: "#000", color: "#fff", borderRadius: "0.25rem" }}>
+      <div className={`${styles.container} ${styles.errorContainer}`}>
+        <h2 className={styles.errorTitle}>Car not found</h2>
+        <Link href="/cars" className={styles.errorLink}>
           Back to Fleet
         </Link>
       </div>
@@ -64,11 +64,11 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
         </nav>
 
         {/* Header Section */}
-        <div style={{ marginBottom: "1.5rem" }}>
+        <div className={styles.headerSection}>
           <h1 className={styles.headerTitle}>{car.name} {car.year}</h1>
           <div className={styles.badgesWrapper}>
             <div className={styles.badge}>
-              <Car size={16} className="text-blue-600" style={{ color: "#2563eb" }} />
+              <Car size={16} className={styles.iconBlue} />
               <span className={styles.badgeText}>{car.type}</span>
             </div>
             <div className={styles.badge}>
@@ -96,7 +96,7 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
                 <h3 className={styles.pricingTitle}>Pricing</h3>
                 <div className={styles.brandLogoBox}>
                   {car.brand && (
-                    <Image src={`/images/carLogos/${car.brand}.webp`} alt={car.brand} fill style={{ objectFit: "contain", padding: "4px" }} />
+                    <Image src={`/images/carLogos/${car.brand}.webp`} alt={car.brand} fill className={styles.brandLogoImage} />
                   )}
                 </div>
               </div>
@@ -164,7 +164,7 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
                     <div className={styles.checkCircle}>
                       <Check size={14} />
                     </div>
-                    <span style={{ fontSize: "0.875rem", color: "#374151" }}>{feature}</span>
+                    <span className={styles.includedText}>{feature}</span>
                   </div>
                 ))}
               </div>
@@ -175,13 +175,13 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
               <div className={styles.card}>
                 <h2 className={styles.cardTitle}>About this car</h2>
                 <div className={styles.titleDivider}></div>
-                <p style={{ color: "#4b5563", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>{car.about}</p>
+                <p className={styles.aboutText}>{car.about}</p>
               </div>
             )}
 
             {/* Rental Information */}
             <div className={styles.rentalCard}>
-              <h2 className={styles.cardTitle} style={{ marginBottom: "1.5rem" }}>Rental Information</h2>
+              <h2 className={`${styles.cardTitle} ${styles.rentalTitleSpacing}`}>Rental Information</h2>
               <div className={styles.rentalGrid}>
                 <RentalItem
                   icon={<MapPin />}
@@ -210,11 +210,11 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
           {/* Right Column: FAQ (Sticky) */}
           <div className={styles.faqSection}>
             <div className={styles.stickyWrapper}>
-              <h2 className={styles.cardTitle} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                <MessageCircle size={20} className="text-blue-600" style={{ color: "#2563eb" }} />
+              <h2 className={`${styles.cardTitle} ${styles.faqTitleFlex}`}>
+                <MessageCircle size={20} className={styles.iconBlue} />
                 FAQ
               </h2>
-              <div style={{ marginTop: "1rem" }}>
+              <div className={styles.faqContainer}>
                 <FAQItem question="What type of car is this?" answer={`This is a ${car.year} ${car.name}, categorized as a ${car.type}.`} />
                 <FAQItem question="How many people can it seat?" answer={`This vehicle comfortably seats ${car.seats || 5} passengers with ${car.doors || 4} doors.`} />
                 <FAQItem question="Is insurance included?" answer={car.rentalInfo?.insurance || "Basic insurance is included in the rental price."} />
@@ -258,7 +258,7 @@ const PriceRow = ({ label, price, original, currency = "AED", discountTag }: any
   <div className={styles.priceRow}>
     <div className={styles.priceFlex}>
       <span className={styles.priceLabel}>{label}</span>
-      <div style={{ textAlign: "right" }}>
+      <div className={styles.textRight}>
         {original && <span className={styles.strikethrough}>{currency} {original.toLocaleString()}</span>}
         <span className={styles.priceAmount}>{currency} {Math.floor(price).toLocaleString()}</span>
         {discountTag && <span className={styles.discountTag}>{discountTag}</span>}
@@ -282,13 +282,13 @@ const FeatureItem = ({ icon, label }: any) => (
 );
 
 const RentalItem = ({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) => (
-  <div style={{ display: "flex", gap: "1rem" }}>
-    <div style={{ color: "#2563eb", marginTop: "0.25rem" }}>
+  <div className={styles.rentalItemWrapper}>
+    <div className={styles.rentalItemIcon}>
       {React.isValidElement(icon) && React.cloneElement(icon, { size: 20 } as any)}
     </div>
-    <div style={{ minWidth: 0 }}>
-      <p style={{ fontWeight: 500, marginBottom: "0.25rem", color: "#111827" }}>{title}</p>
-      <p style={{ fontSize: "0.875rem", color: "#4b5563", wordBreak: "break-word" }}>{desc}</p>
+    <div className={styles.rentalItemContent}>
+      <p className={styles.rentalItemTitle}>{title}</p>
+      <p className={styles.rentalItemDesc}>{desc}</p>
     </div>
   </div>
 );

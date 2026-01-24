@@ -21,7 +21,7 @@ interface BrandItem {
 const DropdownArrow = () => (
   <ChevronDown
     size={14}
-    className={`${styles.dropdownArrow} ml-1 group-hover:text-amber-600`}
+    className={styles.dropdownArrow}
   />
 );
 
@@ -138,7 +138,7 @@ export default function Navbar() {
       <nav className={styles.navContainer}>
         <div className={styles.navWrapper}>
           <Link href={"/"}>
-            <div className="flex items-center">
+            <div className={styles.flexItemsCenter}>
               <Image
                 src="/images/logo.jpeg"
                 width={140}
@@ -148,7 +148,7 @@ export default function Navbar() {
               />
             </div>
           </Link>
-          <div className={`${styles.linksGroup} ${styles.desktopLinks} flex`}>
+          <div className={`${styles.linksGroup} ${styles.desktopLinks} ${styles.flex}`}>
             {menuItems.map((item, idx) => (
               <Link
                 key={idx}
@@ -171,16 +171,10 @@ export default function Navbar() {
           </button>
         </div>
         <div
-          className={`${styles.mobileMenu} ${
-            mobileMenuOpen ? styles.open : ""
-          } fixed left-0 right-0 bottom-0 bg-white z-50`}
-          style={{
-            height: "calc(100vh - 80px)",
-            overflowY: "auto",
-            overscrollBehavior: "contain",
-          }}
+          className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.open : ""
+            } ${styles.mobileMenuContainer} ${styles.mobileMenuScroll}`}
         >
-          <div className="pb-20">
+          <div className={styles.mobilePaddingBottom}>
             {menuItems.map((item, idx) => {
               const isBrands = item.label === "Brands";
               const isCategory = item.label === "Category";
@@ -190,24 +184,23 @@ export default function Navbar() {
               const displayList = isBrands
                 ? brands
                 : isCategory
-                ? category
-                : [];
+                  ? category
+                  : [];
 
               return (
                 <div
                   key={idx}
-                  className="flex flex-col border-b border-gray-100 last:border-0"
+                  className={`${styles.flexCol} ${styles.borderBottom} ${styles.lastNoBorder}`}
                 >
                   <Link
                     href={item.href}
-                    className={`${
-                      item.isSpecial
+                    className={`${item.isSpecial
                         ? `${styles.mobileLink} ${styles.navLinkSpecial}`
                         : styles.mobileLink
-                    } flex justify-between items-center w-full px-4 py-3`}
+                      } ${styles.flexJustifyBetween} ${styles.fullWidth} ${styles.px4} ${styles.py3}`}
                     onClick={(e) => handleMobileLinkClick(e, item)}
                   >
-                    <span className="flex items-center gap-2">
+                    <span className={styles.flexGap2}>
                       {item.label}
                       {item.isSpecial && (
                         <span className={styles.badge}>%</span>
@@ -221,8 +214,8 @@ export default function Navbar() {
                       ))}
                   </Link>
                   {item.hasDropdown && isExpanded && (
-                    <div className="bg-gray-50 p-4 border-t border-gray-200 shadow-inner">
-                      <div className="grid grid-cols-2 gap-4">
+                    <div className={`${styles.bgGray50} ${styles.p4} ${styles.borderTop} ${styles.shadowInner}`}>
+                      <div className={styles.gridCols2}>
                         {displayList.map((subItem, subIdx) => {
                           const linkHref = isBrands
                             ? `/brands/${subItem.name}`
@@ -236,17 +229,17 @@ export default function Navbar() {
                                 setMobileBrandsOpen(false);
                                 setMobileCategoryOpen(false);
                               }}
-                              className="flex flex-col items-center justify-center p-3 bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow"
+                              className={styles.subItemLink}
                             >
-                              <div className="relative w-12 h-12 mb-2">
+                              <div className={styles.relativeImageContainer}>
                                 <Image
                                   src={subItem.logo}
                                   alt={subItem.name}
                                   fill
-                                  className="object-contain"
+                                  className={styles.objectContain}
                                 />
                               </div>
-                              <span className="text-xs font-medium text-center text-gray-700">
+                              <span className={`${styles.textXs} ${styles.fontMedium} ${styles.textCenter} ${styles.textGray700}`}>
                                 {subItem.name}
                               </span>
                             </Link>

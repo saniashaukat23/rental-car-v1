@@ -1,13 +1,8 @@
-
-
-
-
-
-
 .active {
   background: white;
   transform: scale(1.2);
 }
+
 /* src/styles/frontend/ImageHoverCarousel.module.css */
 
 .wrapper {
@@ -32,15 +27,19 @@
 /* --- Pagination Styles (Matching CarCardsSection/Swiper) --- */
 .dots {
   position: absolute;
-  bottom: 12px; /* Position at bottom */
+  bottom: 12px;
+  /* Position at bottom */
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: center; /* Center align horizontally */
+  justify-content: center;
+  /* Center align horizontally */
   align-items: center;
-  gap: 8px; /* Space between dots */
+  gap: 8px;
+  /* Space between dots */
   z-index: 10;
-  pointer-events: none; /* Allow clicks to pass through empty space */
+  pointer-events: none;
+  /* Allow clicks to pass through empty space */
 }
 
 .dot {
@@ -48,15 +47,17 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2); /* Inactive color (light grey transparent) */
+  background: rgba(0, 0, 0, 0.2);
+  /* Inactive color (light grey transparent) */
   cursor: pointer;
-  pointer-events: auto; /* Enable clicking on dots */
+  pointer-events: auto;
+  /* Enable clicking on dots */
   transition: all 0.3s ease;
 }
 
 /* Active State - Matches standard Swiper active blue */
 .active {
-  background: #007aff; 
+  background: #007aff;
   opacity: 1;
   transform: scale(1.1);
 }

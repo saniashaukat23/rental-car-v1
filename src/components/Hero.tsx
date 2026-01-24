@@ -57,7 +57,7 @@ export default async function Hero() {
             src="/images/landingBG.png"
             alt="Luxury cars on a Dubai city street at night"
             fill
-            className="object-cover"
+            className={styles.bgImage}
             priority
           />
         </div>
@@ -84,19 +84,19 @@ export default async function Hero() {
         </div>
       </section>
       {/* --- 1. Category Grid --- */}
-      <section className="py-16">
+      <section className={styles.sectionPadding}>
         <div className={styles.sectionmargin}>
           <SectionHeader
             title="Choose Your Favorite Category"
             description="Find your perfect ride from our diverse collection"
           />
-          <div className="mt-10">
+          <div className={styles.marginTop10}>
             <CarCategoryGrid />
           </div>
         </div>
       </section>
       <section className={styles.sectionmargin}>
-        <div className="px-4">
+        <div className={styles.paddingX4}>
           <SectionHeader
             title="Choose Your Favorite Brand"
             description="Luxury brands you love, all in one place"
@@ -104,8 +104,8 @@ export default async function Hero() {
         </div>
         <BrandSwiperWrapper />
       </section>
-      <section className="pt-12">
-        <div className="px-8">
+      <section className={styles.sectionPaddingTop}>
+        <div className={styles.sectionPaddingXLarge}>
           <SectionHeader
             title="Explore Cars by Category"
             description="Rent premium cars in Dubai from our diverse collection"
@@ -121,7 +121,7 @@ export default async function Hero() {
         <CarCardsSection title="Sports Cars" category="sports" cars={sports} />
       </section>
       <WhyChooseUs />
-      <section className="py-16 px-6 bg-[#f4f4f580]">
+      <section className={`${styles.sectionPadding} ${styles.sectionPaddingX} ${styles.bgGrayLight}`}>
         <SectionHeader
           title="How to Book"
           description="Simple 3-step process to get your luxury car in Dubai"
@@ -129,7 +129,7 @@ export default async function Hero() {
         <LuxuryCarProcess />
       </section>
       <SecurityDeposit />
-      <section className="pb-16 px-6 bg-[#f4f4f580]">
+      <section className={`${styles.sectionPaddingBottom} ${styles.sectionPaddingX} ${styles.bgGrayLight}`}>
         <SectionHeader
           title="Rental Requirements"
           description="Everything you need to rent a luxury car in Dubai"

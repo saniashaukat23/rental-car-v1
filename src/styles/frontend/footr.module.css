@@ -1,12 +1,18 @@
 /* --- Variables for consistent theming --- */
 .footer {
   --bg-color: #ffffff;
-  --border-color: #e5e7eb; /* gray-200 */
-  --text-primary: #111827; /* gray-900 */
-  --text-secondary: #6b7280; /* gray-500 */
-  --text-light: #9ca3af; /* gray-400 */
-  --accent-color: #f97316; /* orange-500 */
-  --icon-bg: #f3f4f6; /* gray-100 */
+  --border-color: #e5e7eb;
+  /* gray-200 */
+  --text-primary: #111827;
+  /* gray-900 */
+  --text-secondary: #6b7280;
+  /* gray-500 */
+  --text-light: #9ca3af;
+  /* gray-400 */
+  --accent-color: #f97316;
+  /* orange-500 */
+  --icon-bg: #f3f4f6;
+  /* gray-100 */
   --icon-hover-bg: #000000;
   --icon-hover-text: #ffffff;
 }
@@ -57,7 +63,8 @@
 }
 
 .brandDescription {
-  font-size: 0.875rem; /* text-sm */
+  font-size: 0.875rem;
+  /* text-sm */
   color: var(--text-secondary);
   line-height: 1.6;
 }
@@ -87,7 +94,8 @@
 }
 
 .socialIconSnapchat:hover {
-  background-color: #facc15; /* yellow-400 */
+  background-color: #facc15;
+  /* yellow-400 */
   color: #ffffff;
 }
 
@@ -99,13 +107,15 @@
 }
 
 .desktopLinksCol {
-  display: none; /* Hidden on mobile */
+  display: none;
+  /* Hidden on mobile */
 }
 
 .columnTitle {
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 1.5rem; /* mb-6 */
+  margin-bottom: 1.5rem;
+  /* mb-6 */
   text-align: center;
 }
 
@@ -115,7 +125,8 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem; /* space-y-3 */
+  gap: 0.75rem;
+  /* space-y-3 */
 }
 
 .linkItem {
@@ -149,7 +160,8 @@
 
 .contactItem {
   display: flex;
-  align-items: flex-start; /* Aligns icon with top line of text */
+  align-items: flex-start;
+  /* Aligns icon with top line of text */
   justify-content: center;
   gap: 0.75rem;
   font-size: 0.875rem;
@@ -161,7 +173,8 @@
   height: 1.25rem;
   color: var(--text-light);
   flex-shrink: 0;
-  margin-top: 0.125rem; /* Optical alignment */
+  margin-top: 0.125rem;
+  /* Optical alignment */
 }
 
 .contactLink {
@@ -217,6 +230,7 @@
   position: relative;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
+
 .paymentCard:hover {
   box-shadow: 0 3px 6px 2px rgba(0, 0, 0, 0.1);
 }
@@ -277,6 +291,7 @@
   .container {
     max-width: 1400px;
   }
+
   .mainGrid {
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
@@ -287,9 +302,11 @@
     align-items: flex-start;
     text-align: left;
   }
+
   .logoImage {
     object-position: left;
   }
+
   .socialWrapper {
     justify-content: flex-start;
   }
@@ -298,6 +315,7 @@
   .mobileLinksGrid {
     display: none;
   }
+
   .desktopLinksCol {
     display: block;
   }
@@ -306,6 +324,7 @@
   .columnTitle {
     text-align: left;
   }
+
   .linkItem {
     text-align: left;
   }
@@ -314,9 +333,11 @@
   .contactCol .columnTitle {
     text-align: left;
   }
+
   .contactItem {
     justify-content: flex-start;
   }
+
   .contactLink {
     text-align: left;
   }
@@ -326,7 +347,33 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
   .copyright {
     text-align: left;
   }
+}
+
+/* Utility Classes */
+.textCenter {
+  text-align: center;
+}
+
+.flexStart {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.svgIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.relativeContainer {
+  position: relative;
+  height: 2rem;
+  width: 3.5rem;
+}
+
+.wordBreakAll {
+  word-break: break-all;
 }

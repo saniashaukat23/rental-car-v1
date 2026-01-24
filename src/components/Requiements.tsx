@@ -84,8 +84,7 @@ const Requirements: React.FC = () => {
     <section className={styles.processcontainer}>
       {/* Background Orbs */}
       <div
-        className={`${styles.glowOrb} hidden lg:flex`}
-        style={{ bottom: "-15rem", left: "60%" }}
+        className={`${styles.glowOrb} ${styles.hiddenMobile} ${styles.glowOrbPosition}`}
       ></div>
 
       <div className={styles.processgrid}>

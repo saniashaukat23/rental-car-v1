@@ -5,12 +5,14 @@
   --text-gray: #71717a;
   --border-light: #f4f4f5;
 }
+
 @media (min-width: 640px) {
   .processcontainer {
     /* padding: 80px 20px; */
     max-width: 1100px;
   }
 }
+
 .processcontainer {
   margin: 0 auto;
   position: relative;
@@ -24,6 +26,7 @@
   position: relative;
   z-index: 1;
 }
+
 .processcard {
   background: white;
   border: 2px solid #e5e7eb;
@@ -56,11 +59,9 @@
   right: 0;
   width: 7rem;
   height: 7rem;
-  background: linear-gradient(
-    to bottom right,
-    var(--primary-soft),
-    transparent
-  );
+  background: linear-gradient(to bottom right,
+      var(--primary-soft),
+      transparent);
   border-bottom-left-radius: 100%;
 }
 
@@ -166,13 +167,27 @@
   position: absolute;
   width: 25rem;
   height: 25rem;
-  background: radial-gradient(
-    circle,
-    rgba(242, 141, 53, 0.1) 0%,
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(242, 141, 53, 0.1) 0%,
+      transparent 70%);
   border-radius: 50%;
   filter: blur(40px);
   pointer-events: none;
   z-index: 2;
+}
+
+/* Utility Classes */
+.hiddenMobile {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hiddenMobile {
+    display: flex;
+  }
+}
+
+.glowOrbPosition {
+  bottom: -15rem;
+  left: 60%;
 }

@@ -35,7 +35,7 @@ export default function CarCardsSection({
 
   return (
     <section className={`${styles.sectionContainer} ${bgColor}`}>
-      <div className="max-w-7xl mx-auto px-4 ">
+      <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>{title}</h2>
           <Link
@@ -46,7 +46,7 @@ export default function CarCardsSection({
           </Link>
         </div>
 
-        <div className="relative group">
+        <div className={styles.swiperWrapper}>
           <Swiper
             modules={[Navigation, Pagination]}
             spaceBetween={24}
@@ -92,7 +92,7 @@ export default function CarCardsSection({
                 }
               });
             }}
-            className="pb-8 relative z-0"
+            className={styles.swiperContainer}
           >
             {cars.map((car) => (
               <SwiperSlide key={car._id}>
@@ -107,10 +107,7 @@ export default function CarCardsSection({
           {/* Left Arrow */}
           <div
             ref={prevRef}
-            className="absolute z-10 top-1/2 -left-13 hidden lg:flex border-[#E4E4E7] border-2
-                       -translate-y-1/2 w-8 h-8  text-black bg-[#ffffffe6] rounded-full
-                       shadow-md items-center justify-center cursor-pointer
-                        transition-all group-hover:opacity-100"
+            className={`${styles.navArrow} ${styles.navArrowLeft}`}
           >
             <FaArrowLeft size={14} />
           </div>
@@ -118,10 +115,7 @@ export default function CarCardsSection({
           {/* Right Arrow */}
           <div
             ref={nextRef}
-            className="absolute z-10 top-1/2 -right-13 hidden lg:flex border-[#E4E4E7] border-2
-                       -translate-y-1/2 w-8 h-8  text-black bg-[#ffffffe6] rounded-full
-                       shadow-md items-center justify-center cursor-pointer
-                        transition-all group-hover:opacity-100"
+            className={`${styles.navArrow} ${styles.navArrowRight}`}
           >
             <FaArrowRight size={14} />
           </div>
