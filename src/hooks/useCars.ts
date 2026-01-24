@@ -81,7 +81,12 @@ export function useCarById(id: string | undefined) {
             }
 
             const data = await res.json();
-            return { ...data, images: data.images || [] };
+
+            // Handle new API response format: { success: true, car: {...} }
+            // Also handle old format for backward compatibility
+            const carData = data.success && data.car ? data.car : data;
+
+            return { ...carData, images: carData.images || [] };
         },
         enabled: !!id, // Only run query if id exists
     });
