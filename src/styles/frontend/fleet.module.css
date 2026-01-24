@@ -2,7 +2,7 @@
 
 .pageContainer {
   margin: 0 auto;
-  max-width: var(--container-xl);
+  max-width: var(--container-2xl);
   padding: 6rem var(--space-4);
   min-height: 100vh;
 }
