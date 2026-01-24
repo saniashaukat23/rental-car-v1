@@ -81,17 +81,22 @@ export async function GET(request: NextRequest) {
       if (maxPrice) query["pricing.daily"].$lte = maxPrice;
     }
 
-    // Select essential fields and limit results to prevent memory overflow
+    // CRITICAL PERFORMANCE FIX: Only return first image for list views
+    // Full image arrays are fetched only when viewing individual car details
+    // This reduces response size from MBs to KBs
     const cars = await Car.find(query)
-      .select("name brand type pricing transmission fuel seats color carId applyDiscount images")
+      .select("name brand type pricing transmission fuel seats color carId applyDiscount year _id images")
       .limit(50)
       .lean();
 
-    // Keep full images array so UI components (gallery/carousel) can use all images
-    const processedCars = cars.map((car: Record<string, unknown>) => ({
-      ...car,
-      images: Array.isArray(car.images) ? car.images : []
-    }));
+    // Keep only first image for list views to reduce payload size
+    const processedCars = cars.map((car: Record<string, unknown>) => {
+      const images = Array.isArray(car.images) ? car.images : [];
+      return {
+        ...car,
+        images: images.length > 0 ? [images[0]] : [] // Only first image
+      };
+    });
 
     const response: CarListResponse = {
       success: true,
