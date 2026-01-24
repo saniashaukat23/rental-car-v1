@@ -22,7 +22,7 @@
 
 /* --- Sidebar Styles --- */
 .sidebar {
-  width: 200px;
+  width: 400px;
   flex-shrink: 0;
   background: var(--bg-primary);
   border-radius: var(--radius-lg);
