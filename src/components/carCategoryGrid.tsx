@@ -5,7 +5,7 @@ const CarCategory: [string, string][] = [
   ["Convertible", "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Convertible_xmov8i.webp"],
   ["Economy", "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Sedan_m6iywf.webp"],
   ["Luxury", "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349832/Luxury_cn5zf6.webp"],
-  ["SUV", "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/SUV_t11v2e.webp"],
+  ["SUV", "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769352893/suv.webp"],
   ["Sedan", "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Economy_g6xgfl.webp"],
   ["Sports", "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Sports_cidcwv.webp"],
 ];
