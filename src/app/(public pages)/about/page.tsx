@@ -56,7 +56,7 @@ export default function AboutSection() {
           <div className={styles.imageWrapper}>
             <div className={styles.imageContainer}>
               <Image
-                src="/images/about.png"
+                src="https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349571/about_fff1fg.png"
                 alt="Luxury In Motion Dubai - Premium Car Rental Experience"
                 fill
                 className={styles.image}
@@ -158,7 +158,7 @@ export default function AboutSection() {
             <p className={styles.ctaText}>
               Discover why discerning travelers choose Car Hire Now. Let us match you with the perfect vehicle and create an unforgettable moment in Dubai.
             </p>
-            <CTAButtons 
+            <CTAButtons
               whatsappMessage="Hi, I'm interested in renting a luxury car"
               whatsappLabel="WhatsApp Us"
               callLabel="Call Us Now"

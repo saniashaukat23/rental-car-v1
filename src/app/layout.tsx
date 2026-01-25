@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     description: "Premium luxury car rental service in Dubai. Rent sports cars, SUVs, and exotic vehicles.",
   },
   icons: {
-    icon: [{ url: "/favicon-removebg-preview.ico" }],
-    shortcut: "/shortcut-icon.png",
-    apple: "/apple-icon.png",
+    icon: [{ url: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769350346/favicon-removebg-preview_qpgvez.png" }],
+    shortcut: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769350346/favicon-removebg-preview_qpgvez.png",
+    apple: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769350346/favicon-removebg-preview_qpgvez.png",
   },
 };
 

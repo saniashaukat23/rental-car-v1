@@ -8,38 +8,40 @@ interface SecurityFeature {
   description: string;
   img: string;
 }
-
 const PaymentSection: React.FC = () => {
   const features: SecurityFeature[] = [
     {
       title: "Pay Safely",
       description: "Secure Payment Gateway",
-      img: "/paymentLogos/pay_safely201.svg",
+      img: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349968/pay_safely201_cmjvrr.svg",
     },
     {
       title: "Visa",
       description: "Credit and Debit Cards",
-      img: "/paymentLogos/visa_icon.svg",
+      img: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349968/visa_icon_sog1rl.svg"
     },
     {
       title: "Mastercard",
       description: "Credit and Debit Cards",
-      img: "/paymentLogos/mastercard-icon.svg",
+      img: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349968/mastercard-icon_pxd6gv.svg",
     },
     {
       title: "Google Pay",
       description: "Digital Wallet",
-      img: "/paymentLogos/GooglePay.svg",
+      img: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349968/GooglePay_ccrive.svg",
+
     },
     {
       title: "Cryptocurrency",
       description: "Bitcoin and more",
-      img: "/paymentLogos/cryptocurrency.svg",
+      img: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349968/cryptocurrency_scqvsk.svg",
+
     },
     {
       title: "Apple Pay",
       description: "Digital Wallet",
-      img: "/paymentLogos/apple-pay-icon.svg",
+      img: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349967/apple-pay-icon_usq75n.svg",
+
     },
   ];
 

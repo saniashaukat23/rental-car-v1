@@ -183,12 +183,12 @@ export default function Footer() {
             {/* Payment Icons Grid */}
             <div className={styles.paymentGrid}>
               {[
-                "visa_icon",
-                "mastercard-icon",
-                "apple-pay-icon",
-                "googlepay",
-                "cryptocurrency",
-                "pay_safely201",
+                "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349968/mastercard-icon_pxd6gv.svg",
+                "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349967/apple-pay-icon_usq75n.svg",
+                "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349968/GooglePay_ccrive.svg",
+                "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349968/cryptocurrency_scqvsk.svg",
+                "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349968/pay_safely201_cmjvrr.svg",
+                "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349968/visa_icon_sog1rl.svg"
               ].map((payment, i) => (
                 <div key={i} className={styles.paymentCard}>
                   <div className={styles.glowOrb}></div>

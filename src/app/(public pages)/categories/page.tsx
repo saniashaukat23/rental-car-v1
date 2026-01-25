@@ -11,7 +11,7 @@ const categories = [
   {
     title: "Convertible",
     slug: "rent-convertible-car-dubai",
-    image: "/images/cartypelogos/1759741436173-r7utj.webp",
+    image: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Convertible_xmov8i.webp",
     description:
       "This type of vehicle gives you the thrill of open-air driving, perfect for scenic drives or enjoying the pleasant weather. It's the ideal vehicle that offers a fun yet stylish ride.",
     features: [
@@ -24,7 +24,7 @@ const categories = [
   {
     title: "Economy",
     slug: "rent-economy-car-dubai",
-    image: "/images/cartypelogos/1761836668299-9dn7n.webp",
+    image: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Sedan_m6iywf.webp",
     description:
       "Discover our premium Economy collection featuring luxury vehicles with exceptional performance and style.",
     features: [
@@ -37,7 +37,7 @@ const categories = [
   {
     title: "Luxury",
     slug: "rent-luxury-car-dubai",
-    image: "/images/cartypelogos/1759827099550-kjwjapm.webp",
+    image: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349832/Luxury_cn5zf6.webp",
     description:
       "Discover our premium Luxury collection featuring luxury vehicles with exceptional performance and style.",
     features: [
@@ -63,7 +63,7 @@ const categories = [
   {
     title: "Sedan",
     slug: "rent-sedan-car-dubai",
-    image: "/images/cartypelogos/1759756904178-6g7kni.webp",
+    image: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Economy_g6xgfl.webp",
     description:
       "Sedans are reliable and fuel-efficient, offering a good balance between performance and practicality. They are an excellent choice for daily drives and business trips.",
     features: [
@@ -76,7 +76,7 @@ const categories = [
   {
     title: "Sport",
     slug: "rent-sports-car-dubai",
-    image: "/images/cartypelogos/1759741479677-50cvhn.webp",
+    image: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Sports_cidcwv.webp",
     description:
       "Discover our premium Sports collection featuring luxury vehicles with exceptional performance and style.",
     features: [
