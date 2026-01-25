@@ -173,17 +173,16 @@
 }
 
 .buttonBase {
-  flex: 1;
+  width: 3.5rem;
+  height: 3.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-3);
   border-radius: var(--radius-lg);
-  font-size: 0.9rem;
-  font-weight: var(--font-semibold);
   cursor: pointer;
   transition: all var(--transition-base);
   border: none;
+  flex-shrink: 0;
 }
 
 /* Ghost Button for Call */
@@ -212,7 +211,7 @@
 }
 
 .buttonTextHidden {
-  display: inline;
+  display: none;
 }
 
 /* Discount Badge */
@@ -264,13 +263,11 @@
 
 /* Icon Sizing for Tailwind Replacements */
 .iconSmall {
-  width: 0.75rem;
-  height: 0.75rem;
-  margin-right: 0.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .iconMedium {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
