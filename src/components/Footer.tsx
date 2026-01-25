@@ -28,7 +28,7 @@ export default function Footer() {
             <div className={styles.flexStart}>
               <Link href="/" className={styles.logoWrapper}>
                 <Image
-                  src="/images/logo.jpeg"
+                  src="https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349404/Logo_ngjhge.jpg"
                   alt="Luxury In Motion"
                   fill
                   className={styles.logoImage}

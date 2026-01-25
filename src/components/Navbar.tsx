@@ -139,7 +139,7 @@ export default function Navbar() {
         <div className={styles.navWrapper}>
           <Link href={"/"}>
             <Image
-              src="/images/logo.jpeg"
+              src="https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349404/Logo_ngjhge.jpg"
               width={160}
               height={40}
               alt="Logo"
