@@ -65,7 +65,8 @@ export default function Navbar() {
     { name: "Porsche", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Porsche.webp" },
     { name: "Rolls Royce", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/RollsRoyce.webp" },
     { name: "Rox", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Rox.webp" },
-    { name: "Toyota", logo: "/images/carlogos/toyota.webp" },
+    { name: "Toyota", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351303/toyota.webp" },
+
   ];
 
 
@@ -76,7 +77,8 @@ export default function Navbar() {
     },
     { name: "Luxury", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349832/Luxury_cn5zf6.webp" },
     { name: "Economy", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Sedan_m6iywf.webp" },
-    { name: "SUV", logo: "/images/cartypelogos/1759827099550-kjwjapm.webp" },
+    { name: "SUV", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769352893/suv.webp" },
+
     { name: "Sedan", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Economy_g6xgfl.webp" },
     { name: "Sports", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Sports_cidcwv.webp" },
   ];

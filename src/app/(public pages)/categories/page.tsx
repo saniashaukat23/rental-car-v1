@@ -50,7 +50,7 @@ const categories = [
   {
     title: "SUV",
     slug: "rent-suv-car-dubai",
-    image: "/images/cartypelogos/1759827106843-q31jyq.webp",
+    image: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769352893/suv.webp",
     description:
       "Sports utility vehicles provide ample space, strong performance, and versatility, making them the best cars for road trips and off-road adventures. They are great for families.",
     features: [
@@ -60,6 +60,7 @@ const categories = [
       "Extra cargo space",
     ],
   },
+
   {
     title: "Sedan",
     slug: "rent-sedan-car-dubai",

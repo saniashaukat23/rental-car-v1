@@ -10,9 +10,10 @@ import styles from "../../../styles/frontend/brands.module.css"; // Adjust path 
 const brandsData = [
   {
     name: "Audi",
-    logo: "/images/carlogos/audi.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Audi.webp",
     description: "German car brand with vehicles that combine sleek design with advanced engineering. Known for refined interiors and Quattro all-wheel-drive system.",
   },
+
   {
     name: "BMW",
     logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/BMW.webp",
@@ -105,9 +106,10 @@ const brandsData = [
   },
   {
     name: "Toyota",
-    logo: "/images/carlogos/toyota.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351303/toyota.webp",
     description: "Discover our premium Toyota vehicle collection featuring luxury cars with exceptional performance and style.",
   },
+
 
 ];
 
