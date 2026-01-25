@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import QueryProvider from "@/src/components/QueryProvider";
+import GlobalGlowBlobs from "@/src/components/GlobalGlowBlobs";
 
 export const metadata: Metadata = {
   title: {
@@ -34,7 +35,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body>
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <GlobalGlowBlobs />
+            {children}
+          </QueryProvider>
         </body>
       </html>
     </ClerkProvider>

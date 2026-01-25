@@ -2,12 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/frontend/carCategoryGrid.module.css";
 const CarCategory: [string, string][] = [
-  ["Convertible", "/images/CarTypeLogos/1759741436173-r7utj.webp"],
-  ["Economy", "/images/CarTypeLogos/1761836668299-9dn7n.webp"],
-  ["Luxury", "/images/CarTypeLogos/1759756904178-6g7kni.webp"],
-  ["SUV", "/images/CarTypeLogos/1759827099550-kjwjapm.webp"],
-  ["Sedan", "/images/CarTypeLogos/1759827106843-q31jyq.webp"],
-  ["Sports", "/images/CarTypeLogos/1759741479677-50cvhn.webp"],
+  ["Convertible", "/images/cartypelogos/1759741436173-r7utj.webp"],
+  ["Economy", "/images/cartypelogos/1761836668299-9dn7n.webp"],
+  ["Luxury", "/images/cartypelogos/1759756904178-6g7kni.webp"],
+  ["SUV", "/images/cartypelogos/1759827099550-kjwjapm.webp"],
+  ["Sedan", "/images/cartypelogos/1759827106843-q31jyq.webp"],
+  ["Sports", "/images/cartypelogos/1759741479677-50cvhn.webp"],
 ];
 
 const CarCategoryGrid: React.FC = () => {

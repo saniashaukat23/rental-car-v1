@@ -22,6 +22,8 @@
   }
 }
 
+.pricingButtons
+
 /* --- Breadcrumbs --- */
 .breadcrumbNav {
   margin-bottom: 1rem;
@@ -321,21 +323,25 @@
   text-align: right;
 }
 
-/* --- BUTTONS VISIBILITY LOGIC --- */
-
-/* 1. Desktop Buttons (Inside Pricing Card) */
-/* Hidden on Mobile, Visible on Desktop */
-.desktopButtons {
-  display: none;
-}
 
 @media (min-width: 768px) {
-  .desktopButtons {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-top: 1.5rem;
+  .pricingButtons {
+    display: flex;
+
   }
+}
+
+.pricingButtons {
+  display: none;
+  margin-top: 1.5rem !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+.pricingButtons a {
+  width: 100% !important;
 }
 
 /* 2. Mobile Sticky Actions (Fixed at Bottom) */

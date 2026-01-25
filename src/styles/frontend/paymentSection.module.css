@@ -223,7 +223,7 @@
 }
 
 .glowOrb {
-  display: none;
+
   position: absolute;
   background-color: #10b98123;
   border-radius: 9999px;
@@ -294,9 +294,6 @@
 
 /* Medium screens (768px) and up: 3 columns */
 @media (min-width: 768px) {
-  .glowOrb {
-    display: flex;
-  }
 
   .trustGrid {
     grid-template-columns: repeat(3, 1fr);

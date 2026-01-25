@@ -15,26 +15,52 @@ import Car from "../models/Car";
 import SecurityDeposit from "./DepositInformation";
 
 // Direct data fetcher without caching to avoid 2MB limit errors
+// Timeout wrapper to prevent long hangs
+async function withTimeout<T>(promise: Promise<T>, timeoutMs: number, fallback: T): Promise<T> {
+  const timeoutPromise = new Promise<T>((_, reject) =>
+    setTimeout(() => reject(new Error('Query timeout')), timeoutMs)
+  );
+  try {
+    return await Promise.race([promise, timeoutPromise]);
+  } catch {
+    return fallback;
+  }
+}
+
 async function getCarsByCategory(category: string) {
   try {
     await dbConnect();
     const regex = new RegExp(`^${category}$`, "i");
+    const queryPromise = Car.aggregate([
+      { $match: { type: { $regex: regex } } },
+      { $sort: { createdAt: -1 } },
+      { $limit: 6 },
+      {
+        $project: {
+          name: 1,
+          brand: 1,
+          type: 1,
+          pricing: 1,
+          transmission: 1,
+          fuel: 1,
+          seats: 1,
+          color: 1,
+          carId: 1,
+          applyDiscount: 1,
+          images: 1
+        }
+      }
+    ]);
 
-    const cars = await Car.find({ type: { $regex: regex } })
-      .select(
-        "name brand type pricing transmission fuel seats color carId applyDiscount images"
-      )
-      .limit(6)
-      .sort({ createdAt: -1 })
-      .lean();
 
-    // Keep full images array so UI components can use all images
-    const processedCars = cars.map((car: Record<string, unknown>) => ({
-      ...car,
-      images: Array.isArray(car.images) ? car.images : []
-    }));
+    const cars = await withTimeout(queryPromise, 15000, []);
 
-    return JSON.parse(JSON.stringify(processedCars));
+    if (!Array.isArray(cars) || cars.length === 0) {
+      console.log(`No cars found or timeout for ${category}`);
+      return [];
+    }
+
+    return JSON.parse(JSON.stringify(cars));
   } catch (error) {
     console.error(`Error fetching ${category}:`, error);
     return [];
@@ -42,11 +68,11 @@ async function getCarsByCategory(category: string) {
 }
 
 export default async function Hero() {
-  const [suvs, sports, sedan] = await Promise.all([
-    getCarsByCategory("SUV"),
-    getCarsByCategory("Sports"),
-    getCarsByCategory("Sedan"),
-  ]);
+  // Sequential queries to avoid connection pool exhaustion
+  const sedan = await getCarsByCategory("Sedan");
+  const sports = await getCarsByCategory("Sports");
+  const suvs = await getCarsByCategory("SUV");
+
   const listItems = ["Instant Booking", "24/7 Support", "Best Prices"];
 
   return (
@@ -54,7 +80,7 @@ export default async function Hero() {
       <section className={styles.heroBG}>
         <div className={styles.bgImageContainer}>
           <Image
-            src="/images/landingBG.png"
+            src="https://res.cloudinary.com/dfck2j3nx/image/upload/v1769336975/Gemini_Generated_Image_ke94mzke94mzke94_ricx7a.png"
             alt="Luxury cars on a Dubai city street at night"
             fill
             className={styles.bgImage}

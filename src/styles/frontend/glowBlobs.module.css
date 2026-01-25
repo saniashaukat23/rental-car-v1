@@ -1,0 +1,103 @@
+.blobContainer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.blurBlob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    animation: float 8s ease-in-out infinite;
+    opacity: 0.12;
+}
+
+/* Primary Color Blob */
+.blobPrimary {
+    background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+    width: 20rem;
+    height: 20rem;
+}
+
+/* Info/Secondary Color Blob */
+.blobSecondary {
+    background: radial-gradient(circle, var(--info) 0%, transparent 70%);
+    width: 18rem;
+    height: 18rem;
+}
+
+.blob1 {
+    top: -5%;
+    left: -5%;
+    animation-delay: 0s;
+}
+
+.blob2 {
+    top: 40%;
+    right: -5%;
+    animation-delay: 2s;
+    opacity: 0.1;
+}
+
+.blob3 {
+    bottom: -5%;
+    left: 30%;
+    animation-delay: 4s;
+    width: 25rem;
+    height: 25rem;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(20px, -20px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-10px, 15px) scale(0.9);
+    }
+}
+
+/* Adjustments for smaller screens to prevent overflow and keep subtle */
+@media (max-width: 768px) {
+    .blurBlob {
+        filter: blur(40px);
+        opacity: 0.08;
+    }
+
+    .blobPrimary {
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .blobSecondary {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .blob1 {
+        top: -2%;
+        left: -10%;
+    }
+
+    .blob2 {
+        top: 50%;
+        right: -15%;
+    }
+
+    .blob3 {
+        bottom: 5%;
+        left: 10%;
+        width: 15rem;
+        height: 15rem;
+    }
+}

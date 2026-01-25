@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import CTAButtons from "./CTAButtons";
 import {
   Car, Check, CreditCard, DoorOpen, Fuel, Gauge, MapPin,
   MessageCircle, Phone, Settings, Shield, Truck, Users, Cog,
@@ -96,7 +97,7 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
                 <h3 className={styles.pricingTitle}>Pricing</h3>
                 <div className={styles.brandLogoBox}>
                   {car.brand && (
-                    <Image src={`/images/carLogos/${car.brand}.webp`} alt={car.brand} fill className={styles.brandLogoImage} />
+                    <Image src={`/images/carlogos/${car.brand}.webp`} alt={car.brand} fill className={styles.brandLogoImage} />
                   )}
                 </div>
               </div>
@@ -110,26 +111,13 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
                 <DetailLine label="Daily Mileage" value={`${car.mileage?.dailyIncluded || 250} km included`} />
               </div>
 
-              {/* DESKTOP BUTTONS: Visible only on Desktop via CSS */}
-              <div className={styles.desktopButtons}>
-                <a
-                  href={PHONE_URL}
-                  className={`${svcStyles.btn} ${svcStyles.btnOutline} ${svcStyles.btnLarge}`}
-                >
-                  <Phone size={18} />
-                  <span>Call Us</span>
-                </a>
 
-                <a
-                  href={WHATSAPP_URL(`I'm interested in ${car.name}`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${svcStyles.btn} ${svcStyles.btnGreen} ${svcStyles.btnLarge}`}
-                >
-                  <MessageCircle size={18} />
-                  <span>WhatsApp</span>
-                </a>
-              </div>
+              <CTAButtons
+                whatsappMessage={`Hello, I'm interested in ${car.name}`}
+                whatsappLabel="WhatsApp"
+                callLabel="Call Us"
+                className={styles.pricingButtons}
+              />
             </div>
           </div>
         </div>

@@ -115,7 +115,7 @@ export default function BrandCarsPage({ params }: PageProps) {
         {/* Overlay: Logo */}
         <div className={`${styles.badgeGlass} ${styles.logoBadge}`}>
           <Image
-            src={`/images/carLogos/${brand}.webp`}
+            src={`/images/carlogos/${brand.toLowerCase().replace(/[-\s]/g, "")}.webp`}
             width={60}
             height={60}
             alt={`${brandDisplayName} Logo`}
@@ -238,7 +238,7 @@ export default function BrandCarsPage({ params }: PageProps) {
         </section>
 
         {/* --- PRICING TABLE --- */}
-        <section className="mb-16">
+        <section className={styles.mb16}>
           <h2 className={styles.sectionTitle}>
             {brandDisplayName} Rental Prices
           </h2>
@@ -282,7 +282,7 @@ export default function BrandCarsPage({ params }: PageProps) {
         </section>
 
         {/* --- HOW TO RENT --- */}
-        <section className="mb-16 text-center">
+        <section className={styles.mb16}>
           <h2 className={styles.sectionTitle}>Rent in 3 Easy Steps</h2>
           <div className={styles.stepsContainer}>
             <div className={styles.stepItem}>

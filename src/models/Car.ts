@@ -56,43 +56,43 @@ export interface ICar extends Document {
 
 const CarSchema: Schema<ICar> = new Schema(
   {
-    carId: { 
-      type: String, 
-      required: true, 
+    carId: {
+      type: String,
+      required: true,
       unique: true,
       trim: true,
       lowercase: true,
     },
-    brand: { 
-      type: String, 
-      required: true, 
+    brand: {
+      type: String,
+      required: true,
       index: true,
       trim: true,
     },
-    name: { 
-      type: String, 
+    name: {
+      type: String,
       required: true,
       trim: true,
     },
     type: { type: String, required: true }, // e.g., Sports, SUV
     color: { type: String, required: true },
     images: [{ type: String }],
-    seats: { 
-      type: Number, 
+    seats: {
+      type: Number,
       required: true,
       min: 1,
       max: 12,
     },
-    transmission: { 
-      type: String, 
+    transmission: {
+      type: String,
       default: 'Automatic',
     },
-    fuel: { 
-      type: String, 
+    fuel: {
+      type: String,
       default: 'Gasoline',
     },
-    doors: { 
-      type: Number, 
+    doors: {
+      type: Number,
       required: true,
       min: 2,
       max: 6,
@@ -127,14 +127,14 @@ const CarSchema: Schema<ICar> = new Schema(
       freePickupAndDrop: { type: String },
       paymentMethods: [{ type: String }],
     },
-    year: { 
-      type: Number, 
+    year: {
+      type: Number,
       required: true,
       min: 1900,
       max: new Date().getFullYear() + 2,
     },
   },
-  { 
+  {
     timestamps: true,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
@@ -142,12 +142,14 @@ const CarSchema: Schema<ICar> = new Schema(
 );
 
 // Add compound indexes for better query performance
+CarSchema.index({ type: 1 }); // Index for category queries (SUV, Sports, Sedan)
 CarSchema.index({ brand: 1, type: 1 });
 CarSchema.index({ 'pricing.daily': 1 });
 CarSchema.index({ year: -1 });
+CarSchema.index({ type: 1, createdAt: -1 }); // Optimized for sorted category queries
 
 // Add virtual field for display name
-CarSchema.virtual('displayName').get(function() {
+CarSchema.virtual('displayName').get(function () {
   return `${this.year} ${this.brand} ${this.name}`;
 });
 

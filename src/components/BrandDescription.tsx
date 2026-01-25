@@ -166,8 +166,9 @@ const PartnerSection: React.FC<{ brandName: string }> = ({ brandName }) => {
           </div>
         </div>
 
-        {/* Dynamic Image - Ensure this file exists in your public folder! */}
+        {/* Dynamic Image - Placeholder removed as directory 'brands header image' is missing */}
         <div className={styles.detailsImageWrapper}>
+          {/* 
           <Image
             src={`/images/brands header image/${brandName}/${brandName} details.png`}
             alt={`${brandName} Details`}
@@ -175,9 +176,9 @@ const PartnerSection: React.FC<{ brandName: string }> = ({ brandName }) => {
             height={600}
             className={styles.detailsImage}
             quality={90}
-            // Add a fallback in case image is missing
             onError={(e) => (e.currentTarget.style.display = "none")}
           />
+          */}
         </div>
       </div>
     </section>

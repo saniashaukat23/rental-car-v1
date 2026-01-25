@@ -22,7 +22,7 @@
 
 /* --- Sidebar Styles --- */
 .sidebar {
-  width: 400px;
+  width: 300px;
   flex-shrink: 0;
   background: var(--bg-primary);
   border-radius: var(--radius-lg);
@@ -112,6 +112,19 @@
 
 .resetBtn:hover {
   background: var(--gray-700);
+}
+
+.clearAllBtn {
+  margin: 0;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.clearAllBtn:hover {
+  background: var(--primary-hover);
 }
 
 /* --- Main Content Styles --- */

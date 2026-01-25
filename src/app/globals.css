@@ -23,6 +23,7 @@
   /* --- COLOR SYSTEM --- */
 
   /* Primary Brand Colors - Deeper, more professional orange */
+
   --primary-50: #fef7f0;
   --primary-100: #fdeee0;
   --primary-200: #fbd9bd;
@@ -247,6 +248,7 @@ body {
   background-color: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* ============================================================================

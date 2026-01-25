@@ -15,7 +15,7 @@ type BrandLogo = {
 };
 
 const brandLogos: BrandLogo[] = [
-  { name: "Audi", imagePath: "/images/carLogos/audi.webp" },
+
   { name: "BMW", imagePath: "/images/carlogos/bmw.webp" },
   { name: "BRABUS", imagePath: "/images/carlogos/brabus.webp" },
   { name: "Bentley", imagePath: "/images/carlogos/bentley.webp" },
@@ -26,14 +26,14 @@ const brandLogos: BrandLogo[] = [
   { name: "Lamborghini", imagePath: "/images/carlogos/lamborghini.webp" },
   { name: "Mercedes", imagePath: "/images/carlogos/mercedes.webp" },
   { name: "Porsche", imagePath: "/images/carlogos/porsche.webp" },
-  { name: "GMC", imagePath: "/images/carlogos/GMC.webp" },
-  { name: "Mansory", imagePath: "/images/carlogos/Mansory.webp" },
-  { name: "McLaren", imagePath: "/images/carlogos/Mclaren.webp" },
-  { name: "Nissan", imagePath: "/images/carlogos/Nissan.webp" },
-  { name: "Rolls Royce", imagePath: "/images/carLogos/rollsroyce.webp" },
+  { name: "GMC", imagePath: "/images/carlogos/gmc.webp" },
+  { name: "Mansory", imagePath: "/images/carlogos/mansory.webp" },
+  { name: "McLaren", imagePath: "/images/carlogos/mclaren.webp" },
+  { name: "Nissan", imagePath: "/images/carlogos/nissan.webp" },
+  { name: "Rolls Royce", imagePath: "/images/carlogos/rollsroyce.webp" },
   { name: "Rox", imagePath: "/images/carlogos/rox.webp" },
-  { name: "Jetour", imagePath: "/images/carlogos/Jetour.webp" },
-  { name: "Land Rover", imagePath: "/images/carLogos/landrover.webp" },
+  { name: "Jetour", imagePath: "/images/carlogos/jetour.webp" },
+  { name: "Land Rover", imagePath: "/images/carlogos/landrover.webp" },
 ];
 
 export default function BrandSwiper() {
@@ -81,8 +81,7 @@ export default function BrandSwiper() {
           onSwiper={handleSwiperInit}
           breakpoints={{
             320: { slidesPerView: 3 },
-            640: { slidesPerView: 4 },
-            768: { slidesPerView: 6 },
+            580: { slidesPerView: 6 },
             1024: { slidesPerView: 8 },
           }}
         >

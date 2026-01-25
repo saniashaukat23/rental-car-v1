@@ -1,8 +1,3 @@
-.active {
-  background: white;
-  transform: scale(1.2);
-}
-
 /* src/styles/frontend/ImageHoverCarousel.module.css */
 
 .wrapper {
@@ -20,6 +15,8 @@
 
 .image {
   object-fit: cover;
+
+
   /* Optional: Add transition if you remove the 'key' prop in React, 
      but keeping 'key' is safer for Next.js Image component updates */
 }
@@ -28,18 +25,21 @@
 .dots {
   position: absolute;
   bottom: 12px;
-  /* Position at bottom */
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
-  /* Center align horizontally */
   align-items: center;
   gap: 8px;
-  /* Space between dots */
-  z-index: 10;
-  pointer-events: none;
-  /* Allow clicks to pass through empty space */
+  pointer-events: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.wrapper:hover .dots {
+  opacity: 1;
+  visibility: visible;
 }
 
 .dot {
@@ -47,24 +47,25 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
-  /* Inactive color (light grey transparent) */
+  background: rgba(255, 255, 255, 0.4);
+  /* White transparent for visibility */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  /* Shadow for contrast */
   cursor: pointer;
   pointer-events: auto;
-  /* Enable clicking on dots */
   transition: all 0.3s ease;
 }
 
-/* Active State - Matches standard Swiper active blue */
+/* Active State */
 .active {
-  background: #007aff;
+  background: white !important;
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.2);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
-/* Hover Effect for non-active dots */
 .dot:hover:not(.active) {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 /* Optional: Hide dots on very small screens if needed, or adjust size */

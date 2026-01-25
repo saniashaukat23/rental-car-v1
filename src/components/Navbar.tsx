@@ -46,38 +46,38 @@ export default function Navbar() {
   const [mobileCategoryOpen, setMobileCategoryOpen] = useState(false);
 
   const brands: BrandItem[] = [
-    { name: "Audi", logo: "/images/CarLogos/audi.webp" },
-    { name: "BMW", logo: "/images/CarLogos/bmw.webp" },
-    { name: "BRABUS", logo: "/images/CarLogos/brabus.webp" },
-    { name: "Bentley", logo: "/images/CarLogos/bentley.webp" },
-    { name: "Cadillac", logo: "/images/CarLogos/cadillac.webp" },
-    { name: "Chevrolet", logo: "/images/CarLogos/chevrolet.webp" },
-    { name: "Corvette", logo: "/images/CarLogos/corvette.webp" },
-    { name: "Ferrari", logo: "/images/CarLogos/ferrari.webp" },
-    { name: "GMC", logo: "/images/CarLogos/gmc.webp" },
-    { name: "Jetour", logo: "/images/CarLogos/jetour.webp" },
-    { name: "Land Rover", logo: "/images/CarLogos/landrover.webp" },
-    { name: "Lamborghini", logo: "/images/CarLogos/lamborghini.webp" },
-    { name: "Mansory", logo: "/images/CarLogos/Mansory.webp" },
-    { name: "McLaren", logo: "/images/CarLogos/McLaren.webp" },
-    { name: "Mercedes", logo: "/images/CarLogos/Mercedes.webp" },
-    { name: "Nissan", logo: "/images/CarLogos/Nissan.webp" },
-    { name: "Porsche", logo: "/images/CarLogos/Porsche.webp" },
-    { name: "Rolls Royce", logo: "/images/CarLogos/RollsRoyce.webp" },
-    { name: "Rox", logo: "/images/CarLogos/Rox.webp" },
-    { name: "Toyota", logo: "/images/CarLogos/Toyota.webp" },
+    { name: "Audi", logo: "/images/carlogos/audi.webp" },
+    { name: "BMW", logo: "/images/carlogos/bmw.webp" },
+    { name: "BRABUS", logo: "/images/carlogos/brabus.webp" },
+    { name: "Bentley", logo: "/images/carlogos/bentley.webp" },
+    { name: "Cadillac", logo: "/images/carlogos/cadillac.webp" },
+    { name: "Chevrolet", logo: "/images/carlogos/chevrolet.webp" },
+    { name: "Corvette", logo: "/images/carlogos/corvette.webp" },
+    { name: "Ferrari", logo: "/images/carlogos/ferrari.webp" },
+    { name: "GMC", logo: "/images/carlogos/gmc.webp" },
+    { name: "Jetour", logo: "/images/carlogos/jetour.webp" },
+    { name: "Land Rover", logo: "/images/carlogos/landrover.webp" },
+    { name: "Lamborghini", logo: "/images/carlogos/lamborghini.webp" },
+    { name: "Mansory", logo: "/images/carlogos/mansory.webp" },
+    { name: "McLaren", logo: "/images/carlogos/mclaren.webp" },
+    { name: "Mercedes", logo: "/images/carlogos/mercedes.webp" },
+    { name: "Nissan", logo: "/images/carlogos/nissan.webp" },
+    { name: "Porsche", logo: "/images/carlogos/porsche.webp" },
+    { name: "Rolls Royce", logo: "/images/carlogos/rollsroyce.webp" },
+    { name: "Rox", logo: "/images/carlogos/rox.webp" },
+    { name: "Toyota", logo: "/images/carlogos/toyota.webp" },
   ];
 
   const category: BrandItem[] = [
     {
       name: "Convertible",
-      logo: "/images/CarTypeLogos/1759741436173-r7utj.webp",
+      logo: "/images/cartypelogos/1759741436173-r7utj.webp",
     },
-    { name: "Luxury", logo: "/images/CarTypeLogos/1759756904178-6g7kni.webp" },
-    { name: "Economy", logo: "/images/CarTypeLogos/1761836668299-9dn7n.webp" },
-    { name: "SUV", logo: "/images/CarTypeLogos/1759827099550-kjwjapm.webp" },
-    { name: "Sedan", logo: "/images/CarTypeLogos/1759827106843-q31jyq.webp" },
-    { name: "Sports", logo: "/images/CarTypeLogos/1759741479677-50cvhn.webp" },
+    { name: "Luxury", logo: "/images/cartypelogos/1759756904178-6g7kni.webp" },
+    { name: "Economy", logo: "/images/cartypelogos/1761836668299-9dn7n.webp" },
+    { name: "SUV", logo: "/images/cartypelogos/1759827099550-kjwjapm.webp" },
+    { name: "Sedan", logo: "/images/cartypelogos/1759827106843-q31jyq.webp" },
+    { name: "Sports", logo: "/images/cartypelogos/1759741479677-50cvhn.webp" },
   ];
 
   useEffect(() => {
@@ -138,17 +138,17 @@ export default function Navbar() {
       <nav className={styles.navContainer}>
         <div className={styles.navWrapper}>
           <Link href={"/"}>
-            <div className={styles.flexItemsCenter}>
-              <Image
-                src="/images/logo.jpeg"
-                width={140}
-                height={40}
-                alt="Logo"
-                className={styles.logoImage}
-              />
-            </div>
+            <Image
+              src="/images/logo.jpeg"
+              width={160}
+              height={40}
+              alt="Logo"
+              className={styles.logoImage}
+            />
           </Link>
-          <div className={`${styles.linksGroup} ${styles.desktopLinks} ${styles.flex}`}>
+
+          {/* Desktop Links */}
+          <div className={styles.linksGroup}>
             {menuItems.map((item, idx) => (
               <Link
                 key={idx}
@@ -163,89 +163,91 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
+
+          {/* Mobile Menu Toggle */}
           <button
             className={styles.mobileMenuButton}
             onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
+        {/* Mobile Menu Overlay */}
         <div
-          className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.open : ""
-            } ${styles.mobileMenuContainer} ${styles.mobileMenuScroll}`}
-        >
-          <div className={styles.mobilePaddingBottom}>
+          className={`${styles.mobileMenuOverlay} ${mobileMenuOpen ? styles.open : ""}`}
+          onClick={() => setMobileMenuOpen(false)}
+        />
+
+        {/* Mobile Menu Drawer */}
+        <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.open : ""}`}>
+          <div className={styles.mobileMenuContent}>
             {menuItems.map((item, idx) => {
               const isBrands = item.label === "Brands";
               const isCategory = item.label === "Category";
               const isExpanded =
                 (isBrands && mobileBrandsOpen) ||
                 (isCategory && mobileCategoryOpen);
-              const displayList = isBrands
-                ? brands
-                : isCategory
-                  ? category
-                  : [];
+              const displayList = isBrands ? brands : isCategory ? category : [];
 
               return (
-                <div
-                  key={idx}
-                  className={`${styles.flexCol} ${styles.borderBottom} ${styles.lastNoBorder}`}
-                >
-                  <Link
-                    href={item.href}
-                    className={`${item.isSpecial
-                        ? `${styles.mobileLink} ${styles.navLinkSpecial}`
-                        : styles.mobileLink
-                      } ${styles.flexJustifyBetween} ${styles.fullWidth} ${styles.px4} ${styles.py3}`}
-                    onClick={(e) => handleMobileLinkClick(e, item)}
+                <div key={idx} className={styles.flexCol}>
+                  <div
+                    className={styles.mobileLink}
+                    onClick={(e) => handleMobileLinkClick(e as any, item)}
                   >
-                    <span className={styles.flexGap2}>
-                      {item.label}
-                      {item.isSpecial && (
-                        <span className={styles.badge}>%</span>
-                      )}
-                    </span>
-                    {item.hasDropdown &&
-                      (isExpanded ? (
-                        <ChevronUp size={16} />
-                      ) : (
-                        <ChevronDown size={16} />
-                      ))}
-                  </Link>
-                  {item.hasDropdown && isExpanded && (
-                    <div className={`${styles.bgGray50} ${styles.p4} ${styles.borderTop} ${styles.shadowInner}`}>
-                      <div className={styles.gridCols2}>
-                        {displayList.map((subItem, subIdx) => {
-                          const linkHref = isBrands
-                            ? `/brands/${subItem.name}`
-                            : `/our-fleet?type=${subItem.name}`;
-                          return (
-                            <Link
-                              key={subIdx}
-                              href={linkHref}
-                              onClick={() => {
-                                setMobileMenuOpen(false);
-                                setMobileBrandsOpen(false);
-                                setMobileCategoryOpen(false);
-                              }}
-                              className={styles.subItemLink}
-                            >
-                              <div className={styles.relativeImageContainer}>
-                                <Image
-                                  src={subItem.logo}
-                                  alt={subItem.name}
-                                  fill
-                                  className={styles.objectContain}
-                                />
-                              </div>
-                              <span className={`${styles.textXs} ${styles.fontMedium} ${styles.textCenter} ${styles.textGray700}`}>
-                                {subItem.name}
-                              </span>
-                            </Link>
-                          );
-                        })}
+                    {item.hasDropdown ? (
+                      <span className={item.isSpecial ? styles.navLinkSpecial : ""}>
+                        {item.label}
+                        {item.isSpecial && <span className={styles.badge}>%</span>}
+                      </span>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={item.isSpecial ? styles.navLinkSpecial : ""}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                        {item.isSpecial && <span className={styles.badge}>%</span>}
+                      </Link>
+                    )}
+
+                    {item.hasDropdown && (
+                      <div>
+                        {isExpanded ? (
+                          <ChevronUp size={18} />
+                        ) : (
+                          <ChevronDown size={18} />
+                        )}
                       </div>
+                    )}
+                  </div>
+
+                  {item.hasDropdown && isExpanded && (
+                    <div className={styles.subItemsGrid}>
+                      {displayList.map((subItem, subIdx) => {
+                        const linkHref = isBrands
+                          ? `/brands/${subItem.name.toLowerCase().replace(/\s+/g, "-")}`
+                          : `/our-fleet?type=${subItem.name}`;
+                        return (
+                          <Link
+                            key={subIdx}
+                            href={linkHref}
+                            onClick={() => setMobileMenuOpen(false)}
+                            className={styles.subItemLink}
+                          >
+                            <div className={styles.subItemIcon}>
+                              <Image
+                                src={subItem.logo}
+                                alt={subItem.name}
+                                fill
+                                className={styles.objectContain}
+                              />
+                            </div>
+                            <span className={styles.textXs}>{subItem.name}</span>
+                          </Link>
+                        );
+                      })}
                     </div>
                   )}
                 </div>

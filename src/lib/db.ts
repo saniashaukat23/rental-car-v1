@@ -32,11 +32,12 @@ async function dbConnect() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-      serverSelectionTimeoutMS: 10000, // 10 seconds for cold start
-      socketTimeoutMS: 45000, // Close sockets after 45 seconds
+      serverSelectionTimeoutMS: 30000, // 30 seconds for cold start and slow connections
+      socketTimeoutMS: 90000, // Close sockets after 90 seconds
+      connectTimeoutMS: 30000, // 30 seconds to establish initial connection
       maxPoolSize: 10, // Maintain up to 10 socket connections
       minPoolSize: 1, // Maintain at least 1 socket connection
-      maxIdleTimeMS: 30000, // Close connections after 30 seconds of inactivity
+      maxIdleTimeMS: 60000, // Close connections after 60 seconds of inactivity
       retryWrites: true,
       retryReads: true,
     };

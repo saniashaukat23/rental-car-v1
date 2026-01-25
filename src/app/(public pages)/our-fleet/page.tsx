@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, Suspense } from "react";
+import React, { useState, useMemo, Suspense, useEffect } from "react";
 import styles from "../../../styles/frontend/fleet.module.css";
 import CarRentalCard from "@/src/components/CarRentalCard";
 import { CarType } from "@/src/types/CarType";
@@ -17,9 +17,9 @@ import { useCars } from "@/src/hooks/useCars";
 
 // Helper to normalize brand name for image path
 const getBrandImagePath = (brand: string) => {
-  // Convert to lowercase and remove spaces for file names like "landrover.webp", "rollsroyce.webp"
-  const normalizedBrand = brand.toLowerCase().replace(/\s+/g, "");
-  return `/images/carLogos/${normalizedBrand}.webp`;
+  // Convert to lowercase and remove spaces/hyphens for file names like "landrover.webp", "rollsroyce.webp"
+  const normalizedBrand = brand.toLowerCase().replace(/[-\s]/g, "");
+  return `/images/carlogos/${normalizedBrand}.webp`;
 };
 
 
@@ -47,8 +47,14 @@ function FleetContent() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
 
-  // Note: we intentionally avoid calling setState inside an effect here.
-  // Initialization from `SearchParams` above prevents cascading updates.
+  // Note: we synchronise state with URL params here to handle navigation updates
+  // (e.g. when clicking a link from the BrandPopup or external navigation)
+  useEffect(() => {
+    const brand = SearchParams.get("brand");
+    const type = SearchParams.get("type");
+    if (brand !== selectedBrand) setSelectedBrand(brand);
+    if (type !== selectedType) setSelectedType(type);
+  }, [SearchParams]);
 
   // Filtering Logic using useMemo to prevent infinite loops
   const filteredCars = useMemo(() => {
@@ -75,33 +81,81 @@ function FleetContent() {
     return result;
   }, [selectedBrand, selectedType, selectedSeats, selectedYear, allCars]);
 
-  // 3. Helper to count items (with normalized brand matching)
-  const getCount = (key: keyof CarType, value: any) => {
-    if (key === "brand") {
-      const normalizedValue = String(value).toLowerCase().replace(/\s+/g, "");
-      return allCars.filter((car) =>
-        car.brand.toLowerCase().replace(/\s+/g, "") === normalizedValue
-      ).length;
-    }
-    return allCars.filter((car) => car[key] == value).length;
+  // 3. Helper to determine available cars for each filter group (Facet Filtering)
+  const getAvailableCars = (excludeKey: string) => {
+    return allCars.filter((car) => {
+      // Filter by Brand (if not calculating available brands)
+      if (excludeKey !== "brand" && selectedBrand) {
+        const normalizedSelectedBrand = selectedBrand
+          .toLowerCase()
+          .replace(/\s+/g, "");
+        if (
+          car.brand.toLowerCase().replace(/\s+/g, "") !== normalizedSelectedBrand
+        )
+          return false;
+      }
+      // Filter by Type (if not calculating available types)
+      if (excludeKey !== "type" && selectedType) {
+        if (car.type.toLowerCase() !== selectedType.toLowerCase()) return false;
+      }
+      // Filter by Seats (if not calculating available seats)
+      if (excludeKey !== "seats" && selectedSeats) {
+        if (Number(car.seats) !== selectedSeats) return false;
+      }
+      // Filter by Year (if not calculating available years)
+      if (excludeKey !== "year" && selectedYear) {
+        if (Number(car.year) !== selectedYear) return false;
+      }
+      return true;
+    });
   };
 
-  // 4. Extract Unique Lists (normalize to prevent duplicates like "Land Rover" and "LandRover")
+  const carsForBrand = getAvailableCars("brand");
+  const carsForType = getAvailableCars("type");
+  const carsForSeats = getAvailableCars("seats");
+  const carsForYear = getAvailableCars("year");
+
+  // 4. Helper to count items based on available context
+  const getCount = (key: keyof CarType, value: any) => {
+    let source = allCars;
+    if (key === "brand") source = carsForBrand;
+    else if (key === "type") source = carsForType;
+    else if (key === "seats") source = carsForSeats;
+    else if (key === "year") source = carsForYear;
+
+    if (key === "brand") {
+      const normalizedValue = String(value).toLowerCase().replace(/\s+/g, "");
+      return source.filter(
+        (car) =>
+          car.brand.toLowerCase().replace(/\s+/g, "") === normalizedValue
+      ).length;
+    }
+    return source.filter((car) => car[key] == value).length;
+  };
+
+  // 5. Extract Unique Lists from the AVAILABLE cars for that filter
   const uniqueBrands = Array.from(
-    allCars.reduce((map, car) => {
-      const normalizedBrand = car.brand.toLowerCase().replace(/\s+/g, "");
-      if (!map.has(normalizedBrand)) {
-        map.set(normalizedBrand, car.brand); // Keep original display name
-      }
-      return map;
-    }, new Map<string, string>()).values()
+    carsForBrand
+      .reduce((map, car) => {
+        const normalizedBrand = car.brand.toLowerCase().replace(/\s+/g, "");
+        if (!map.has(normalizedBrand)) {
+          map.set(normalizedBrand, car.brand); // Keep original display name
+        }
+        return map;
+      }, new Map<string, string>())
+      .values()
   );
-  const uniqueTypes = Array.from(new Set(allCars.map((c) => c.type)));
+
+  const uniqueTypes = Array.from(new Set(carsForType.map((c) => c.type)));
+
   const uniqueSeats = Array.from(
-    new Set(allCars.map((c) => Number(c.seats)).filter((s) => !isNaN(s)))
+    new Set(carsForSeats.map((c) => Number(c.seats)).filter((s) => !isNaN(s)))
   ).sort((a, b) => a - b);
+
   const uniqueYears = Array.from(
-    new Set(allCars.map((c) => Number(c.year)).filter((y) => !isNaN(y) && y > 0))
+    new Set(
+      carsForYear.map((c) => Number(c.year)).filter((y) => !isNaN(y) && y > 0)
+    )
   ).sort((a, b) => b - a);
 
   // 5. Pagination Logic
@@ -167,8 +221,24 @@ function FleetContent() {
           >
             {/* Mobile Only: Header inside drawer */}
             <div className={styles.mobileFilterHeader}>
-
             </div>
+
+            {/* Active Filters / Clear Section */}
+            {(selectedBrand || selectedType || selectedSeats || selectedYear) && (
+              <aside className={styles.sidebar}>
+                <div className={styles.filterTitle}>
+                  <FaFilter size={16} />
+                  Active Filters
+                </div>
+                <button
+                  onClick={resetFilters}
+                  className={`${styles.resetBtn} ${styles.clearAllBtn}`}
+                >
+                  <FaTimes size={14} />
+                  Clear All Filters
+                </button>
+              </aside>
+            )}
 
             {/* Brand Filter */}
             <aside className={styles.sidebar}>
@@ -350,8 +420,8 @@ function FleetContent() {
                       onClick={() => paginate(currentPage - 1)}
                       disabled={currentPage === 1}
                       className={`${styles.paginationButton} ${currentPage === 1
-                          ? styles.paginationButtonDisabled
-                          : styles.paginationButtonEnabled
+                        ? styles.paginationButtonDisabled
+                        : styles.paginationButtonEnabled
                         }`}
                     >
                       <FaChevronLeft size={14} />
@@ -363,8 +433,8 @@ function FleetContent() {
                           key={number}
                           onClick={() => paginate(number)}
                           className={`${styles.pageNumber} ${currentPage === number
-                              ? styles.pageNumberActive
-                              : styles.pageNumberInactive
+                            ? styles.pageNumberActive
+                            : styles.pageNumberInactive
                             }`}
                         >
                           {number}
@@ -376,8 +446,8 @@ function FleetContent() {
                       onClick={() => paginate(currentPage + 1)}
                       disabled={currentPage === totalPages}
                       className={`${styles.paginationButton} ${currentPage === totalPages
-                          ? styles.paginationButtonDisabled
-                          : styles.paginationButtonEnabled
+                        ? styles.paginationButtonDisabled
+                        : styles.paginationButtonEnabled
                         }`}
                     >
                       <FaChevronRight size={14} />

@@ -191,6 +191,7 @@ export default function Footer() {
                 "pay_safely201",
               ].map((payment, i) => (
                 <div key={i} className={styles.paymentCard}>
+                  <div className={styles.glowOrb}></div>
                   <div className={styles.relativeContainer}>
                     <Image
                       src={`/paymentLogos/${payment}.svg`}

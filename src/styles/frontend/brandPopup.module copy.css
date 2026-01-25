@@ -3,9 +3,11 @@
 .overlay {
   position: fixed;
   inset: 0;
-  z-index: 9999; /* Ensure it is above everything else */
+  z-index: 9999;
+  /* Ensure it is above everything else */
 
-  cursor: pointer; /* Shows user the area is clickable to exit */
+  cursor: pointer;
+  /* Shows user the area is clickable to exit */
 }
 
 .popupCard {
@@ -14,7 +16,8 @@
   width: 90%;
   max-width: 420px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  cursor: default; /* Prevents the pointer cursor from the overlay */
+  cursor: default;
+  /* Prevents the pointer cursor from the overlay */
   top: 9.5%;
   left: 25%;
   padding: 1.5rem;
@@ -96,6 +99,7 @@
     padding: 1.5rem;
   }
 }
+
 /* styles/brandPopup.module.css */
 
 /* Base grid styles */
@@ -112,9 +116,11 @@
 
 /* Maintain responsiveness */
 @media (max-width: 640px) {
+
   .grid4,
   .grid3 {
-    grid-template-columns: repeat(2, 1fr); /* Both drop to 2 on small mobile */
+    grid-template-columns: repeat(2, 1fr);
+    /* Both drop to 2 on small mobile */
     gap: 1.25rem;
   }
 }
