@@ -168,21 +168,24 @@
 
 /* Buttons */
 .actions {
+  width: 100%;
   display: flex;
   gap: var(--space-3);
 }
 
 .buttonBase {
-  width: 3.5rem;
+  flex: 1;
   height: 3.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2);
   border-radius: var(--radius-lg);
   cursor: pointer;
   transition: all var(--transition-base);
   border: none;
-  flex-shrink: 0;
+  font-weight: var(--font-bold);
+  font-size: var(--text-sm);
 }
 
 /* Ghost Button for Call */
@@ -211,6 +214,11 @@
 }
 
 
+
+/* Button Text */
+.buttonText {
+  display: inline-block;
+}
 
 /* Discount Badge */
 .discountBadge {

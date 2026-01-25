@@ -129,7 +129,7 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
           <div className={styles.actions}>
             <button onClick={handleCall} className={styles.callButton}>
               <FaPhoneAlt className={styles.iconSmall} />
-              <span className={styles.buttonTextHidden}>Call</span>
+              <span className={styles.buttonText}>Call</span>
             </button>
 
             <a
@@ -137,7 +137,7 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
               className={`${styles.whatsappButton} ${styles.noTextDecoration}`}
             >
               <IoLogoWhatsapp className={styles.iconMedium} />
-              <span className={styles.buttonTextHidden}>WhatsApp</span>
+              <span className={styles.buttonText}>WhatsApp</span>
             </a>
           </div>
         </div>
