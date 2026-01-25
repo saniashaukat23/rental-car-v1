@@ -6,7 +6,6 @@
   --primary-10: #f973161a;
   --primary-5: #f974160f;
   --primary-light: #f97416c7;
-
   --green-500: #22c55e;
   --green-600: #16a34a;
   --white: #ffffff;
@@ -15,10 +14,8 @@
   --gray-500: #6b7280;
   --gray-600: #4b5563;
   --gray-900: #111827;
-
   --bg-card: #ffffff;
   --border-color: #e5e7eb;
-
   --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
@@ -288,7 +285,7 @@
 }
 
 .btnLarge {
-  padding: 1rem 3rem;
+  padding: 0.75rem;
   border-radius: 0.75rem;
   font-size: 1rem;
 }
