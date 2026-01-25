@@ -36,7 +36,6 @@ const brandLogos: BrandLogo[] = [
   { name: "Land Rover", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/LandRover.webp" },
   { name: "Toyota", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/toyota.webp" },
   { name: "Lamborghini", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Lamborghini.webp" },
-  { name: "GMC", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/GMC.webp" },
 ];
 
 
