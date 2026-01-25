@@ -50,7 +50,10 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
   }
 
   return (
-    <main className={styles.pageWrapper}>
+    <main
+      className={styles.pageWrapper}
+      style={{ viewTransitionName: `car-card-${car._id}` } as React.CSSProperties}
+    >
       <div className={styles.container}>
 
         {/* Breadcrumb */}

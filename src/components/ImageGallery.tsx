@@ -11,6 +11,7 @@ interface ImageGalleryProps {
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altTitle = "Car Image" }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
 
   // Safety check if no images are provided
   if (!images || images.length === 0) {
@@ -26,14 +27,36 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altTitle = "Car Ima
     );
   }
 
-  const handlePrev = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handlePrev = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     setSelectedIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
-  const handleNext = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleNext = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     setSelectedIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+
+    const touchEnd = e.changedTouches[0].clientX;
+    const distance = touchStart - touchEnd;
+    const minSwipeDistance = 50;
+
+    if (distance > minSwipeDistance) {
+      // Swiped left -> Next image
+      handleNext();
+    } else if (distance < -minSwipeDistance) {
+      // Swiped right -> Previous image
+      handlePrev();
+    }
+
+    setTouchStart(null);
   };
 
   const handleThumbnailClick = (index: number) => {
@@ -43,7 +66,11 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altTitle = "Car Ima
   return (
     <div className={styles.galleryContainer}>
       {/* Main Image View */}
-      <div className={styles.mainImageWrapper}>
+      <div
+        className={styles.mainImageWrapper}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <Image
           src={images[selectedIndex]}
           alt={`${altTitle} - View ${selectedIndex + 1}`}
@@ -55,15 +82,15 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altTitle = "Car Ima
         {/* Navigation Arrows (Only show if > 1 image) */}
         {images.length > 1 && (
           <>
-            <button 
-              className={`${styles.navButton} ${styles.prevButton}`} 
+            <button
+              className={`${styles.navButton} ${styles.prevButton}`}
               onClick={handlePrev}
               aria-label="Previous Image"
             >
               <ChevronLeft size={20} />
             </button>
-            <button 
-              className={`${styles.navButton} ${styles.nextButton}`} 
+            <button
+              className={`${styles.navButton} ${styles.nextButton}`}
               onClick={handleNext}
               aria-label="Next Image"
             >
@@ -85,9 +112,8 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altTitle = "Car Ima
             <button
               key={idx}
               onClick={() => handleThumbnailClick(idx)}
-              className={`${styles.thumbnailBtn} ${
-                idx === selectedIndex ? styles.activeThumb : styles.inactiveThumb
-              }`}
+              className={`${styles.thumbnailBtn} ${idx === selectedIndex ? styles.activeThumb : styles.inactiveThumb
+                }`}
               aria-label={`View image ${idx + 1}`}
             >
               <Image

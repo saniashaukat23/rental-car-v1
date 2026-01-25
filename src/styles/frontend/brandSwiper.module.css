@@ -18,12 +18,16 @@
   justify-content: center;
   gap: 0.5rem;
 }
+
 .logoBox {
-  height: 70px; /* 👈 SAME HEIGHT FOR ALL LOGOS */
+  height: 70px;
+  /* 👈 SAME HEIGHT FOR ALL LOGOS */
   width: 100%;
   display: flex;
-  align-items: center; /* Vertical center */
-  justify-content: center; /* Horizontal center */
+  align-items: center;
+  /* Vertical center */
+  justify-content: center;
+  /* Horizontal center */
   padding-top: 10px;
 }
 
@@ -33,7 +37,8 @@
   max-width: 100%;
   object-fit: contain;
   opacity: 0.8;
-  transition: all 0.3s ease; /* 👈 REQUIRED */
+  transition: all 0.3s ease;
+  /* 👈 REQUIRED */
 }
 
 .logoItem:hover .logoImage {
@@ -44,7 +49,8 @@
   font-size: 0.75rem;
   padding-top: 1rem;
   font-weight: 500;
-  transition: all 0.3s ease; /* 👈 REQUIRED */
+  transition: all 0.3s ease;
+  /* 👈 REQUIRED */
 }
 
 .navBtn {
@@ -67,6 +73,7 @@
 .navBtn:last-of-type {
   right: -12px;
 }
+
 /* Hover animation like grid cards */
 .logoItem {
   transition: all 0.4 ease;
@@ -79,7 +86,8 @@
 }
 
 .logoItem:hover .brandName {
-  color: #f97316; /* same orange */
+  color: #f97316;
+  /* same orange */
   transform: translateY(-7px);
 }
 
@@ -91,8 +99,10 @@
   margin: 10px;
   width: 40px;
   height: 40px;
-  border-radius: 50%; /* 👈 circle */
-  background-color: white; /* black */
+  border-radius: 50%;
+  /* 👈 circle */
+  background-color: white;
+  /* black */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,12 +115,14 @@
 .navBtn svg {
   width: 18px;
   height: 18px;
-  color: black; /* white arrow */
+  color: black;
+  /* white arrow */
 }
 
 /* Hover effect */
 .navBtn:hover {
-  background-color: #f97316; /* orange */
+  background-color: #f97316;
+  /* orange */
   transform: translateY(-50%) scale(1.05);
 }
 
@@ -122,9 +134,11 @@
 .brand-next {
   right: -14px;
 }
+
 .navBtn {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
+
 @media (max-width: 640px) {
   .navBtn {
     display: none;
@@ -137,8 +151,8 @@
   justify-content: center;
   align-items: center;
   margin-top: 1.5rem;
-  padding-bottom: 0.5rem;
-  gap: 6px;
+  padding-bottom: 1re;
+  gap: 4px;
 }
 
 /* Show pagination only on mobile */
@@ -146,7 +160,7 @@
   .pagination {
     display: flex !important;
   }
-  
+
   .container {
     padding-bottom: 1rem;
   }
@@ -154,17 +168,20 @@
 
 /* Custom pagination bullet styles */
 .pagination :global(.swiper-pagination-bullet) {
-  width: 8px;
-  height: 8px;
-  background: #9ca3af; /* gray-400 for inactive */
+  width: 6px;
+  height: 6px;
+  background: #80858c9d;
+  /* gray-400 for inactive */
   opacity: 1;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+  border-radius: 10px;
+  /* Using a pill shape for both to ensure smooth transition */
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
   cursor: pointer;
 }
 
 .pagination :global(.swiper-pagination-bullet-active) {
-  background: #f97316; /* primary orange for active */
-  width: 20px;
-  border-radius: 10px;
+  background: #f97316;
+  /* primary orange for active */
+  width: 24px;
+  /* Slightly wider for better visual impact */
 }

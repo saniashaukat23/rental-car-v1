@@ -11,7 +11,8 @@
 .mainImageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3; /* Default aspect ratio */
+  aspect-ratio: 4 / 3;
+  /* Default aspect ratio */
   background-color: #f3f4f6;
   border-radius: 0.75rem;
   overflow: hidden;
@@ -20,7 +21,8 @@
 
 @media (min-width: 640px) {
   .mainImageWrapper {
-    aspect-ratio: 16 / 10; /* Wider on larger screens */
+    aspect-ratio: 16 / 10;
+    /* Wider on larger screens */
     border-radius: 1rem;
   }
 }
@@ -50,6 +52,12 @@
   z-index: 10;
   transition: all 0.2s ease;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .navButton {
+    display: none;
+  }
 }
 
 .navButton:hover {
@@ -84,7 +92,8 @@
   display: flex;
   gap: 0.75rem;
   overflow-x: auto;
-  padding-bottom: 0.5rem; /* Space for scrollbar */
+  padding-bottom: 0.5rem;
+  /* Space for scrollbar */
   scrollbar-width: thin;
   scrollbar-color: #d1d5db transparent;
 }
@@ -93,9 +102,11 @@
 .thumbnailStrip::-webkit-scrollbar {
   height: 6px;
 }
+
 .thumbnailStrip::-webkit-scrollbar-track {
   background: transparent;
 }
+
 .thumbnailStrip::-webkit-scrollbar-thumb {
   background-color: #d1d5db;
   border-radius: 20px;
@@ -104,8 +115,10 @@
 .thumbnailBtn {
   position: relative;
   flex-shrink: 0;
-  width: 5rem; /* 80px */
-  height: 3.5rem; /* 56px */
+  width: 5rem;
+  /* 80px */
+  height: 3.5rem;
+  /* 56px */
   border-radius: 0.5rem;
   overflow: hidden;
   cursor: pointer;
@@ -117,14 +130,17 @@
 
 @media (min-width: 640px) {
   .thumbnailBtn {
-    width: 6rem; /* 96px */
-    height: 4rem; /* 64px */
+    width: 6rem;
+    /* 96px */
+    height: 4rem;
+    /* 64px */
   }
 }
 
 /* Active State - Orange Border */
 .activeThumb {
-  border-color: #f97316; /* Orange-500 */
+  border-color: #f97316;
+  /* Orange-500 */
   opacity: 1;
 }
 
