@@ -97,7 +97,7 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
                 <h3 className={styles.pricingTitle}>Pricing</h3>
                 <div className={styles.brandLogoBox}>
                   {car.brand && (
-                    <Image src={`/images/carlogos/${car.brand}.webp`} alt={car.brand} fill className={styles.brandLogoImage} />
+                    <Image src={`https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/${car.brand}.webp`} alt={car.brand} fill className={styles.brandLogoImage} />
                   )}
                 </div>
               </div>

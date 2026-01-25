@@ -33,6 +33,7 @@ const brandLogos: BrandLogo[] = [
   { name: "Rox", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Rox.webp" },
   { name: "Jetour", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Jetour.webp" },
   { name: "Land Rover", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/LandRover.webp" },
+  { name: "Toyota", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Toyota.webp" },
 ];
 
 export default function BrandSwiper() {

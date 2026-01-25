@@ -194,7 +194,7 @@ export default function Footer() {
                   <div className={styles.glowOrb}></div>
                   <div className={styles.relativeContainer}>
                     <Image
-                      src={`/paymentLogos/${payment}.svg`}
+                      src={payment}
                       alt={payment}
                       fill
                       className={styles.paymentImage}

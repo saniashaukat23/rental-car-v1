@@ -72,7 +72,7 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
           </div>
           <div className={styles.logoBox}>
             <Image
-              src={`/images/carlogos/${car.brand.toLowerCase().replace(/\s+/g, "")}.webp`}
+              src={`https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/${car.brand.toLowerCase().replace(/\s+/g, "")}.webp`}
               className={styles.logoImage}
               height={40}
               width={40}

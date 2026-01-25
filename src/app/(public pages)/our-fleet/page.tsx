@@ -19,7 +19,7 @@ import { useCars } from "@/src/hooks/useCars";
 const getBrandImagePath = (brand: string) => {
   // Convert to lowercase and remove spaces/hyphens for file names like "landrover.webp", "rollsroyce.webp"
   const normalizedBrand = brand.toLowerCase().replace(/[-\s]/g, "");
-  return `/images/carlogos/${normalizedBrand}.webp`;
+  return `https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/${normalizedBrand}.webp`;
 };
 
 
