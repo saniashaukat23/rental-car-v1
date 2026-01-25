@@ -46,39 +46,41 @@ export default function Navbar() {
   const [mobileCategoryOpen, setMobileCategoryOpen] = useState(false);
 
   const brands: BrandItem[] = [
-    { name: "Audi", logo: "/images/carlogos/audi.webp" },
-    { name: "BMW", logo: "/images/carlogos/bmw.webp" },
-    { name: "BRABUS", logo: "/images/carlogos/brabus.webp" },
-    { name: "Bentley", logo: "/images/carlogos/bentley.webp" },
-    { name: "Cadillac", logo: "/images/carlogos/cadillac.webp" },
-    { name: "Chevrolet", logo: "/images/carlogos/chevrolet.webp" },
-    { name: "Corvette", logo: "/images/carlogos/corvette.webp" },
-    { name: "Ferrari", logo: "/images/carlogos/ferrari.webp" },
-    { name: "GMC", logo: "/images/carlogos/gmc.webp" },
-    { name: "Jetour", logo: "/images/carlogos/jetour.webp" },
-    { name: "Land Rover", logo: "/images/carlogos/landrover.webp" },
-    { name: "Lamborghini", logo: "/images/carlogos/lamborghini.webp" },
-    { name: "Mansory", logo: "/images/carlogos/mansory.webp" },
-    { name: "McLaren", logo: "/images/carlogos/mclaren.webp" },
-    { name: "Mercedes", logo: "/images/carlogos/mercedes.webp" },
-    { name: "Nissan", logo: "/images/carlogos/nissan.webp" },
-    { name: "Porsche", logo: "/images/carlogos/porsche.webp" },
-    { name: "Rolls Royce", logo: "/images/carlogos/rollsroyce.webp" },
-    { name: "Rox", logo: "/images/carlogos/rox.webp" },
+    { name: "Audi", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Audi.webp" },
+    { name: "BMW", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/BMW.webp" },
+    { name: "BRABUS", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Brabus.webp" },
+    { name: "Bentley", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Bentley.webp" },
+    { name: "Cadillac", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Cadillac.webp" },
+    { name: "Chevrolet", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Chevrolet.webp" },
+    { name: "Corvette", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Corvette.webp" },
+    { name: "Ferrari", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Ferrari.webp" },
+    { name: "GMC", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/GMC.webp" },
+    { name: "Jetour", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Jetour.webp" },
+    { name: "Land Rover", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/LandRover.webp" },
+    { name: "Lamborghini", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Lamborghini.webp" },
+    { name: "Mansory", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Mansory.webp" },
+    { name: "McLaren", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/McLaren.webp" },
+    { name: "Mercedes", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Mercedes.webp" },
+    { name: "Nissan", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Nissan.webp" },
+    { name: "Porsche", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Porsche.webp" },
+    { name: "Rolls Royce", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/RollsRoyce.webp" },
+    { name: "Rox", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Rox.webp" },
     { name: "Toyota", logo: "/images/carlogos/toyota.webp" },
   ];
+
 
   const category: BrandItem[] = [
     {
       name: "Convertible",
-      logo: "/images/cartypelogos/1759741436173-r7utj.webp",
+      logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Convertible_xmov8i.webp",
     },
-    { name: "Luxury", logo: "/images/cartypelogos/1759756904178-6g7kni.webp" },
-    { name: "Economy", logo: "/images/cartypelogos/1761836668299-9dn7n.webp" },
+    { name: "Luxury", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349832/Luxury_cn5zf6.webp" },
+    { name: "Economy", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Sedan_m6iywf.webp" },
     { name: "SUV", logo: "/images/cartypelogos/1759827099550-kjwjapm.webp" },
-    { name: "Sedan", logo: "/images/cartypelogos/1759827106843-q31jyq.webp" },
-    { name: "Sports", logo: "/images/cartypelogos/1759741479677-50cvhn.webp" },
+    { name: "Sedan", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Economy_g6xgfl.webp" },
+    { name: "Sports", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Sports_cidcwv.webp" },
   ];
+
 
   useEffect(() => {
     if (mobileMenuOpen) {

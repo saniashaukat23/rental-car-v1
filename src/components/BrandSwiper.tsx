@@ -15,9 +15,8 @@ type BrandLogo = {
 };
 
 const brandLogos: BrandLogo[] = [
-
   { name: "BMW", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/BMW.webp" },
-  { name: "BRABUS", imagePath: " https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Brabus.webp" },
+  { name: "BRABUS", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Brabus.webp" },
   { name: "Bentley", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Bentley.webp" },
   { name: "Cadillac", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Cadillac.webp" },
   { name: "Chevrolet", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Chevrolet.webp" },

@@ -1,16 +1,5 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
-
-if (!MONGODB_URI) {
-  throw new Error("⚠️ MONGODB_URI not found in environment variables!");
-}
-
-// Validate MongoDB URI format (basic check)
-if (!MONGODB_URI.startsWith('mongodb://') && !MONGODB_URI.startsWith('mongodb+srv://')) {
-  throw new Error("⚠️ Invalid MONGODB_URI format. Must start with mongodb:// or mongodb+srv://");
-}
-
 interface MongooseCache {
   conn: typeof mongoose | null;
   promise: Promise<typeof mongoose> | null;
@@ -27,7 +16,19 @@ if (!cached) {
 }
 
 async function dbConnect() {
+  const MONGODB_URI = process.env.MONGODB_URI;
+
+  if (!MONGODB_URI) {
+    throw new Error("⚠️ MONGODB_URI not found in environment variables!");
+  }
+
+  // Validate MongoDB URI format (basic check)
+  if (!MONGODB_URI.startsWith('mongodb://') && !MONGODB_URI.startsWith('mongodb+srv://')) {
+    throw new Error("⚠️ Invalid MONGODB_URI format. Must start with mongodb:// or mongodb+srv://");
+  }
+
   if (cached.conn) return cached.conn;
+
 
   if (!cached.promise) {
     const opts = {

@@ -86,6 +86,7 @@ const categories = [
       "Professional service",
     ],
   },
+
 ];
 
 const roadTripTips = [

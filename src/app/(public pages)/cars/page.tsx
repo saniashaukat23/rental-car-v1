@@ -15,92 +15,92 @@ const brandsData = [
   },
   {
     name: "BMW",
-    logo: "/images/carlogos/bmw.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/BMW.webp",
     description: "German automotive brand designed with precise handling and driving dynamics in mind. Each model balances sportiness with everyday comfort and technology.",
   },
   {
     name: "BRABUS",
-    logo: "/images/carlogos/brabus.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Brabus.webp",
     description: "Discover our premium BRABUS vehicle collection featuring luxury cars with exceptional performance and style.",
   },
   {
     name: "Bentley",
-    logo: "/images/carlogos/bentley.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Bentley.webp",
     description: "Discover our premium Bentley vehicle collection featuring luxury cars with exceptional performance and style.",
   },
   {
     name: "Cadillac",
-    logo: "/images/carlogos/cadillac.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Cadillac.webp",
     description: "GM's luxury division known for bold styling and powerful engines. The American brand's vehicles combine comfort with modern design.",
   },
   {
     name: "Chevrolet",
-    logo: "/images/carlogos/chevrolet.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Chevrolet.webp",
     description: "Extensive range of vehicles including sedans and trucks. A staple of American car culture with iconic models like the Camaro and Corvette.",
   },
   {
     name: "Corvette",
-    logo: "/images/carlogos/corvette.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Corvette.webp",
     description: "Discover our premium Corvette vehicle collection featuring luxury cars with exceptional performance and style.",
   },
   {
     name: "Ferrari",
-    logo: "/images/carlogos/ferrari.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Ferrari.webp",
     description: "Italian car company famous for high-performance sports cars built for speed and status. Sophisticated vehicles renowned for their V8 and V12 engines.",
   },
   {
     name: "GMC",
-    logo: "/images/carlogos/gmc.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/GMC.webp",
     description: "American brand specializing in premium trucks and SUVs. Each vehicle features rugged capability with upscale features and design.",
   },
   {
     name: "Jetour",
-    logo: "/images/carlogos/jetour.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Jetour.webp",
     description: "Discover our premium Jetour vehicle collection featuring luxury cars with exceptional performance and style.",
   },
   {
     name: "Land Rover",
-    logo: "/images/carlogos/landrover.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/LandRover.webp",
     description: "Discover our premium Land Rover vehicle collection featuring luxury cars with exceptional performance and style.",
   },
   {
     name: "Lamborghini",
-    logo: "/images/carlogos/lamborghini.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Lamborghini.webp",
     description: "Italian brand manufacturing exotic supercars with dramatic styling and extreme performance. Every model is built to turn heads and push limits.",
   },
   {
     name: "Mansory",
-    logo: "/images/carlogos/mansory.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Mansory.webp",
     description: "Discover our premium Mansory vehicle collection featuring luxury cars with exceptional performance and style.",
   },
   {
     name: "McLaren",
-    logo: "/images/carlogos/mclaren.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/McLaren.webp",
     description: "Discover our premium McLaren vehicle collection featuring luxury cars with exceptional performance and style.",
   },
   {
     name: "Mercedes",
-    logo: "/images/carlogos/mercedes.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Mercedes.webp",
     description: "Discover our premium Mercedes vehicle collection featuring luxury cars with exceptional performance and style.",
   },
   {
     name: "Nissan",
-    logo: "/images/carlogos/nissan.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Nissan.webp",
     description: "Discover our premium Nissan vehicle collection featuring luxury cars with exceptional performance and style.",
   },
   {
     name: "Porsche",
-    logo: "/images/carlogos/porsche.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Porsche.webp",
     description: "German automotive brand renowned for precision-engineered sports cars. Delivers unparalleled driving experiences with every vehicle.",
   },
   {
     name: "ROX",
-    logo: "/images/carlogos/rox.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Rox.webp",
     description: "Discover our premium ROX vehicle collection featuring luxury cars with exceptional performance and style.",
   },
   {
     name: "Rolls Royce",
-    logo: "/images/carlogos/rollsroyce.webp",
+    logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/RollsRoyce.webp",
     description: "Discover our premium Rolls Royce vehicle collection featuring luxury cars with exceptional performance and style.",
   },
   {
@@ -108,6 +108,7 @@ const brandsData = [
     logo: "/images/carlogos/toyota.webp",
     description: "Discover our premium Toyota vehicle collection featuring luxury cars with exceptional performance and style.",
   },
+
 ];
 
 // --- Component ---
