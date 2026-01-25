@@ -11,7 +11,7 @@
 
 .navWrapper {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin: 0 auto;
   align-items: center;
   width: 100%;
@@ -185,6 +185,10 @@
 @media (min-width: 640px) {
   .logoImage {
     width: 140px;
+  }
+
+  .navWrapper {
+    justify-content: space-evenly;
   }
 }
 
