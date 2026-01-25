@@ -53,7 +53,7 @@
 
 .ping {
     position: absolute;
-    left: -0.25rem;
+    left: 0.1rem;
     top: 0.5rem;
     width: 0.5rem;
     height: 0.5rem;
@@ -64,7 +64,7 @@
 
 .dot {
     position: absolute;
-    left: -0.25rem;
+    left: 0.1rem;
     top: 0.5rem;
     width: 0.5rem;
     height: 0.5rem;

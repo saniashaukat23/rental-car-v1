@@ -52,7 +52,6 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
   return (
     <main
       className={styles.pageWrapper}
-      style={{ viewTransitionName: `car-card-${car._id}` } as React.CSSProperties}
     >
       <div className={styles.container}>
 
@@ -86,7 +85,10 @@ const CarDetailsView: React.FC<CarDetailsViewProps> = ({ car }) => {
         <div className={styles.topGrid}>
 
           {/* Image Gallery Section */}
-          <div className={styles.imageSection}>
+          <div
+            className={styles.imageSection}
+            style={{ viewTransitionName: `car-image-${car._id}` } as React.CSSProperties}
+          >
             <ImageGallery
               images={car.images || []}
               altTitle={car.name}

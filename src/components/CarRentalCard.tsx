@@ -55,9 +55,11 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
     <div
       className={`${styles.card} ${styles.cursorPointer}`}
       onClick={handleCardClick}
-      style={{ viewTransitionName: `car-card-${car._id}` } as React.CSSProperties}
     >
-      <div className={styles.imageContainer}>
+      <div
+        className={styles.imageContainer}
+        style={{ viewTransitionName: `car-image-${car._id}` } as React.CSSProperties}
+      >
         {/* Discount Badge */}
         {isDiscounted && (
           <div className={styles.discountBadge}>

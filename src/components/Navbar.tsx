@@ -37,6 +37,7 @@ const menuItems: MenuItem[] = [
 ];
 
 export default function Navbar() {
+  const [isClient, setIsClient] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [isBrandsOpen, setIsBrandsOpen] = useState(false);
@@ -83,6 +84,10 @@ export default function Navbar() {
     { name: "Sports", logo: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349831/Sports_cidcwv.webp" },
   ];
 
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -178,12 +183,15 @@ export default function Navbar() {
           </button>
         </div>
         {/* Mobile Menu Overlay */}
+        {isClient && (
         <div
           className={`${styles.mobileMenuOverlay} ${mobileMenuOpen ? styles.open : ""}`}
           onClick={() => setMobileMenuOpen(false)}
         />
+        )}
 
         {/* Mobile Menu Drawer */}
+        {isClient && (
         <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.open : ""}`}>
           <div className={styles.mobileMenuContent}>
             {menuItems.map((item, idx) => {
@@ -259,8 +267,9 @@ export default function Navbar() {
             })}
           </div>
         </div>
+        )}
       </nav>
-      {isBrandsOpen && (
+      {isClient && isBrandsOpen && (
         <BrandPopup
           brands={brands}
           title="Brands"
@@ -268,7 +277,7 @@ export default function Navbar() {
           onClose={() => setIsBrandsOpen(false)}
         />
       )}
-      {isCategoryOpen && (
+      {isClient && isCategoryOpen && (
         <BrandPopup
           title="Categories"
           subtitle="Explore cars by their types"

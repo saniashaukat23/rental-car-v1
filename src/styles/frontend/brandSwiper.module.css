@@ -1,6 +1,8 @@
 .wrapper {
   width: 100%;
   padding: 2rem 0;
+  overflow: hidden;
+  /* Prevent negative-positioned buttons from causing overflow */
 }
 
 .container {
@@ -64,6 +66,17 @@
   height: 3rem;
   cursor: pointer;
   z-index: 10;
+}
+
+.dot {
+  position: absolute;
+  left: 0.1rem;
+  /* Match ping position */
+  top: 0.5rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: #fde047;
+  border-radius: 9999px;
 }
 
 .navBtn:first-of-type {
