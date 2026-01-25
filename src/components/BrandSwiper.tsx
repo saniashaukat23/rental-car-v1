@@ -15,6 +15,7 @@ type BrandLogo = {
 };
 
 const brandLogos: BrandLogo[] = [
+  { name: "Audi", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769352930/audi.webp" },
   { name: "BMW", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/BMW.webp" },
   { name: "BRABUS", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Brabus.webp" },
   { name: "Bentley", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Bentley.webp" },
@@ -34,6 +35,7 @@ const brandLogos: BrandLogo[] = [
   { name: "Jetour", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Jetour.webp" },
   { name: "Land Rover", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/LandRover.webp" },
   { name: "Toyota", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Toyota.webp" },
+  { name: "Lamborghini", imagePath: "https://res.cloudinary.com/dfck2j3nx/image/upload/v1769351266/Lamborghini.webp" },
 ];
 
 export default function BrandSwiper() {
