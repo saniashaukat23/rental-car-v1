@@ -8,7 +8,7 @@
   width: 100%;
   min-height: 100vh;
   padding-top: var(--space-16);
-  overflow: visible;
+  overflow: hidden;
 }
 
 /* Next.js Image container */
@@ -43,7 +43,9 @@
   z-index: var(--z-sticky);
   justify-content: center;
   width: 100%;
+  max-width: 100%;
   padding: var(--space-8) var(--space-6);
+  overflow-x: hidden;
 }
 
 /* --- Typography --- */
@@ -142,11 +144,13 @@
   margin-right: auto;
   padding-left: var(--space-4);
   padding-right: var(--space-4);
+  overflow-x: hidden;
 }
 
 .sectionPadding {
   padding-top: var(--space-16);
   padding-bottom: var(--space-16);
+  overflow-x: hidden;
 }
 
 .sectionPaddingTop {
@@ -160,11 +164,13 @@
 .sectionPaddingX {
   padding-left: var(--space-6);
   padding-right: var(--space-6);
+  max-width: 100%;
 }
 
 .sectionPaddingXLarge {
   padding-left: var(--space-8);
   padding-right: var(--space-8);
+  max-width: 100%;
 }
 
 .bgGrayLight {
@@ -178,4 +184,5 @@
 .paddingX4 {
   padding-left: var(--space-4);
   padding-right: var(--space-4);
+  max-width: 100%;
 }

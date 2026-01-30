@@ -5,6 +5,7 @@ import AddCar from "./GeneralSettings";
 import DashboardOverview from "./DashboardOverview";
 import { CarType } from "@/src/types/CarType";
 import Image from "next/image";
+import styles from "../../styles/admin/GeneralSettings.module.css";
 import TotalCars from "./TotalCars";
 import { Search, Bell } from "lucide-react";
 
@@ -18,27 +19,27 @@ const Dashboard = ({ cars }: DashboardProps) => {
   const [activeTab, setActiveTab] = useState("Dashboard");
 
   return (
-    <div className="flex h-screen bg-[#F8FAFC] font-sans text-[#334155]">
+    <div className={styles.dashRoot}>
       {/* Sidebar Navigation */}
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col overflow-hidden">
+      <main className={styles.dashMain}>
         {/* Top Header */}
-        <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-8">
-          <div className="relative w-96">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+        <header className={styles.dashHeader}>
+          <div className={styles.dashSearchContainer}>
+            <Search className={styles.dashSearchIcon} />
             <input
               type="text"
               placeholder="Search here..."
-              className="w-full bg-gray-50 border-none rounded-md py-2 pl-10 text-sm focus:ring-1 focus:ring-lime-500"
+              className={styles.dashSearchInput}
             />
           </div>
-          <div className="flex items-center gap-4">
-            <button className="p-2 bg-gray-50 rounded-full hover:bg-gray-100">
-              <Bell className="w-5 h-5 text-gray-600" />
+          <div className={styles.dashHeaderRight}>
+            <button className={styles.dashIconButton}>
+              <Bell className={styles.dashIconSmall} />
             </button>
-            <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
+            <div className={styles.dashProfileAvatar}>
               <Image
                 src="/api/placeholder/40/40"
                 alt="Profile"
@@ -50,8 +51,8 @@ const Dashboard = ({ cars }: DashboardProps) => {
         </header>
 
         {/* Content Body */}
-        <div className="flex-1 overflow-y-auto p-8">
-          <div className="max-w-6xl mx-auto">
+        <div className={styles.dashContent}>
+          <div className={styles.dashInner}>
             {/* Dashboard Overview Tab */}
             {activeTab === "Dashboard" && <DashboardOverview cars={cars} />}
 

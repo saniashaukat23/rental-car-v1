@@ -7,7 +7,7 @@ import {
   HelpCircle,
 } from "lucide-react";
 // Import the module here
-import styles from "../../styles/admin/sidebar.module.css";
+import styles from "../../styles/admin/dashboard.module.css";
 
 import { UserButton, useUser } from "@clerk/nextjs";
 interface SidebarItemProps {
@@ -90,16 +90,12 @@ const Sidebar = ({ activeTab, setActiveTab }: SidebarProps) => {
         </div>
       </nav>
 
-      <div className="mt-auto p-4 border-t">
-        <div className="flex items-center gap-3">
-          {/* Ye Button Profile Image, Logout sab handle karega */}
+      <div className={styles.footer}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           <UserButton afterSignOutUrl="/" />
-
           <div>
-            <p className="text-sm font-bold">{user?.fullName}</p>
-            <p className="text-xs text-gray-500">
-              {user?.primaryEmailAddress?.emailAddress}
-            </p>
+            <p className={styles.userName}>{user?.fullName}</p>
+            <p className={styles.userEmail}>{user?.primaryEmailAddress?.emailAddress}</p>
           </div>
         </div>
       </div>

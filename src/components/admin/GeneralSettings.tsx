@@ -12,6 +12,7 @@ import {
   Star,
   LucideIcon,
 } from "lucide-react";
+import styles from "../../styles/admin/GeneralSettings.module.css";
 
 // --- Interfaces ---
 interface SectionTitleProps {
@@ -34,11 +35,9 @@ interface InputFieldProps {
 // Ab ye re-render hone par destroy nahi honge
 
 const SectionTitle = ({ icon: Icon, title }: SectionTitleProps) => (
-  <div className="flex items-center gap-2 mb-6 border-b pb-2 border-slate-200">
-    <Icon className="w-5 h-5 text-orange-500" />
-    <h3 className="text-lg font-bold text-slate-700 uppercase tracking-wide">
-      {title}
-    </h3>
+  <div className={styles.sectionTitle}>
+    <Icon className={styles.sectionTitleIcon} />
+    <h3>{title}</h3>
   </div>
 );
 
@@ -52,15 +51,11 @@ const InputField = ({
   onChange,
   required = false,
 }: InputFieldProps) => (
-  <div
-    className={`${
-      width === "half" ? "col-span-1" : "col-span-2 md:col-span-1"
-    }`}
-  >
-    <label className="text-xs font-semibold text-slate-500 uppercase mb-1 block">
+  <div className={width === "half" ? styles.inputColHalf : styles.inputColFull}>
+    <label className={styles.inputLabel}>
       {label}
-      {required && <span className="text-red-500 ml-1">*</span>}
-      {!required && <span className="text-slate-400 ml-1 text-[10px] normal-case">(optional)</span>}
+      {required && <span className={styles.requiredMark}>*</span>}
+      {!required && <span className={styles.optionalNote}>(optional)</span>}
     </label>
     <input
       type={type}
@@ -69,11 +64,7 @@ const InputField = ({
       onChange={onChange}
       placeholder={placeholder}
       required={required}
-      className={`w-full bg-white border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all shadow-sm ${
-        required 
-          ? "border-slate-300 focus:ring-orange-500" 
-          : "border-slate-200 focus:ring-slate-400"
-      }`}
+      className={styles.inputField}
     />
   </div>
 );
@@ -235,22 +226,18 @@ const AddCar = () => {
   };
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
+    <div className={styles.root}>
       {/* Page Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+      <div className={styles.headerRow}>
         <div>
-          <h1 className="text-3xl font-bold text-slate-800">
-            Vehicle Registration
-          </h1>
-          <p className="text-slate-500 mt-1">
-            Add a new luxury car to your fleet inventory.
-          </p>
+          <h1 className={styles.pageTitle}>Vehicle Registration</h1>
+          <p className={styles.pageSubtitle}>Add a new luxury car to your fleet inventory.</p>
         </div>
         <button
           type="button"
           onClick={handleSave}
           disabled={loading}
-          className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-3 rounded-xl font-medium flex items-center gap-2 transition-all shadow-lg hover:shadow-xl disabled:opacity-70"
+          className={styles.publishButton}
         >
           {loading ? (
             "Processing..."
@@ -262,13 +249,13 @@ const AddCar = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+      <div className={styles.layoutGrid}>
         {/* --- Left Column (Details) --- */}
-        <div className="xl:col-span-2 space-y-8">
+        <div className={styles.leftColumn}>
           {/* 1. Basic Specifications */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+          <div className={styles.card}>
             <SectionTitle icon={Car} title="Basic Specifications" />
-            <div className="grid grid-cols-2 gap-6">
+            <div className={styles.gridTwo}>
               <InputField
                 label="Brand"
                 name="brand"
@@ -304,15 +291,15 @@ const AddCar = () => {
               />
 
               {/* Dropdowns */}
-              <div className="col-span-2 md:col-span-1">
-                <label className="text-xs font-semibold text-slate-500 uppercase mb-1 block">
-                  Vehicle Category<span className="text-red-500 ml-1">*</span>
+              <div className={styles.inputColFull}>
+                <label className={styles.inputLabel}>
+                  Vehicle Category<span className={styles.requiredMark}>*</span>
                 </label>
                 <select
                   name="type"
                   value={form.type}
                   onChange={handleChange}
-                  className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className={styles.selectField}
                 >
                   <option value="">Select Category</option>
                   <option>Sedan</option>
@@ -322,30 +309,28 @@ const AddCar = () => {
                   <option>Convertible</option>
                 </select>
               </div>
-              <div className="col-span-2 md:col-span-1">
-                <label className="text-xs font-semibold text-slate-500 uppercase mb-1 block">
-                  Fuel Type
-                </label>
+
+              <div className={styles.inputColFull}>
+                <label className={styles.inputLabel}>Fuel Type</label>
                 <select
                   name="fuel"
                   value={form.fuel}
                   onChange={handleChange}
-                  className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className={styles.selectField}
                 >
                   <option>Gasoline</option>
                   <option>Electric</option>
                   <option>Hybrid</option>
                 </select>
               </div>
-              <div className="col-span-2 md:col-span-1">
-                <label className="text-xs font-semibold text-slate-500 uppercase mb-1 block">
-                  Transmission
-                </label>
+
+              <div className={styles.inputColFull}>
+                <label className={styles.inputLabel}>Transmission</label>
                 <select
                   name="transmission"
                   value={form.transmission}
                   onChange={handleChange}
-                  className="w-full bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className={styles.selectField}
                 >
                   <option>Automatic</option>
                   <option>Manual</option>
@@ -355,9 +340,9 @@ const AddCar = () => {
           </div>
 
           {/* 2. Performance Specs */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+          <div className={styles.card}>
             <SectionTitle icon={Settings} title="Performance & Configuration" />
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className={styles.gridFour}>
               <InputField
                 label="Engine"
                 name="engine"
@@ -395,41 +380,32 @@ const AddCar = () => {
           </div>
 
           {/* 3. Features System */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+          <div className={styles.card}>
             <SectionTitle icon={Plus} title="Features & Highlights" />
 
             {/* General Features */}
-            <div className="mb-6">
-              <label className="text-sm font-semibold text-slate-700 mb-2 block">
-                General Features
-              </label>
-              <div className="flex gap-2">
+            <div>
+              <label className={styles.inputLabel}>General Features</label>
+              <div className={styles.featureRow}>
                 <input
                   value={featureInput}
                   onChange={(e) => setFeatureInput(e.target.value)}
                   placeholder="Type feature (e.g. Apple CarPlay)"
-                  className="flex-1 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className={styles.featureInput}
                 />
                 <button
                   onClick={addFeature}
                   type="button"
-                  className="bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-lg font-bold text-slate-600 transition"
+                  className={styles.addButton}
                 >
                   +
                 </button>
               </div>
-              <div className="flex flex-wrap gap-2 mt-3">
+              <div className={styles.tagList}>
                 {form.features.map((f, i) => (
-                  <span
-                    key={i}
-                    className="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-2 border border-slate-200"
-                  >
-                    {f}{" "}
-                    <button
-                      type="button"
-                      onClick={() => removeTag("features", i)}
-                      className="hover:text-red-500"
-                    >
+                  <span key={i} className={styles.tag}>
+                    {f}
+                    <button type="button" onClick={() => removeTag("features", i)}>
                       <X size={12} />
                     </button>
                   </span>
@@ -438,38 +414,30 @@ const AddCar = () => {
             </div>
 
             {/* Key Features */}
-            <div>
-              <label className="text-sm font-semibold text-slate-700 mb-2  flex items-center gap-2">
-                <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" /> Key
-                Features (Highlighted)
+            <div className={styles.keyFeaturesHeader}>
+              <label className={styles.keyFeaturesLabel}>
+                <Star size={14} /> Key Features (Highlighted)
               </label>
-              <div className="flex gap-2">
+              <div className={styles.featureRow}>
                 <input
                   value={keyFeatureInput}
                   onChange={(e) => setKeyFeatureInput(e.target.value)}
                   placeholder="Type key highlight (e.g. 0-100 in 3s)"
-                  className="flex-1 border border-slate-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className={styles.featureInput}
                 />
                 <button
                   onClick={addKeyFeature}
                   type="button"
-                  className="bg-orange-50 hover:bg-orange-100 px-4 py-2 rounded-lg font-bold text-orange-600 transition"
+                  className={styles.addButton}
                 >
                   +
                 </button>
               </div>
-              <div className="flex flex-wrap gap-2 mt-3">
+              <div className={styles.tagList}>
                 {form.keyFeatures.map((f, i) => (
-                  <span
-                    key={i}
-                    className="bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-2 border border-orange-100"
-                  >
-                    {f}{" "}
-                    <button
-                      type="button"
-                      onClick={() => removeTag("keyFeatures", i)}
-                      className="hover:text-red-500"
-                    >
+                  <span key={i} className={styles.tag}>
+                    {f}
+                    <button type="button" onClick={() => removeTag("keyFeatures", i)}>
                       <X size={12} />
                     </button>
                   </span>
@@ -479,26 +447,24 @@ const AddCar = () => {
           </div>
 
           {/* 4. Description */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
-            <label className="text-sm font-bold text-slate-700 mb-2 block uppercase">
-              Vehicle Description
-            </label>
+          <div className={styles.card}>
+            <label className={styles.inputLabel}>Vehicle Description</label>
             <textarea
               name="about"
               value={form.about}
               onChange={handleChange}
-              className="w-full h-32 border border-slate-200 rounded-lg p-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
+              className={styles.textarea}
               placeholder="Describe the driving experience..."
             ></textarea>
           </div>
         </div>
 
         {/* --- Right Column (Pricing & Media) --- */}
-        <div className="space-y-8">
+        <div className={styles.rightColumn}>
           {/* 5. Pricing */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+          <div className={styles.card}>
             <SectionTitle icon={DollarSign} title="Pricing (AED)" />
-            <div className="space-y-4">
+            <div>
               <InputField
                 label="Daily Price"
                 name="dailyPrice"
@@ -527,7 +493,7 @@ const AddCar = () => {
                 value={form.monthlyPrice}
                 onChange={handleChange}
               />
-              <div className="flex items-center gap-2 pt-4 border-t border-slate-50 mt-4">
+              <div className={styles.checkboxRow}>
                 <input
                   type="checkbox"
                   id="applyDiscount"
@@ -535,19 +501,14 @@ const AddCar = () => {
                   onChange={(e) =>
                     setForm({ ...form, applyDiscount: e.target.checked })
                   }
-                  className="w-4 h-4 text-orange-600 border-slate-300 rounded focus:ring-orange-500 cursor-pointer"
+                  className={styles.checkboxInput}
                 />
-                <label
-                  htmlFor="applyDiscount"
-                  className="text-sm font-bold text-slate-700 cursor-pointer flex items-center gap-2"
-                >
+                <label htmlFor="applyDiscount" className={`${styles.inputLabel} ${styles.priceDiscountLabel}`}>
                   Apply Discount Badge
-                  <span className="text-[10px] bg-orange-100 text-orange-600 px-1.5 py-0.5 rounded uppercase">
-                    Sale
-                  </span>
+                  <span className={styles.saleBadge}>Sale</span>
                 </label>
               </div>
-              <div className="pt-4 border-t border-slate-100 mt-4">
+              <div className={styles.extraPricingContainer}>
                 <InputField
                   label="Security Deposit"
                   name="securityDeposit"
@@ -557,7 +518,7 @@ const AddCar = () => {
                   value={form.securityDeposit}
                   onChange={handleChange}
                 />
-                <div className="grid grid-cols-2 gap-4 mt-4">
+                <div className={styles.mileageGrid}>
                   <InputField
                     label="Daily Mileage"
                     name="dailyMileage"
@@ -582,20 +543,18 @@ const AddCar = () => {
           </div>
 
           {/* 6. Media Upload */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+          <div className={styles.card}>
             <SectionTitle icon={UploadCloud} title="Media Gallery" />
 
-            <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-slate-300 rounded-xl cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors group">
-              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <UploadCloud className="w-10 h-10 text-slate-400 group-hover:text-orange-500 transition-colors mb-2" />
-                <p className="text-sm text-slate-600 font-medium">
-                  Click to upload photos
-                </p>
-                <p className="text-xs text-slate-400">JPG, PNG or WebP</p>
+            <label className={styles.uploadLabel}>
+              <div className={styles.uploadInner}>
+                <UploadCloud className={styles.uploadIcon} />
+                <p className={styles.uploadText}>Click to upload photos</p>
+                <p className={styles.uploadSub}>JPG, PNG or WebP</p>
               </div>
               <input
                 type="file"
-                className="hidden"
+                className={styles.hiddenFile}
                 multiple
                 accept="image/*"
                 onChange={handleImageUpload}
@@ -603,31 +562,21 @@ const AddCar = () => {
             </label>
 
             {/* Previews */}
-            <div className="grid grid-cols-3 gap-2 mt-4">
+            <div className={styles.previewGrid}>
               {form.images.map((url, index) => (
-                <div
-                  key={index}
-                  className="relative group aspect-square rounded-lg overflow-hidden border border-slate-200"
-                >
-                  <Image
-                    src={url}
-                    alt="preview"
-                    fill
-                    className="object-cover"
-                  />
+                <div key={index} className={styles.previewItem}>
+                  <Image src={url} alt="preview" fill className={styles.objectCover} />
                   <button
                     type="button"
                     onClick={() => removeImage(index)}
-                    className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-all shadow-md"
+                    className={styles.previewRemove}
                   >
                     <X size={12} />
                   </button>
                 </div>
               ))}
               {form.images.length === 0 && (
-                <div className="col-span-3 text-center text-xs text-slate-400 py-4 italic">
-                  No images uploaded yet.
-                </div>
+                <div className={styles.emptyState}>No images uploaded yet.</div>
               )}
             </div>
           </div>

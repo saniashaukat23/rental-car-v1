@@ -301,3 +301,147 @@
   font-size: 1rem;
   font-weight: 500;
 }
+
+/* --- Sidebar styles merged from sidebar.module.css --- */
+.sidebar {
+  width: 16rem;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  height: 100vh;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  padding: 0 0.5rem;
+}
+
+.logoIcon {
+  width: 2.25rem;
+  height: 2.25rem;
+  background-color: #000000;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.logoText {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #111827;
+  letter-spacing: -0.025em;
+}
+
+.navItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0.75rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  text-align: left;
+}
+
+.itemInactive {
+  color: #6b7280;
+}
+
+.itemInactive:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.itemActive {
+  background: linear-gradient(to right, #ef5476, #ffffff);
+  color: #000000;
+  border-left: 3px solid #000000;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1rem;
+  padding-left: 1.75rem;
+}
+
+.icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.iconActive {
+  color: #000000;
+}
+
+.iconInactive {
+  color: #9ca3af;
+}
+
+.divider {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  border-radius: 9999px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.userName {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.userEmail {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.logoutBtn {
+  color: #9ca3af;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+  color: #ef4444;
+  background-color: #fef2f2;
+}

@@ -5,63 +5,65 @@ import Link from "next/link";
 import { Edit, Trash2, Fuel, Settings, Calendar, Tag } from "lucide-react";
 // Type import (Apne path ke hisaab se adjust kar lena)
 import { CarType } from "@/src/types/CarType";
+import styles from "../../styles/admin/GeneralSettings.module.css";
+
 interface TotalCarsProps {
   cars: CarType[];
   title?: string;
   subtitle?: string;
 }
 
-const TotalCars = ({ 
-  cars, 
-  title = "Fleet Inventory", 
-  subtitle = "Manage your vehicle database, update pricing, and track availability." 
+const TotalCars = ({
+  cars,
+  title = "Fleet Inventory",
+  subtitle = "Manage your vehicle database, update pricing, and track availability."
 }: TotalCarsProps) => {
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className={styles.tcContainer}>
       {/* --- Header Section --- */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 gap-4">
+      <div className={styles.tcHeader}>
         <div>
-          <h2 className="text-2xl font-bold text-slate-800">{title}</h2>
-          <p className="text-slate-500 text-sm mt-1">{subtitle}</p>
+          <h2 className={styles.tcHeaderTitle}>{title}</h2>
+          <p className={styles.tcHeaderSubtitle}>{subtitle}</p>
         </div>
-        <div className="bg-slate-900 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg shadow-slate-200">
+        <div className={styles.tcTotalBadge}>
           {cars?.length || 0} Vehicles Total
         </div>
       </div>
 
       {/* --- Table Container --- */}
-      <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+      <div className={styles.tcTableContainer}>
+        <div className={styles.tcTableScroll}>
+          <table className={styles.tcTable}>
             {/* Table Head */}
-            <thead className="bg-slate-50 border-b border-slate-200">
+            <thead className={styles.tcThead}>
               <tr>
-                <th className="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                <th className={styles.tcTh}>
                   Vehicle
                 </th>
-                <th className="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                <th className={styles.tcTh}>
                   Category
                 </th>
-                <th className="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                <th className={styles.tcTh}>
                   Specs
                 </th>
-                <th className="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider">
+                <th className={styles.tcTh}>
                   Daily Rate
                 </th>
-                <th className="p-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">
+                <th className={styles.tcThRight}>
                   Actions
                 </th>
               </tr>
             </thead>
 
             {/* Table Body */}
-            <tbody className="divide-y divide-slate-100">
+            <tbody className={styles.tcTbody}>
               {!cars || cars.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="p-10 text-center text-slate-400">
-                    <div className="flex flex-col items-center gap-2">
-                      <div className="bg-slate-100 p-4 rounded-full">
-                        <Settings className="w-6 h-6 text-slate-300" />
+                  <td colSpan={5} className={styles.tcEmptyState}>
+                    <div className={styles.tcEmptyStateContent}>
+                      <div className={styles.tcEmptyIconWrapper}>
+                        <Settings className={styles.tcEmptyIcon} />
                       </div>
                       <p>No cars found in inventory.</p>
                     </div>
@@ -71,38 +73,38 @@ const TotalCars = ({
                 cars.map((car) => (
                   <tr
                     key={car._id}
-                    className="hover:bg-slate-50/80 transition-colors group"
+                    className={styles.tcRow}
                   >
                     {/* Column 1: Image & Name */}
-                    <td className="p-4">
-                      <div className="flex items-center gap-4">
-                        <div className="relative w-16 h-12 rounded-lg overflow-hidden border border-slate-200 shadow-sm bg-slate-100">
+                    <td className={styles.tcTd}>
+                      <div className={styles.tcCarInfoCell}>
+                        <div className={styles.tcImageWrapper}>
                           {car.images?.[0] ? (
                             <Image
                               src={car.images[0]}
                               alt={car.name}
                               width={64}
                               height={48}
-                              className="object-cover w-full h-full"
+                              className={styles.tcCarImage}
                               priority={false}
                               onError={(e) => {
                                 (e.target as HTMLImageElement).src = "/placeholder-car.png";
                               }}
                             />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-slate-200 text-slate-400">
-                              <span className="text-xs">No Image</span>
+                            <div className={styles.tcNoImagePlaceholder}>
+                              <span className={styles.tcNoImageText}>No Image</span>
                             </div>
                           )}
                         </div>
                         <div>
-                          <div className="text-xs font-bold text-orange-500 uppercase tracking-wide">
+                          <div className={styles.tcBrand}>
                             {car.brand}
                           </div>
-                          <div className="text-sm font-bold text-slate-800">
+                          <div className={styles.tcName}>
                             {car.name}
                           </div>
-                          <div className="text-xs text-slate-400 flex items-center gap-1 mt-0.5">
+                          <div className={styles.tcYear}>
                             <Calendar size={10} /> {car.year}
                           </div>
                         </div>
@@ -110,56 +112,56 @@ const TotalCars = ({
                     </td>
 
                     {/* Column 2: Category Badge */}
-                    <td className="p-4">
-                      <span className="bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-semibold border border-slate-200">
+                    <td className={styles.tcTd}>
+                      <span className={styles.tcTypeBadge}>
                         {car.type}
                       </span>
                     </td>
 
                     {/* Column 3: Specs (Icons) */}
-                    <td className="p-4">
-                      <div className="flex flex-col gap-1 text-xs text-slate-500">
-                        <div className="flex items-center gap-2">
-                          <Settings size={12} className="text-slate-400" />{" "}
+                    <td className={styles.tcTd}>
+                      <div className={styles.tcSpecsWrapper}>
+                        <div className={styles.tcSpecItem}>
+                          <Settings size={12} className={styles.tcSpecIcon} />{" "}
                           {car.transmission}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Fuel size={12} className="text-slate-400" />{" "}
+                        <div className={styles.tcSpecItem}>
+                          <Fuel size={12} className={styles.tcSpecIcon} />{" "}
                           {car.fuel}
                         </div>
                       </div>
                     </td>
 
                     {/* Column 4: Price */}
-                    <td className="p-4">
+                    <td className={styles.tcTd}>
                       {car.applyDiscount && car.pricing?.originalDaily ? (
-                        <div className="flex flex-col">
-                          <span className="text-[10px] bg-orange-100 text-orange-600 px-1.5 py-0.5 rounded font-bold uppercase w-fit mb-1">
+                        <div className={styles.tcPriceWrapper}>
+                          <span className={styles.tcDiscountLabel}>
                             Discount
                           </span>
-                          <div className="flex items-center gap-2">
-                            <span className="text-slate-400 line-through text-xs">
+                          <div className={styles.tcPriceRow}>
+                            <span className={styles.tcOriginalPrice}>
                               {car.pricing?.currency || "AED"} {car.pricing?.originalDaily}
                             </span>
-                            <div className="font-bold text-orange-600">
+                            <div className={styles.tcCurrentPriceDiscounted}>
                               {car.pricing?.currency || "AED"} {car.pricing?.daily}
                             </div>
                           </div>
                         </div>
                       ) : (
-                        <div className="font-bold text-slate-800">
+                        <div className={styles.tcCurrentPriceNormal}>
                           {car.pricing?.currency || "AED"} {car.pricing?.daily}
                         </div>
                       )}
-                      <div className="text-xs text-slate-400">/ day</div>
+                      <div className={styles.tcDayLabel}>/ day</div>
                     </td>
 
                     {/* Column 5: Actions */}
-                    <td className="p-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
+                    <td className={styles.tcActionsCell}>
+                      <div className={styles.tcActionsWrapper}>
                         <Link
                           href={`/admin/cars/${car._id}`}
-                          className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          className={styles.tcEditButton}
                           title="Edit"
                         >
                           <Edit size={16} />
@@ -198,7 +200,7 @@ const TotalCars = ({
                                 // No loading state needed for now as reload follows
                               }
                             }}
-                            className="p-2 text-orange-400 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                            className={styles.tcTagButton}
                             title="Remove Discount"
                           >
                             <Tag size={16} />
@@ -206,7 +208,7 @@ const TotalCars = ({
                         )}
 
                         <button
-                          className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          className={styles.tcDeleteButton}
                           title="Delete"
                         >
                           <Trash2 size={16} />

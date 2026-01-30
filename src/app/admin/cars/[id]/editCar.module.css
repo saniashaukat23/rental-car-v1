@@ -1,0 +1,577 @@
+/* Color variables */
+:root {
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --red-50: #fef2f2;
+  --red-500: #ef4444;
+  --red-600: #dc2626;
+  --orange-50: #fff7ed;
+  --orange-100: #fed7aa;
+  --orange-200: #fed7aa;
+  --orange-500: #f97316;
+  --orange-600: #ea580c;
+  --blue-500: #3b82f6;
+  --green-50: #f0fdf4;
+  --green-600: #16a34a;
+  --green-700: #15803d;
+  --white: #ffffff;
+  --purple-500: #a855f7;
+}
+
+/* --- MAIN CONTAINER --- */
+.root {
+  min-height: 100vh;
+  background-color: var(--slate-50);
+  padding: 1.5rem;
+  font-family: sans-serif;
+}
+
+@media (min-width: 768px) {
+  .root {
+    padding: 2.5rem;
+  }
+}
+
+/* --- CONTAINER MAX-WIDTH --- */
+.container {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+/* --- HEADER SECTION --- */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.backButton {
+  padding: 0.5rem;
+  background-color: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.backButton:hover {
+  background-color: var(--slate-100);
+}
+
+.headerTitle {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: bold;
+  color: var(--slate-800);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.deleteButton {
+  padding: 0.625rem 1.25rem;
+  background-color: var(--red-50);
+  color: var(--red-600);
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: bold;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.deleteButton:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.deleteButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.saveButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  background-color: var(--slate-900);
+  color: var(--white);
+  border: none;
+  border-radius: 0.75rem;
+  font-weight: bold;
+  font-size: 0.875rem;
+  cursor: pointer;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 150ms ease;
+}
+
+.saveButton:hover {
+  background-color: var(--slate-800);
+}
+
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --- FORM LAYOUT --- */
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .form {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.leftColumn {
+  grid-column: 1;
+}
+
+@media (min-width: 1024px) {
+  .leftColumn {
+    grid-column: span 2;
+  }
+}
+
+.rightColumn {
+  grid-column: 1;
+}
+
+.sectionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* --- CARD STYLING --- */
+.card {
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--slate-200);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  font-weight: bold;
+  color: var(--slate-800);
+}
+
+/* --- INPUT GROUP --- */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.inputLabel {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--slate-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.inputField {
+  width: 100%;
+  border: 1px solid var(--slate-200);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--slate-700);
+  transition: box-shadow 150ms ease, border-color 150ms ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 2px var(--blue-500);
+}
+
+.selectField {
+  width: 100%;
+  border: 1px solid var(--slate-200);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--slate-700);
+  transition: box-shadow 150ms ease;
+}
+
+.selectField:focus {
+  outline: none;
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 2px var(--blue-500);
+}
+
+.textarea {
+  width: 100%;
+  height: 6rem;
+  border: 1px solid var(--slate-200);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 0.875rem;
+  resize: none;
+  transition: box-shadow 150ms ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 2px var(--blue-500);
+}
+
+/* --- GRID LAYOUTS --- */
+.gridTwoCol {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.gridThreeCol {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.gridFourCol {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .gridFourCol {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- GALLERY --- */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.imageBox {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: var(--slate-100);
+}
+
+.imageRemoveBtn {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  background-color: var(--red-500);
+  color: var(--white);
+  border: none;
+  padding: 0.25rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.imageRemoveBtn:hover {
+  background-color: var(--red-600);
+}
+
+.uploadLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  border: 2px dashed var(--slate-300);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.uploadLabel:hover {
+  background-color: var(--slate-50);
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+/* --- PRICING SECTION --- */
+.pricingHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--slate-100);
+}
+
+.pricingHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pricingTitle {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: var(--slate-700);
+}
+
+.statusBadge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.statusActive {
+  background-color: var(--orange-100);
+  color: var(--orange-600);
+}
+
+.statusInactive {
+  background-color: var(--slate-100);
+  color: var(--slate-500);
+}
+
+/* --- DISCOUNT WIDGET --- */
+.discountWidget {
+  border: 1px solid var(--slate-200);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.discountWidgetActive {
+  background-color: var(--orange-50);
+  border-color: var(--orange-200);
+}
+
+.discountWidgetInactive {
+  background-color: var(--slate-50);
+  border-color: var(--slate-100);
+}
+
+.discountHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.discountHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.discountLabel {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--slate-700);
+}
+
+.removeDiscountBtn {
+  font-size: 0.75rem;
+  color: var(--red-500);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 150ms ease;
+}
+
+.removeDiscountBtn:hover {
+  color: var(--red-600);
+}
+
+/* Discount input form */
+.discountForm {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.discountInput {
+  flex: 1;
+  border: 1px solid var(--slate-300);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  transition: box-shadow 150ms ease;
+}
+
+.discountInput:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--orange-500);
+}
+
+.calcButton {
+  background-color: var(--orange-500);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.calcButton:hover {
+  background-color: var(--orange-600);
+}
+
+/* Discount preview */
+.discountPreview {
+  animation: fadeInSlide 200ms ease;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.previewBox {
+  font-size: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.previewLine {
+  display: flex;
+  justify-content: space-between;
+}
+
+.previewLabel {
+  color: var(--slate-500);
+}
+
+.previewValue {
+  font-family: monospace;
+}
+
+.previewOld {
+  color: var(--slate-600);
+}
+
+.previewNew {
+  font-weight: bold;
+  color: var(--orange-600);
+}
+
+.buttonRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.confirmBtn {
+  flex: 1;
+  background-color: var(--green-600);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  transition: background-color 150ms ease;
+}
+
+.confirmBtn:hover {
+  background-color: var(--green-700);
+}
+
+.cancelBtn {
+  flex: 1;
+  background-color: var(--slate-200);
+  color: var(--slate-600);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  transition: background-color 150ms ease;
+}
+
+.cancelBtn:hover {
+  background-color: var(--slate-300);
+}
+
+/* --- LOADING --- */
+.loaderContainer {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}

@@ -17,6 +17,7 @@ import {
   RotateCcw, // Added for reset
 } from "lucide-react";
 import Image from "next/image";
+import styles from "./editCar.module.css";
 import { useCarById, useUpdateCar, useDeleteCar } from "@/src/hooks/useCars";
 
 interface CarData {
@@ -77,8 +78,8 @@ const InputGroup = ({
   onChange,
   placeholder,
 }: InputGroupProp) => (
-  <div className="flex flex-col gap-1.5">
-    <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
+  <div className={styles.inputGroup}>
+    <label className={styles.inputLabel}>
       {label}
     </label>
     <input
@@ -87,7 +88,7 @@ const InputGroup = ({
       value={value || ""}
       onChange={onChange}
       placeholder={placeholder}
-      className="w-full border border-slate-200 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm"
+      className={styles.inputField}
     />
   </div>
 );
@@ -305,31 +306,31 @@ export default function EditCar() {
 
   if (loading)
     return (
-      <div className="flex h-screen items-center justify-center">
+      <div className={styles.loaderContainer}>
         <Loader2 className="animate-spin" />
       </div>
     );
 
   return (
-    <div className="min-h-screen bg-slate-50 p-6 md:p-10 font-sans">
-      <div className="max-w-5xl mx-auto">
+    <div className={styles.root}>
+      <div className={styles.container}>
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-          <div className="flex items-center gap-4">
+        <div className={styles.header}>
+          <div className={styles.headerLeft}>
             <button
               onClick={() => router.back()}
-              className="p-2 bg-white border border-slate-200 rounded-full hover:bg-slate-100"
+              className={styles.backButton}
             >
               <ArrowLeft className="w-5 h-5 text-slate-600" />
             </button>
-            <h1 className="text-2xl font-bold text-slate-800">Edit Vehicle</h1>
+            <h1 className={styles.headerTitle}>Edit Vehicle</h1>
           </div>
-          <div className="flex gap-3">
+          <div className={styles.buttonGroup}>
             <button
               type="button"
               onClick={handleDelete}
               disabled={deleteCarMutation.isPending}
-              className="px-5 py-2.5 bg-red-50 text-red-600 rounded-xl font-bold text-sm"
+              className={styles.deleteButton}
             >
               {deleteCarMutation.isPending ? "Deleting..." : "Delete"}
             </button>
@@ -337,7 +338,7 @@ export default function EditCar() {
               type="button"
               onClick={handleSubmit}
               disabled={saving}
-              className="flex items-center gap-2 px-6 py-2.5 bg-slate-900 text-white rounded-xl font-bold text-sm hover:bg-slate-800 shadow-lg disabled:opacity-60"
+              className={styles.saveButton}
             >
               {saving ? (
                 <Loader2 className="animate-spin w-4 h-4" />
@@ -349,51 +350,51 @@ export default function EditCar() {
           </div>
         </div>
 
-        <form className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <form className={styles.form}>
           {/* LEFT COLUMN: Gallery & Info */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Gallery (Simplified for brevity) */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-              <div className="flex items-center gap-2 mb-4">
+          <div className={`${styles.leftColumn} ${styles.sectionContainer}`}>
+            {/* Gallery */}
+            <div className={styles.card}>
+              <div className={styles.cardHeader}>
                 <ImageIcon className="w-5 h-5 text-purple-500" />
-                <h3 className="font-bold">Gallery</h3>
+                <h3 className={styles.cardTitle}>Gallery</h3>
               </div>
-              <div className="grid grid-cols-4 gap-4">
+              <div className={styles.galleryGrid}>
                 {car.images.map((img, i) => (
                   <div
                     key={i}
-                    className="relative aspect-square rounded-lg overflow-hidden bg-slate-100"
+                    className={styles.imageBox}
                   >
                     <Image src={img} alt="" fill className="object-cover" />
                     <button
                       type="button"
                       onClick={() => handleRemoveImage(i)}
-                      className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full"
+                      className={styles.imageRemoveBtn}
                     >
                       <X size={12} />
                     </button>
                   </div>
                 ))}
-                <label className="flex items-center justify-center aspect-square border-2 border-dashed rounded-lg cursor-pointer hover:bg-slate-50">
+                <label className={styles.uploadLabel}>
                   <Upload className="text-slate-400" />
                   <input
                     type="file"
                     accept="image/*"
                     multiple
                     onChange={handleImageUpload}
-                    className="hidden"
+                    className={styles.hiddenFileInput}
                   />
                 </label>
               </div>
             </div>
 
             {/* Basic Info */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-              <div className="flex items-center gap-2 mb-4">
+            <div className={styles.card}>
+              <div className={styles.cardHeader}>
                 <Car className="w-5 h-5 text-blue-500" />
-                <h3 className="font-bold">Info</h3>
+                <h3 className={styles.cardTitle}>Info</h3>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className={styles.gridTwoCol}>
                 <InputGroup
                   label="Brand"
                   name="brand"
@@ -420,15 +421,15 @@ export default function EditCar() {
                   onChange={handleChange}
                 />
                 {/* Type Dropdown */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
+                <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>
                     Type
                   </label>
                   <select
                     name="type"
                     value={car.type}
                     onChange={handleChange}
-                    className="w-full border border-slate-200 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={styles.selectField}
                   >
                     <option value="">Select Type</option>
                     <option>Sedan</option>
@@ -439,15 +440,15 @@ export default function EditCar() {
                   </select>
                 </div>
                 {/* Transmission Dropdown */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
+                <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>
                     Transmission
                   </label>
                   <select
                     name="transmission"
                     value={car.transmission}
                     onChange={handleChange}
-                    className="w-full border border-slate-200 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={styles.selectField}
                   >
                     <option>Automatic</option>
                     <option>Manual</option>
@@ -455,15 +456,15 @@ export default function EditCar() {
                   </select>
                 </div>
                 {/* Fuel Dropdown */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wide">
+                <div className={styles.inputGroup}>
+                  <label className={styles.inputLabel}>
                     Fuel
                   </label>
                   <select
                     name="fuel"
                     value={car.fuel}
                     onChange={handleChange}
-                    className="w-full border border-slate-200 rounded-lg px-4 py-3 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={styles.selectField}
                   >
                     <option>Gasoline</option>
                     <option>Diesel</option>
@@ -475,12 +476,12 @@ export default function EditCar() {
             </div>
 
             {/* Specs */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-              <div className="flex items-center gap-2 mb-4">
+            <div className={styles.card}>
+              <div className={styles.cardHeader}>
                 <Settings className="w-5 h-5 text-purple-500" />
-                <h3 className="font-bold">Specs</h3>
+                <h3 className={styles.cardTitle}>Specs</h3>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className={styles.gridFourCol}>
                 <InputGroup
                   label="Engine"
                   name="engine"
@@ -513,27 +514,27 @@ export default function EditCar() {
             </div>
 
             {/* About / Description */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-              <div className="flex items-center gap-2 mb-4">
+            <div className={styles.card}>
+              <div className={styles.cardHeader}>
                 <Car className="w-5 h-5 text-green-500" />
-                <h3 className="font-bold">Description</h3>
+                <h3 className={styles.cardTitle}>Description</h3>
               </div>
               <textarea
                 name="about"
                 value={car.about}
                 onChange={(e) => setCar((prev) => ({ ...prev, about: e.target.value }))}
                 placeholder="Describe the car..."
-                className="w-full h-24 border border-slate-200 rounded-lg p-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                className={styles.textarea}
               />
             </div>
 
             {/* Mileage & Deposit */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-              <div className="flex items-center gap-2 mb-4">
+            <div className={styles.card}>
+              <div className={styles.cardHeader}>
                 <Settings className="w-5 h-5 text-orange-500" />
-                <h3 className="font-bold">Mileage & Deposit</h3>
+                <h3 className={styles.cardTitle}>Mileage & Deposit</h3>
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className={styles.gridThreeCol}>
                 <InputGroup
                   label="Daily Mileage (KM)"
                   name="dailyIncluded"
@@ -570,20 +571,20 @@ export default function EditCar() {
           </div>
 
           {/* RIGHT COLUMN: Pricing & Discount */}
-          <div className="space-y-6">
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-              <div className="flex items-center justify-between mb-6 pb-2 border-b border-slate-100">
-                <div className="flex items-center gap-2">
+          <div className={`${styles.rightColumn} ${styles.sectionContainer}`}>
+            <div className={styles.card}>
+              <div className={styles.pricingHeader}>
+                <div className={styles.pricingHeaderLeft}>
                   <DollarSign className="w-5 h-5 text-green-600" />
-                  <h3 className="text-lg font-bold text-slate-700">Pricing</h3>
+                  <h3 className={styles.pricingTitle}>Pricing</h3>
                 </div>
                 {/* Status Indicator */}
                 {car.applyDiscount ? (
-                  <span className="bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs font-bold uppercase">
+                  <span className={`${styles.statusBadge} ${styles.statusActive}`}>
                     Discount Active
                   </span>
                 ) : (
-                  <span className="bg-slate-100 text-slate-500 px-2 py-1 rounded text-xs font-bold uppercase">
+                  <span className={`${styles.statusBadge} ${styles.statusInactive}`}>
                     Standard Rate
                   </span>
                 )}
@@ -591,15 +592,16 @@ export default function EditCar() {
 
               {/* --- DISCOUNT WIDGET --- */}
               <div
-                className={`border rounded-xl p-4 mb-6 transition-colors ${car.applyDiscount
-                    ? "bg-orange-50 border-orange-200"
-                    : "bg-slate-50 border-slate-100"
-                  }`}
+                className={`${styles.discountWidget} ${
+                  car.applyDiscount
+                    ? styles.discountWidgetActive
+                    : styles.discountWidgetInactive
+                }`}
               >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
+                <div className={styles.discountHeader}>
+                  <div className={styles.discountHeaderLeft}>
                     <Percent className="w-4 h-4 text-orange-500" />
-                    <h4 className="text-sm font-bold text-slate-700">
+                    <h4 className={styles.discountLabel}>
                       Apply Discount
                     </h4>
                   </div>
@@ -607,7 +609,7 @@ export default function EditCar() {
                     <button
                       type="button"
                       onClick={handleRemoveDiscount}
-                      className="text-xs text-red-500 hover:underline flex items-center gap-1"
+                      className={styles.removeDiscountBtn}
                     >
                       <RotateCcw size={10} /> Remove
                     </button>
@@ -615,68 +617,68 @@ export default function EditCar() {
                 </div>
 
                 {!discountPreview ? (
-                  <div className="flex gap-2">
+                  <div className={styles.discountForm}>
                     <input
                       type="number"
                       placeholder="%"
                       value={discount}
                       onChange={(e) => setDiscount(e.target.value)}
-                      className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-orange-500 outline-none"
+                      className={styles.discountInput}
                     />
                     <button
                       type="button"
                       onClick={handleCalculateDiscount}
-                      className="bg-orange-500 text-white px-4 py-2 rounded-lg text-xs font-bold uppercase hover:bg-orange-600 transition-colors"
+                      className={styles.calcButton}
                     >
                       Calc
                     </button>
                   </div>
                 ) : (
-                  <div className="animate-in fade-in slide-in-from-top-2">
-                    <div className="text-xs bg-white/60 p-2 rounded-lg space-y-1 mb-2">
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">Daily:</span>
-                        <span className="font-mono">
-                          {car.pricing.daily}{" "}
-                          <ArrowLeft className="inline w-3 h-3 rotate-180" />{" "}
-                          <span className="font-bold text-orange-600">
+                  <div className={styles.discountPreview}>
+                    <div className={styles.previewBox}>
+                      <div className={styles.previewLine}>
+                        <span className={styles.previewLabel}>Daily:</span>
+                        <span className={styles.previewValue}>
+                          <span className={styles.previewOld}>{car.pricing.daily}</span>
+                          {" "}→{" "}
+                          <span className={styles.previewNew}>
                             {discountPreview.daily}
                           </span>
                         </span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">Weekly:</span>
-                        <span className="font-mono">
-                          {car.pricing.weekly}{" "}
-                          <ArrowLeft className="inline w-3 h-3 rotate-180" />{" "}
-                          <span className="font-bold text-orange-600">
+                      <div className={styles.previewLine}>
+                        <span className={styles.previewLabel}>Weekly:</span>
+                        <span className={styles.previewValue}>
+                          <span className={styles.previewOld}>{car.pricing.weekly}</span>
+                          {" "}→{" "}
+                          <span className={styles.previewNew}>
                             {discountPreview.weekly}
                           </span>
                         </span>
                       </div>
-                      <div className="flex justify-between">
-                        <span className="text-slate-500">Monthly:</span>
-                        <span className="font-mono">
-                          {car.pricing.monthly}{" "}
-                          <ArrowLeft className="inline w-3 h-3 rotate-180" />{" "}
-                          <span className="font-bold text-orange-600">
+                      <div className={styles.previewLine}>
+                        <span className={styles.previewLabel}>Monthly:</span>
+                        <span className={styles.previewValue}>
+                          <span className={styles.previewOld}>{car.pricing.monthly}</span>
+                          {" "}→{" "}
+                          <span className={styles.previewNew}>
                             {discountPreview.monthly}
                           </span>
                         </span>
                       </div>
                     </div>
-                    <div className="flex gap-2">
+                    <div className={styles.buttonRow}>
                       <button
                         type="button"
                         onClick={confirmDiscount}
-                        className="flex-1 bg-green-600 text-white py-2 rounded-lg text-xs font-bold uppercase flex items-center justify-center gap-1 hover:bg-green-700"
+                        className={styles.confirmBtn}
                       >
                         <CheckCircle size={14} /> Apply
                       </button>
                       <button
                         type="button"
                         onClick={cancelDiscount}
-                        className="flex-1 bg-slate-200 text-slate-600 py-2 rounded-lg text-xs font-bold uppercase flex items-center justify-center gap-1 hover:bg-slate-300"
+                        className={styles.cancelBtn}
                       >
                         <XCircle size={14} /> Cancel
                       </button>
@@ -686,7 +688,7 @@ export default function EditCar() {
               </div>
 
               {/* Manual Price Inputs */}
-              <div className="space-y-4">
+              <div className={styles.sectionContainer}>
                 <InputGroup
                   label="Daily (AED)"
                   name="daily"
