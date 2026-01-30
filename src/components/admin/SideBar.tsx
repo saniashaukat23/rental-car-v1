@@ -25,14 +25,12 @@ const SidebarItem = ({
 }: SidebarItemProps) => (
   <button
     onClick={() => onClick(label)}
-    className={`${styles.navItem} ${
-      active ? styles.itemActive : styles.itemInactive
-    }`}
+    className={`${styles.navItem} ${active ? styles.itemActive : styles.itemInactive
+      }`}
   >
     <Icon
-      className={`${styles.icon} ${
-        active ? styles.iconActive : styles.iconInactive
-      }`}
+      className={`${styles.icon} ${active ? styles.iconActive : styles.iconInactive
+        }`}
     />
     {label}
   </button>
@@ -56,7 +54,7 @@ const Sidebar = ({ activeTab, setActiveTab }: SidebarProps) => {
     <aside className={styles.sidebar}>
       <div className={styles.logoContainer}>
         <Image
-          src="/images/logo.jpeg"
+          src="/https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349404/Logo_ngjhge.jpg"
           width={140}
           height={80}
           alt="Luxury In Motion Logo"
