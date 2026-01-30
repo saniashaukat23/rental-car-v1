@@ -54,7 +54,7 @@ const Sidebar = ({ activeTab, setActiveTab }: SidebarProps) => {
     <aside className={styles.sidebar}>
       <div className={styles.logoContainer}>
         <Image
-          src="/https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349404/Logo_ngjhge.jpg"
+          src="https://res.cloudinary.com/dfck2j3nx/image/upload/v1769349404/Logo_ngjhge.jpg"
           width={140}
           height={80}
           alt="Luxury In Motion Logo"
