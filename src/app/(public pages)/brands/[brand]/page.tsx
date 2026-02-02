@@ -57,8 +57,10 @@ export default function BrandCarsPage({ params }: PageProps) {
   // --- HERO IMAGE LOGIC (UPDATED) ---
   const DISPLAY_COUNT = 3;
 
-  // 1. Get all available first images from the cars found
-  const availableImages = safeCars.map((c) => c.images[0]).filter(Boolean);
+  // 1. Get all available first image URLs from the cars found
+  const availableImages = safeCars
+    .map((c) => c.images[0]?.url)
+    .filter((url): url is string => Boolean(url));
 
   let heroImages: string[] = [];
 
