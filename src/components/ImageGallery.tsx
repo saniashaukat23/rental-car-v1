@@ -4,8 +4,14 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "../styles/frontend/ImageGallery.module.css";
 
+interface ImageObject {
+  url: string;
+  y: number;
+  s: number;
+}
+
 interface ImageGalleryProps {
-  images: string[];
+  images: ImageObject[];
   altTitle?: string;
 }
 
@@ -13,8 +19,11 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altTitle = "Car Ima
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
 
+  // Extract URLs from image objects
+  const imageUrls = images.map((img) => img.url);
+
   // Safety check if no images are provided
-  if (!images || images.length === 0) {
+  if (!imageUrls || imageUrls.length === 0) {
     return (
       <div className={styles.mainImageWrapper}>
         <Image
@@ -29,12 +38,12 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altTitle = "Car Ima
 
   const handlePrev = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    setSelectedIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setSelectedIndex((prev) => (prev === 0 ? imageUrls.length - 1 : prev - 1));
   };
 
   const handleNext = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    setSelectedIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setSelectedIndex((prev) => (prev === imageUrls.length - 1 ? 0 : prev + 1));
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -72,7 +81,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altTitle = "Car Ima
         onTouchEnd={handleTouchEnd}
       >
         <Image
-          src={images[selectedIndex]}
+          src={imageUrls[selectedIndex]}
           alt={`${altTitle} - View ${selectedIndex + 1}`}
           fill
           priority
@@ -80,7 +89,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altTitle = "Car Ima
         />
 
         {/* Navigation Arrows (Only show if > 1 image) */}
-        {images.length > 1 && (
+        {imageUrls.length > 1 && (
           <>
             <button
               className={`${styles.navButton} ${styles.prevButton}`}
@@ -101,14 +110,14 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altTitle = "Car Ima
 
         {/* Counter Badge */}
         <div className={styles.counterBadge}>
-          {selectedIndex + 1} / {images.length}
+          {selectedIndex + 1} / {imageUrls.length}
         </div>
       </div>
 
       {/* Thumbnail Strip */}
-      {images.length > 1 && (
+      {imageUrls.length > 1 && (
         <div className={styles.thumbnailStrip}>
-          {images.map((img, idx) => (
+          {imageUrls.map((imgUrl, idx) => (
             <button
               key={idx}
               onClick={() => handleThumbnailClick(idx)}
@@ -117,7 +126,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, altTitle = "Car Ima
               aria-label={`View image ${idx + 1}`}
             >
               <Image
-                src={img}
+                src={imgUrl}
                 alt={`Thumbnail ${idx + 1}`}
                 fill
                 className={styles.thumbImage}
