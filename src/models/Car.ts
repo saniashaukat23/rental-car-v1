@@ -34,7 +34,11 @@ export interface ICar extends Document {
   name: string;
   type: string;
   color: string;
-  images: string[];
+  images: {
+    url: string;
+    y: number;
+    s: number;
+  }[];
   seats: number;
   transmission: string;
   fuel: string;

@@ -3,8 +3,14 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import styles from "../styles/frontend/ImageHoverCarousel.module.css";
 
+interface ImageObject {
+  url: string;
+  y: number;
+  s: number;
+}
+
 type Props = {
-  images: string[];
+  images: ImageObject[];
   alt: string;
   disableOnMobile?: boolean;
 };
@@ -14,13 +20,9 @@ export default function ImageHoverCarousel({ images, alt, disableOnMobile = fals
   const [isMobile, setIsMobile] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const touchStartX = useRef<number | null>(null);
-  // Handle both string and object image formats
-  const displayImages = (images || []).map(img => {
-    if (typeof img === 'string') {
-      return { url: img, y: 50, s: 100 };
-    }
-    return img;
-  }).filter(img => img.url && img.url.length > 5);
+
+  // Filter valid images
+  const displayImages = (images || []).filter(img => img.url && img.url.length > 5);
 
   if (displayImages.length === 0) {
     displayImages.push({ url: "/images/placeholder-car.jpg", y: 50, s: 100 });

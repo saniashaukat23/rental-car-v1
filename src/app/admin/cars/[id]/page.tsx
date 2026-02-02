@@ -32,7 +32,11 @@ interface CarData {
   doors: number;
   engine: string;
   horsepower: number;
-  images: string[];
+  images: {
+    url: string;
+    y: number;
+    s: number;
+  }[];
   applyDiscount: boolean;
   about: string;
   chauffeurService: string;
@@ -277,7 +281,7 @@ export default function EditCar() {
           if (reader.result) {
             setCar((prev) => ({
               ...prev,
-              images: [...prev.images, reader.result as string],
+              images: [...prev.images, { url: reader.result as string, y: 50, s: 100 }],
             }));
           }
         };
@@ -291,7 +295,7 @@ export default function EditCar() {
     if (imageUrlInput.trim()) {
       setCar((prev) => ({
         ...prev,
-        images: [...prev.images, imageUrlInput.trim()],
+        images: [...prev.images, { url: imageUrlInput.trim(), y: 50, s: 100 }],
       }));
       setImageUrlInput("");
     }
@@ -408,12 +412,12 @@ export default function EditCar() {
                   <div
                     key={i}
                     className={styles.imageBox}
-                    onClick={() => setPopupImage(typeof img === 'string' ? img : (img as any).url)}
+                    onClick={() => setPopupImage(img.url)}
                     style={{ cursor: 'pointer' }}
                     title="Click to enlarge"
                   >
                     <Image
-                      src={typeof img === 'string' ? img : (img as any).url}
+                      src={img.url}
                       alt=""
                       fill
                       className="object-cover"
@@ -645,8 +649,8 @@ export default function EditCar() {
               {/* --- DISCOUNT WIDGET --- */}
               <div
                 className={`${styles.discountWidget} ${car.applyDiscount
-                    ? styles.discountWidgetActive
-                    : styles.discountWidgetInactive
+                  ? styles.discountWidgetActive
+                  : styles.discountWidgetInactive
                   }`}
               >
                 <div className={styles.discountHeader}>

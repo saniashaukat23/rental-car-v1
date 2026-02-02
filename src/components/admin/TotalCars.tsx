@@ -81,7 +81,7 @@ const TotalCars = ({
                         <div className={styles.tcImageWrapper}>
                           {car.images?.[0] ? (
                             <Image
-                              src={car.images[0]}
+                              src={car.images[0].url}
                               alt={car.name}
                               width={64}
                               height={48}
