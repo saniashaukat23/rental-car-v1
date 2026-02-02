@@ -12,30 +12,62 @@ type Props = {
 export default function ImageHoverCarousel({ images, alt, disableOnMobile = false }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const touchStartX = useRef<number | null>(null);
-  // Handle empty/undefined images array
-  const validImages = Array.isArray(images)
-    ? images.filter(img => typeof img === 'string' && img.length > 5)
-    : [];
+  // Handle both string and object image formats
+  const displayImages = (images || []).map(img => {
+    if (typeof img === 'string') {
+      return { url: img, y: 50, s: 100 };
+    }
+    return img;
+  }).filter(img => img.url && img.url.length > 5);
 
-  const fallbackImage = "/images/placeholder-car.jpg";
-  const displayImages = validImages.length > 0 ? validImages : [fallbackImage];
+  if (displayImages.length === 0) {
+    displayImages.push({ url: "/images/placeholder-car.jpg", y: 50, s: 100 });
+  }
+
   useEffect(() => {
+    setIsMounted(true);
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Show first image during SSR and before mount to prevent flash
+  if (!isMounted) {
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.imageWrapper}>
+          <Image
+            src={displayImages[0].url}
+            alt={alt}
+            fill
+            className={styles.image}
+            style={{
+              objectPosition: `center ${displayImages[0].y}%`,
+              transform: `scale(${displayImages[0].s / 100})`
+            }}
+            priority
+          />
+        </div>
+      </div>
+    );
+  }
+
   if (disableOnMobile && isMobile) {
     return (
       <div className={styles.wrapper}>
         <div className={styles.imageWrapper}>
           <Image
-            src={displayImages[0]}
+            src={displayImages[0].url}
             alt={alt}
             fill
             className={styles.image}
+            style={{
+              objectPosition: `center ${displayImages[0].y}%`,
+              transform: `scale(${displayImages[0].s / 100})`
+            }}
           />
         </div>
       </div>
@@ -73,11 +105,15 @@ export default function ImageHoverCarousel({ images, alt, disableOnMobile = fals
         onTouchEnd={handleTouchEnd}
       >
         <Image
-          key={displayImages[activeIndex]}
-          src={displayImages[activeIndex]}
+          key={displayImages[activeIndex].url}
+          src={displayImages[activeIndex].url}
           alt={alt}
           fill
           className={styles.image}
+          style={{
+            objectPosition: `center ${displayImages[activeIndex].y}%`,
+            transform: `scale(${displayImages[activeIndex].s / 100})`
+          }}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>

@@ -111,6 +111,21 @@ export default function EditCar() {
     monthly: number;
   } | null>(null);
 
+  // Image popup and URL input states
+  const [popupImage, setPopupImage] = useState<string | null>(null);
+  const [imageUrlInput, setImageUrlInput] = useState("");
+
+  // Close popup on ESC key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setPopupImage(null);
+    };
+    if (popupImage) {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [popupImage]);
+
   // Local saving state to control Save button (avoids relying on external mutation flags)
   const [saving, setSaving] = useState(false);
 
@@ -271,6 +286,17 @@ export default function EditCar() {
     }
   };
 
+  // Add image from URL
+  const handleAddImageUrl = () => {
+    if (imageUrlInput.trim()) {
+      setCar((prev) => ({
+        ...prev,
+        images: [...prev.images, imageUrlInput.trim()],
+      }));
+      setImageUrlInput("");
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     console.log("Saving Car Data:", car);
     console.log("Is Discount Applied?", car.applyDiscount);
@@ -359,16 +385,42 @@ export default function EditCar() {
                 <ImageIcon className="w-5 h-5 text-purple-500" />
                 <h3 className={styles.cardTitle}>Gallery</h3>
               </div>
+
+              {/* Image URL Input */}
+              <div className={styles.urlUploadRow}>
+                <input
+                  value={imageUrlInput}
+                  onChange={(e) => setImageUrlInput(e.target.value)}
+                  placeholder="Paste image URL here..."
+                  className={styles.urlInput}
+                />
+                <button
+                  onClick={handleAddImageUrl}
+                  type="button"
+                  className={styles.addImageBtn}
+                >
+                  +
+                </button>
+              </div>
+
               <div className={styles.galleryGrid}>
                 {car.images.map((img, i) => (
                   <div
                     key={i}
                     className={styles.imageBox}
+                    onClick={() => setPopupImage(typeof img === 'string' ? img : (img as any).url)}
+                    style={{ cursor: 'pointer' }}
+                    title="Click to enlarge"
                   >
-                    <Image src={img} alt="" fill className="object-cover" />
+                    <Image
+                      src={typeof img === 'string' ? img : (img as any).url}
+                      alt=""
+                      fill
+                      className="object-cover"
+                    />
                     <button
                       type="button"
-                      onClick={() => handleRemoveImage(i)}
+                      onClick={(e) => { e.stopPropagation(); handleRemoveImage(i); }}
                       className={styles.imageRemoveBtn}
                     >
                       <X size={12} />
@@ -592,11 +644,10 @@ export default function EditCar() {
 
               {/* --- DISCOUNT WIDGET --- */}
               <div
-                className={`${styles.discountWidget} ${
-                  car.applyDiscount
+                className={`${styles.discountWidget} ${car.applyDiscount
                     ? styles.discountWidgetActive
                     : styles.discountWidgetInactive
-                }`}
+                  }`}
               >
                 <div className={styles.discountHeader}>
                   <div className={styles.discountHeaderLeft}>
@@ -715,6 +766,35 @@ export default function EditCar() {
           </div>
         </form>
       </div>
+
+      {/* Image Popup Modal */}
+      {popupImage && (
+        <div
+          className={styles.imagePopupOverlay}
+          onClick={() => setPopupImage(null)}
+        >
+          <div
+            className={styles.imagePopupModal}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className={styles.imagePopupClose}
+              onClick={() => setPopupImage(null)}
+              type="button"
+            >
+              <X size={20} />
+            </button>
+            <Image
+              src={popupImage}
+              alt="Preview"
+              width={800}
+              height={500}
+              className={styles.imagePopupImage}
+              unoptimized
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

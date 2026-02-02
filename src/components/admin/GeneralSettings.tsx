@@ -74,6 +74,19 @@ const AddCar = () => {
   const [loading, setLoading] = useState(false);
   const [featureInput, setFeatureInput] = useState("");
   const [keyFeatureInput, setKeyFeatureInput] = useState("");
+  const [imageUrlInput, setImageUrlInput] = useState("");
+  const [popupImage, setPopupImage] = useState<{ url: string; y: number; s: number } | null>(null);
+
+  // Close popup on ESC key
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setPopupImage(null);
+    };
+    if (popupImage) {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [popupImage]);
 
   const [form, setForm] = useState({
     brand: "",
@@ -93,12 +106,11 @@ const AddCar = () => {
     securityDeposit: "",
     dailyMileage: "",
     extraMileagePrice: "5",
-    chauffeurService: "No",
     about: "",
     pickupLocation: "",
     insurance: "Standard",
     freePickupAndDrop: "Yes",
-    images: [] as string[],
+    images: [] as { url: string; y: number; s: number }[],
     features: [] as string[],
     keyFeatures: [] as string[],
     applyDiscount: false, // Added: To keep in sync with model
@@ -129,21 +141,29 @@ const AddCar = () => {
     setForm((prev) => ({ ...prev, [type]: prev[type].filter((_, i) => i !== index) }));
   };
 
-  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files) {
-      Array.from(files).forEach((file) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setForm((prev) => ({ ...prev, images: [...prev.images, reader.result as string] }));
-        };
-        reader.readAsDataURL(file);
-      });
+  const addImageUrl = () => {
+    if (imageUrlInput.trim()) {
+      setForm((prev) => ({
+        ...prev,
+        images: [...prev.images, { url: imageUrlInput.trim(), y: 50, s: 100 }],
+      }));
+      setImageUrlInput("");
     }
   };
 
   const removeImage = (indexToRemove: number) => {
-    setForm((prev) => ({ ...prev, images: prev.images.filter((_, index) => index !== indexToRemove) }));
+    setForm((prev) => ({
+      ...prev,
+      images: prev.images.filter((_, index) => index !== indexToRemove),
+    }));
+  };
+
+  const updateImageAdjustment = (index: number, key: "y" | "s", value: number) => {
+    setForm((prev) => {
+      const newImages = [...prev.images];
+      newImages[index] = { ...newImages[index], [key]: value };
+      return { ...prev, images: newImages };
+    });
   };
 
   const handleSave = async () => {
@@ -546,42 +566,120 @@ const AddCar = () => {
           <div className={styles.card}>
             <SectionTitle icon={UploadCloud} title="Media Gallery" />
 
-            <label className={styles.uploadLabel}>
-              <div className={styles.uploadInner}>
-                <UploadCloud className={styles.uploadIcon} />
-                <p className={styles.uploadText}>Click to upload photos</p>
-                <p className={styles.uploadSub}>JPG, PNG or WebP</p>
-              </div>
+            <div className={styles.urlUploadRow}>
               <input
-                type="file"
-                className={styles.hiddenFile}
-                multiple
-                accept="image/*"
-                onChange={handleImageUpload}
+                value={imageUrlInput}
+                onChange={(e) => setImageUrlInput(e.target.value)}
+                placeholder="Paste image URL here..."
+                className={styles.urlInput}
               />
-            </label>
+              <button
+                onClick={addImageUrl}
+                type="button"
+                className={styles.addImageButton}
+              >
+                <Plus size={18} />
+              </button>
+            </div>
 
             {/* Previews */}
-            <div className={styles.previewGrid}>
-              {form.images.map((url, index) => (
-                <div key={index} className={styles.previewItem}>
-                  <Image src={url} alt="preview" fill className={styles.objectCover} />
+            <div className={styles.previewStack}>
+              {form.images.map((img, index) => (
+                <div key={index} className={styles.fixedPreviewItem}>
+                  <div
+                    className={styles.fixedImageWrapper}
+                    onClick={() => setPopupImage(img)}
+                    style={{ cursor: 'pointer' }}
+                    title="Click to enlarge"
+                  >
+                    <Image
+                      src={img.url}
+                      alt="preview"
+                      fill
+                      className={styles.objectCover}
+                      style={{
+                        objectPosition: `center ${img.y}%`,
+                        transform: `scale(${img.s / 100})`
+                      }}
+                      unoptimized
+                    />
+                  </div>
+
+                  {/* Adjustment Controls */}
+                  <div className={styles.imageControls}>
+                    <div className={styles.controlGroup}>
+                      <label className={styles.controlLabel}>Vertical Position</label>
+                      <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value={img.y}
+                        onChange={(e) => updateImageAdjustment(index, 'y', parseInt(e.target.value))}
+                        className={styles.rangeInput}
+                      />
+                    </div>
+                    <div className={styles.controlGroup}>
+                      <label className={styles.controlLabel}>Zoom / Scale</label>
+                      <input
+                        type="range"
+                        min="50"
+                        max="200"
+                        value={img.s}
+                        onChange={(e) => updateImageAdjustment(index, 's', parseInt(e.target.value))}
+                        className={styles.rangeInput}
+                      />
+                    </div>
+                  </div>
+
                   <button
                     type="button"
                     onClick={() => removeImage(index)}
                     className={styles.previewRemove}
                   >
-                    <X size={12} />
+                    <X size={14} />
                   </button>
                 </div>
               ))}
               {form.images.length === 0 && (
-                <div className={styles.emptyState}>No images uploaded yet.</div>
+                <div className={styles.emptyState}>No images added yet.</div>
               )}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Image Popup Modal */}
+      {popupImage && (
+        <div
+          className={styles.imagePopupOverlay}
+          onClick={() => setPopupImage(null)}
+        >
+          <div
+            className={styles.imagePopupModal}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className={styles.imagePopupClose}
+              onClick={() => setPopupImage(null)}
+              type="button"
+            >
+              <X size={20} />
+            </button>
+            <Image
+              src={popupImage.url}
+              alt="Preview"
+              width={800}
+              height={500}
+              className={styles.imagePopupImage}
+              style={{
+                objectPosition: `center ${popupImage.y}%`,
+                transform: `scale(${popupImage.s / 100})`
+              }}
+              unoptimized
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

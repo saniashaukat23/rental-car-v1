@@ -5,7 +5,11 @@ export interface CarType {
   name: string;
   type: string;
   color: string;
-  images: string[];
+  images: {
+    url: string;
+    y: number; // vertical offset %
+    s: number; // scale %
+  }[];
   seats: number;
   transmission: string;
   fuel: string;

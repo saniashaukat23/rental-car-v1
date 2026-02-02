@@ -18,13 +18,7 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
   const router = useRouter();
 
   const handleCardClick = () => {
-    if (typeof document !== "undefined" && (document as any).startViewTransition) {
-      (document as any).startViewTransition(() => {
-        router.push(`/car/${car._id}`);
-      });
-    } else {
-      router.push(`/car/${car._id}`);
-    }
+    router.push(`/car/${car._id}`);
   };
 
   const handleWhatsApp = (e: React.MouseEvent) => {
@@ -56,10 +50,7 @@ const CarRentalCard: React.FC<CarRentalCardProps> = ({ car }) => {
       className={`${styles.card} ${styles.cursorPointer}`}
       onClick={handleCardClick}
     >
-      <div
-        className={styles.imageContainer}
-        style={{ viewTransitionName: `car-image-${car._id}` } as React.CSSProperties}
-      >
+      <div className={styles.imageContainer}>
         {/* Discount Badge */}
         {isDiscounted && (
           <div className={styles.discountBadge}>

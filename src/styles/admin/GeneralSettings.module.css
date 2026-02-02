@@ -310,35 +310,111 @@
   display: none;
 }
 
-.previewGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.urlUploadRow {
+  display: flex;
   gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.urlInput {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e6eef6;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+}
+
+.urlInput:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.08);
+  border-color: #fb923c;
+}
+
+.addImageButton {
+  background: #0f172a;
+  color: #fff;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.addImageButton:hover {
+  background: #1e293b;
+}
+
+.previewStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   margin-top: 0.75rem;
 }
 
-.previewItem {
+.fixedPreviewItem {
   position: relative;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   overflow: hidden;
-  border: 1px solid #e6eef6;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.imageControls {
+  padding: 1rem;
+  background: #fff;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.controlLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.rangeInput {
+  width: 100%;
+  accent-color: #f97316;
+  cursor: pointer;
 }
 
 .previewRemove {
   position: absolute;
-  top: 0.25rem;
-  right: 0.25rem;
+  top: 0.5rem;
+  right: 0.5rem;
   background: #ef4444;
   color: #fff;
-  border-radius: 9999px;
-  padding: 0.25rem;
-  opacity: 0;
-  transition: opacity .12s;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.2s;
 }
 
-.previewItem:hover .previewRemove {
-  opacity: 1;
+.previewRemove:hover {
+  transform: scale(1.1);
 }
 
 .emptyState {
@@ -796,4 +872,93 @@
 .tcDeleteButton:hover {
   color: #dc2626;
   background-color: #fef2f2;
+}
+
+/* --- Image Popup Modal Styles --- */
+.imagePopupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.imagePopupModal {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  background: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: scaleIn 0.25s ease;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.imagePopupClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.imagePopupClose:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.imagePopupImage {
+  display: block;
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+.fixedImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.fixedImageWrapper:hover {
+  transform: scale(1.02);
 }

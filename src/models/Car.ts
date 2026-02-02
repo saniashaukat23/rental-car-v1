@@ -76,7 +76,13 @@ const CarSchema: Schema<ICar> = new Schema(
     },
     type: { type: String, required: true }, // e.g., Sports, SUV
     color: { type: String, required: true },
-    images: [{ type: String }],
+    images: [
+      {
+        url: { type: String, required: true },
+        y: { type: Number, default: 50 }, // vertical offset in %
+        s: { type: Number, default: 100 }, // scale in %
+      },
+    ],
     seats: {
       type: Number,
       required: true,

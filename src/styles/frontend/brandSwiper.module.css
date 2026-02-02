@@ -10,7 +10,8 @@
   margin: 0 auto;
   padding: 0rem 2rem;
   position: relative;
-  z-index: 0;
+  z-index: 5;
+  /* Lift the container */
 }
 
 .logoItem {
@@ -59,13 +60,37 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border-radius: 999px;
-  width: 3rem;
-  height: 3rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex !important;
+  /* Force display */
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 999 !important;
+  /* Top of everything */
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: none;
+  padding: 0;
+}
+
+.navBtn:hover {
+  background-color: #f97316;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.navBtn svg {
+  width: 24px;
+  height: 24px;
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.navBtn:hover svg {
+  color: white;
 }
 
 .dot {
@@ -80,11 +105,11 @@
 }
 
 .navBtn:first-of-type {
-  left: -12px;
+  left: 10px;
 }
 
 .navBtn:last-of-type {
-  right: -12px;
+  right: 10px;
 }
 
 /* Hover animation like grid cards */
@@ -104,53 +129,10 @@
   transform: translateY(-7px);
 }
 
-/* Navigation button base */
-.navBtn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 10px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  /* 👈 circle */
-  background-color: white;
-  /* black */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-/* Arrow color */
-.navBtn svg {
-  width: 18px;
-  height: 18px;
-  color: black;
-  /* white arrow */
-}
-
-/* Hover effect */
-.navBtn:hover {
-  background-color: #f97316;
-  /* orange */
-  transform: translateY(-50%) scale(1.05);
-}
+/* Redundant navBtn blocks removed and consolidated above */
 
 /* Positioning */
-.brand-prev {
-  left: -14px;
-}
-
-.brand-next {
-  right: -14px;
-}
-
-.navBtn {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-}
+/* Replaced by first-of-type and last-of-type above */
 
 @media (max-width: 640px) {
   .navBtn {

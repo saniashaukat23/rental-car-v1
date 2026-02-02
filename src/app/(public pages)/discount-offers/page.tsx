@@ -17,7 +17,6 @@ async function getDiscountedCars() {
         "name brand pricing images year transmission applyDiscount seats fuel type"
       )
       .sort({ updatedAt: -1 })
-      .limit(9)
       .lean();
 
     return cars.map((car: any) => ({

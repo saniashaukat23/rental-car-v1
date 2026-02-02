@@ -32,7 +32,21 @@ export const CarSchema = z.object({
   name: z.string().min(1, 'Name is required').trim(),
   type: z.string().min(1, 'Type is required'),
   color: z.string().min(1, 'Color is required'),
-  images: z.array(z.string().url('Invalid image URL')).min(1, 'At least one image is required'),
+  images: z
+    .array(
+      z.union([
+        z.string().url('Invalid image URL'),
+        z.object({
+          url: z.string().url('Invalid image URL'),
+          y: z.number().min(0).max(100).default(50),
+          s: z.number().min(50).max(200).default(100),
+        }),
+      ])
+    )
+    .min(1, 'At least one image is required')
+    .transform((imgs) =>
+      imgs.map((img) => (typeof img === 'string' ? { url: img, y: 50, s: 100 } : img))
+    ),
   seats: z.number().int().min(1).max(12),
   transmission: z.string().default('Automatic'),
   fuel: z.string().default('Gasoline'),
