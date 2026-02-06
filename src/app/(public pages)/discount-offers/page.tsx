@@ -5,6 +5,7 @@ import { Tag, Phone, MessageCircle } from "lucide-react";
 import styles from "../../../styles/frontend/discountedCar.module.css";
 // Import the shared component
 import CarRentalCard from "@/src/components/CarRentalCard";
+import { CarType } from "@/src/types/CarType";
 
 export const dynamic = "force-dynamic";
 
@@ -19,10 +20,8 @@ async function getDiscountedCars() {
       .sort({ updatedAt: -1 })
       .lean();
 
-    return cars.map((car: any) => ({
-      ...car,
-      _id: car._id.toString(),
-    }));
+    // Serialize to strip all nested MongoDB _id fields (including in images array)
+    return JSON.parse(JSON.stringify(cars));
   } catch (error) {
     console.error("Error fetching offers:", error);
     return [];
@@ -47,7 +46,7 @@ export default async function DiscountedCarsPage() {
         {/* The Grid now renders CarRentalCards */}
         <div className={styles.grid}>
           {cars.length > 0 ? (
-            cars.map((car) => <CarRentalCard key={car._id} car={car} />)
+            cars.map((car: CarType) => <CarRentalCard key={car._id} car={car} />)
           ) : (
             /* Empty State */
             <div className={styles.emptyState}>

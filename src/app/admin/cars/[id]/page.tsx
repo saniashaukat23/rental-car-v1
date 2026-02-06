@@ -421,6 +421,7 @@ export default function EditCar() {
                       alt=""
                       fill
                       className="object-cover"
+                      unoptimized
                     />
                     <button
                       type="button"

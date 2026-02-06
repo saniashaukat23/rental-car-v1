@@ -51,6 +51,7 @@ export default function ImageHoverCarousel({ images, alt, disableOnMobile = fals
               transform: `scale(${displayImages[0].s / 100})`
             }}
             priority
+            unoptimized
           />
         </div>
       </div>
@@ -70,6 +71,7 @@ export default function ImageHoverCarousel({ images, alt, disableOnMobile = fals
               objectPosition: `center ${displayImages[0].y}%`,
               transform: `scale(${displayImages[0].s / 100})`
             }}
+            unoptimized
           />
         </div>
       </div>
@@ -117,6 +119,7 @@ export default function ImageHoverCarousel({ images, alt, disableOnMobile = fals
             transform: `scale(${displayImages[activeIndex].s / 100})`
           }}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          unoptimized
         />
       </div>
       {displayImages.length > 1 && (

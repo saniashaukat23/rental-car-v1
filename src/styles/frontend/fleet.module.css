@@ -3,7 +3,7 @@
 .pageContainer {
   margin: 0 auto;
   max-width: var(--container-2xl);
-  padding: 6rem var(--space-4);
+  padding: 6rem var(--space-6);
   min-height: 100vh;
 }
 
@@ -152,8 +152,8 @@
 
 .carsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-  gap: var(--space-8);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
 }
 
 .noResults {
@@ -190,8 +190,10 @@
 .filtersContainer {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
-  min-width: 250px;
+  gap: var(--space-4);
+  min-width: 280px;
+  max-width: 280px;
+  flex-shrink: 0;
 }
 
 /* Backdrop Overlay */
@@ -275,6 +277,11 @@
   .filtersContainer .sidebar:first-of-type .filterGroup {
     max-height: 280px;
   }
+
+  /* Car grid becomes single column on mobile */
+  .carsGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -282,6 +289,11 @@
     max-width: var(--container-xl);
     margin: 0 auto;
     padding: 5rem var(--space-4);
+  }
+
+  /* Ensure row layout for filters + main content on desktop */
+  .flexGap8 {
+    flex-direction: row;
   }
 }
 
@@ -294,7 +306,8 @@
 
 .flexGap1 {
   display: flex;
-  gap: 0.25rem;
+  flex-direction: row;
+  gap: 0.5rem;
 }
 
 .itemsCenter {

@@ -196,6 +196,7 @@ const AddCar = () => {
       carId: `${form.brand}-${form.name}-${form.year}`
         .toLowerCase()
         .replace(/\s+/g, "-"),
+      year: Number(form.year),
       seats: Number(form.seats),
       doors: Number(form.doors),
       horsepower: Number(form.horsepower),

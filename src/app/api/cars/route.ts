@@ -104,10 +104,13 @@ export async function GET(request: NextRequest) {
       }
     ]);
 
+    // Serialize to strip MongoDB _id fields from nested subdocuments (images, etc.)
+    const serializedCars = JSON.parse(JSON.stringify(cars));
+
     const response: CarListResponse = {
       success: true,
-      count: cars.length,
-      cars: cars,
+      count: serializedCars.length,
+      cars: serializedCars,
     };
 
     // Add cache and rate limit headers

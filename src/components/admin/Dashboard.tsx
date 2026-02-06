@@ -4,10 +4,9 @@ import Sidebar from "./SideBar";
 import AddCar from "./GeneralSettings";
 import DashboardOverview from "./DashboardOverview";
 import { CarType } from "@/src/types/CarType";
-import Image from "next/image";
 import styles from "../../styles/admin/GeneralSettings.module.css";
 import TotalCars from "./TotalCars";
-import { Search, Bell } from "lucide-react";
+import { Search, Bell, User } from "lucide-react";
 
 // 1. Define the Props Interface
 interface DashboardProps {
@@ -40,12 +39,9 @@ const Dashboard = ({ cars }: DashboardProps) => {
               <Bell className={styles.dashIconSmall} />
             </button>
             <div className={styles.dashProfileAvatar}>
-              <Image
-                src="/api/placeholder/40/40"
-                alt="Profile"
-                height={40}
-                width={40}
-              />
+              <div className={styles.dashAvatarPlaceholder}>
+                <User className={styles.dashIconSmall} />
+              </div>
             </div>
           </div>
         </header>

@@ -32,7 +32,10 @@ export async function GET(request: Request, { params }: Props) {
       );
     }
 
-    return NextResponse.json({ success: true, car });
+    // Serialize to strip MongoDB _id from nested subdocuments (images, etc.)
+    const serializedCar = JSON.parse(JSON.stringify(car));
+
+    return NextResponse.json({ success: true, car: serializedCar });
   } catch (error) {
     console.error("API Error:", error);
     const errorMessage = sanitizeErrorMessage(error);
