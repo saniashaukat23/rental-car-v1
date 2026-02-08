@@ -5,7 +5,7 @@ import Dashboard from "@/src/components/admin/Dashboard";
 import Car from "@/src/models/Car";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
-const ADMIN_EMAIL = "saniashaukat2002@gmail.com";
+const ADMIN_EMAILS = ["saniashaukat2002@gmail.com", "usamarehman489@gmail.com"];
 
 async function getCars() {
   try {
@@ -27,8 +27,8 @@ async function getCars() {
 export default async function AdminDashboardPage() {
   const user = await currentUser();
   if (!user) return redirect("/");
-  const userEmail = user.emailAddresses[0].emailAddress;
-  if (userEmail !== ADMIN_EMAIL) {
+  const userEmail = user.emailAddresses?.[0]?.emailAddress || "";
+  if (!ADMIN_EMAILS.includes(userEmail)) {
     return (
       <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center', color: '#ef4444', fontWeight: 'bold', fontSize: '1.25rem' }}>
         Access Denied: You are not an admin.
