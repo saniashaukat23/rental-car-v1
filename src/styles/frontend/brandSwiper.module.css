@@ -64,7 +64,7 @@
   height: 44px;
   border-radius: 50%;
   background-color: white;
-  display: flex !important;
+  display: none;
   /* Force display */
   align-items: center;
   justify-content: center;
@@ -134,9 +134,9 @@
 /* Positioning */
 /* Replaced by first-of-type and last-of-type above */
 
-@media (max-width: 640px) {
+@media (min-width: 640px) {
   .navBtn {
-    display: none;
+    display: flex;
   }
 }
 
