@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { auth } from "@clerk/nextjs/server";
 import dbConnect from "@/src/lib/db";
 import Car from "@/src/models/Car";
@@ -89,6 +90,11 @@ export async function PUT(request: Request, { params }: Props) {
         { status: 404 }
       );
     }
+
+    // Revalidate all pages that display car pricing
+    revalidatePath('/');
+    revalidatePath('/discount-offers');
+    revalidatePath('/our-fleet');
 
     return NextResponse.json({
       success: true,

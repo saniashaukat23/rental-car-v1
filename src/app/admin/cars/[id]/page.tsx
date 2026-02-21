@@ -203,10 +203,14 @@ export default function EditCar() {
       return;
     }
     const factor = 1 - discountValue / 100;
+    // Always calculate from ORIGINAL prices, not the already-discounted current ones
+    const baseDaily = car.applyDiscount && car.pricing.originalDaily ? car.pricing.originalDaily : car.pricing.daily;
+    const baseWeekly = car.applyDiscount && car.pricing.originalWeekly ? car.pricing.originalWeekly : car.pricing.weekly;
+    const baseMonthly = car.applyDiscount && car.pricing.originalMonthly ? car.pricing.originalMonthly : car.pricing.monthly;
     setDiscountPreview({
-      daily: Math.round(car.pricing.daily * factor),
-      weekly: Math.round(car.pricing.weekly * factor),
-      monthly: Math.round(car.pricing.monthly * factor),
+      daily: Math.round(baseDaily * factor),
+      weekly: Math.round(baseWeekly * factor),
+      monthly: Math.round(baseMonthly * factor),
     });
   };
 
